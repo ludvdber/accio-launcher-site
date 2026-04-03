@@ -1,0 +1,17 @@
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node (if using npx serve)
+node_modules/
+
+# Claude Code
+.claude/
+CLAUDE.md
