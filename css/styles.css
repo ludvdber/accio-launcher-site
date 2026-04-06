@@ -231,6 +231,20 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .lang-toggle:hover { color:var(--gold); border-color:var(--gold-d); }
 
+/* Music toggle */
+.nav-music {
+  background:none; border:none; cursor:pointer;
+  color:var(--muted); padding:4px;
+  display:flex; align-items:center;
+  transition:color 0.3s;
+  flex-shrink:0;
+}
+.nav-music:hover { color:var(--gold); }
+.nav-music .music-off { display:none; }
+.nav-music.muted .music-on { display:none; }
+.nav-music.muted .music-off { display:block; }
+.nav-music.playing { color:var(--gold); }
+
 /* ===========================================
    GAMES — CINEMATIC GRID
    =========================================== */

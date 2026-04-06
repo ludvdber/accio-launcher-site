@@ -92,6 +92,27 @@
     });
   }
 
+  /* --- Background music toggle --- */
+  var bgMusic = document.getElementById('bg-music');
+  var musicBtn = document.getElementById('nav-music');
+  if (bgMusic && musicBtn) {
+    bgMusic.volume = 0.15;
+    var musicPlaying = false;
+    musicBtn.classList.add('muted');
+    musicBtn.addEventListener('click', function () {
+      if (musicPlaying) {
+        bgMusic.pause();
+        musicBtn.classList.remove('playing');
+        musicBtn.classList.add('muted');
+      } else {
+        bgMusic.play().catch(function () {});
+        musicBtn.classList.add('playing');
+        musicBtn.classList.remove('muted');
+      }
+      musicPlaying = !musicPlaying;
+    });
+  }
+
   /* --- Game grid: click to expand detail inline --- */
   var gameDescs = {
     fr: [
