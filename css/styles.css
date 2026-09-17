@@ -70,7 +70,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   border-bottom-color:rgba(26,39,68,0.4);
   backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
 }
-.nav-brand { font-family:var(--display); font-size:16px; color:var(--gold); white-space:nowrap; }
+.nav-brand {
+  font-family:var(--display); font-size:16px; color:var(--gold); white-space:nowrap;
+  display:flex; align-items:center; gap:9px;
+}
+.nav-brand img { width:20px; height:20px; opacity:0.9; }
 .nav-links { display:flex; gap:20px; margin-left:auto; }
 .nav-links a { font-family:var(--serif); font-size:13px; color:var(--muted); transition:color 0.2s; }
 .nav-links a:hover { color:var(--gold); }
@@ -258,6 +262,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   text-align:center; color:var(--muted);
   font-size:17px; max-width:550px;
   margin:-32px auto 48px; line-height:1.6;
+  padding:0 24px;
 }
 
 /* 4×2 grid */
@@ -401,6 +406,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   text-align:center; color:var(--muted);
   font-size:17px; max-width:550px;
   margin:-32px auto 48px; line-height:1.6;
+  padding:0 24px;
 }
 
 .preview-frame {
@@ -421,6 +427,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   width:100%; display:block; border-radius:11px;
   aspect-ratio:16/9; object-fit:cover;
 }
+.preview-features {
+  list-style:none;
+  max-width:960px; margin:28px auto 0; padding:0 24px;
+  display:flex; flex-wrap:wrap; justify-content:center; gap:10px 28px;
+}
+.preview-features li {
+  font-family:var(--serif); font-size:13px; color:var(--muted);
+  display:flex; align-items:center; gap:8px;
+}
+.preview-features li::before {
+  content:''; width:4px; height:4px; border-radius:50%;
+  background:var(--gold-d); flex-shrink:0;
+}
 
 /* ===========================================
    BEFORE/AFTER
@@ -429,6 +448,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .compare-sub {
   text-align:center; color:var(--muted);
   font-size:17px; margin:-32px auto 48px; max-width:550px;
+  padding:0 24px;
 }
 /* Compare tabs */
 .compare-tabs {
@@ -501,7 +521,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .support-text { color:var(--muted); font-size:15px; line-height:1.7; margin-bottom:24px; }
 .support-links {
-  margin-top:auto; padding-top:20px;
+  margin-top:28px; padding-top:20px;
+  border-top:1px solid var(--border);
   display:flex; gap:20px;
 }
 .support-links a {
@@ -552,6 +573,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .footer-oss { font-family:var(--serif); font-size:12px; color:var(--muted); opacity:0.7; margin-bottom:16px; }
 .footer-oss a { color:var(--gold-d); transition:color 0.2s; }
 .footer-oss a:hover { color:var(--gold); }
+.footer-links {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:10px 22px;
+  margin-bottom:20px;
+}
+.footer-links a {
+  font-family:var(--serif); font-size:12px; color:var(--muted);
+  opacity:0.75; transition:color 0.2s, opacity 0.2s;
+}
+.footer-links a:hover { color:var(--gold); opacity:1; }
 #version { font-family:var(--serif); font-size:12px; opacity:0.6; margin-bottom:12px; }
 .legal { max-width:700px; margin:0 auto; }
 .legal p + p { margin-top:8px; }
@@ -564,32 +594,51 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 
 
 /* ===========================================
-   COMMUNITY QUOTES
+   COMMUNAUTÉ
    =========================================== */
-.quotes {
-  padding:80px 0;
+.community {
+  padding:100px 0;
   background:var(--dark3);
 }
-.quotes-grid {
+.community-sub {
+  text-align:center; color:var(--muted);
+  font-size:17px; max-width:600px;
+  margin:-32px auto 48px; line-height:1.6;
+  padding:0 24px;
+}
+.community-grid {
   display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
   max-width:1000px; margin:0 auto; padding:0 24px;
 }
-.quote-card {
-  padding:24px;
+.ccard {
+  padding:28px 26px;
+  display:flex; flex-direction:column;
   background:linear-gradient(135deg, rgba(13,13,26,0.7), rgba(6,6,17,0.9));
   border:1px solid var(--border);
   border-radius:8px;
-  transition:border-color 0.3s;
+  transition:border-color 0.3s, transform 0.3s;
 }
-.quote-card:hover { border-color:var(--gold-d); }
-.quote-card p {
-  font-size:15px; font-style:italic; color:var(--text);
-  line-height:1.6; margin-bottom:12px;
+.ccard:hover { border-color:var(--gold-d); transform:translateY(-3px); }
+.ccard-icon { color:var(--gold); opacity:0.85; margin-bottom:14px; }
+.ccard h3 {
+  font-family:var(--serif); font-size:17px; font-weight:700;
+  color:var(--text); letter-spacing:0.5px; margin-bottom:10px;
 }
-.quote-card cite {
-  font-family:var(--serif); font-size:12px; color:var(--gold-d);
-  font-style:normal; letter-spacing:0.5px;
+.ccard p {
+  font-size:14px; color:var(--muted); line-height:1.7;
+  margin-bottom:20px;
 }
+.ccard-links {
+  margin-top:auto; display:flex; flex-wrap:wrap; gap:16px;
+}
+.ccard-links a {
+  font-family:var(--serif); font-size:12px; font-weight:700;
+  letter-spacing:1.2px; text-transform:uppercase;
+  color:var(--gold); border-bottom:1px solid rgba(212,160,23,0.25);
+  padding-bottom:2px; transition:border-color 0.3s, color 0.3s;
+}
+.ccard-links a::after { content:' →'; letter-spacing:0; }
+.ccard-links a:hover { color:var(--gold-l); border-bottom-color:var(--gold); }
 
 /* ===========================================
    PREVIEW TABS
@@ -642,7 +691,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   .preview-tab { font-size:12px; padding:6px 12px; }
   .compare-tabs { gap:6px; }
   .compare-tab { font-size:11px; padding:6px 12px; }
-  .quotes-grid { grid-template-columns:1fr; }
+  .community-grid { grid-template-columns:1fr; }
+  .preview-features { gap:8px 20px; justify-content:flex-start; }
+  .nav-brand { font-size:14px; }
+  .nav-brand img { width:18px; height:18px; }
   .nav-burger { display:block; }
   .nav-links {
     display:none; position:fixed; inset:52px 0 0 0;

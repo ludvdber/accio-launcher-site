@@ -4,17 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accio Launcher — Tous les jeux Harry Potter PC</title>
-  <meta name="description" content="Téléchargez, installez et jouez aux 8 jeux Harry Potter PC (2001–2011) avec des améliorations graphiques modernes. Gratuit et open-source.">
+  <meta name="description" content="Les 8 jeux Harry Potter PC (2001–2011) dans un seul launcher : téléchargement en un clic, graphismes modernisés, tout est pré-configuré. Gratuit et open-source.">
   <link rel="canonical" href="https://ludvdber.github.io/accio-launcher-site/">
   <meta property="og:title" content="Accio Launcher — Tous les jeux Harry Potter PC">
-  <meta property="og:description" content="Un seul launcher pour les 8 jeux Harry Potter PC. Gratuit et open-source.">
+  <meta property="og:description" content="Un seul launcher pour les 8 jeux Harry Potter PC. Les huit sont en ligne. Gratuit et open-source.">
   <meta property="og:image" content="https://ludvdber.github.io/accio-launcher-site/assets/social_preview.png">
   <meta property="og:url" content="https://ludvdber.github.io/accio-launcher-site/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
   <meta name="theme-color" content="#060611">
   <script>document.documentElement.classList.replace('no-js','js');</script>
-  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="icon" type="image/svg+xml" href="assets/brand/mark.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/brand/icon-180.png">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -23,10 +25,14 @@
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="#top" class="nav-brand">Accio Launcher</a>
+    <a href="#top" class="nav-brand">
+      <img src="assets/brand/mark.svg" alt="" width="20" height="20">
+      <span>Accio Launcher</span>
+    </a>
     <div class="nav-links" id="nav-links">
       <a href="#games" data-i18n="nav_games">Jeux</a>
       <a href="#compare" data-i18n="nav_compare">Avant/Après</a>
+      <a href="#community" data-i18n="nav_community">Communauté</a>
       <a href="#faq">FAQ</a>
       <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a>
     </div>
@@ -57,6 +63,8 @@
         <span class="cta-shimmer"></span>
       </a>
       <div class="hero-meta hero-stagger">
+        <span data-i18n="hero_all_games">Les 8 jeux disponibles</span>
+        <span class="hero-sep">·</span>
         <span>Windows 10/11</span>
         <span class="hero-sep">·</span>
         <span>Open-source</span>
@@ -72,7 +80,7 @@
   <!-- ==================== GAMES ==================== -->
   <section id="games" class="games">
     <h2 class="section-heading" data-reveal data-i18n="games_heading">Les Jeux</h2>
-    <p class="games-sub" data-reveal data-i18n="games_sub">2001 – 2011. Dix ans de jeux Harry Potter PC, réunis dans un seul launcher.</p>
+    <p class="games-sub" data-reveal data-i18n="games_sub">2001 – 2011. Dix ans de jeux Harry Potter PC, réunis dans un seul launcher. Les huit sont en ligne et jouables.</p>
 
     <div class="gcard-grid" id="gcard-grid">
       <article class="gcard" data-game="0" data-row="0" data-reveal>
@@ -163,13 +171,21 @@
     <h2 class="section-heading" data-reveal data-i18n="preview_heading">Le launcher</h2>
     <p class="preview-sub" data-reveal data-i18n="preview_sub">Tout est prêt dès le premier lancement. Choisissez un jeu, cliquez, jouez.</p>
     <div class="preview-tabs" data-reveal>
-      <button class="preview-tab active" data-src="assets/screenshots/launcher-carousel.png" data-i18n="preview_tab1">Carrousel</button>
-      <button class="preview-tab" data-src="assets/screenshots/launcher-installed.png" data-i18n="preview_tab2">Jeu installé</button>
-      <button class="preview-tab" data-src="assets/screenshots/launcher-changelog.png" data-i18n="preview_tab3">Versions</button>
+      <button class="preview-tab active" data-src="assets/screenshots/launcher-catalogue.jpg" data-i18n="preview_tab1">Le catalogue</button>
+      <button class="preview-tab" data-src="assets/screenshots/launcher-installed.jpg" data-i18n="preview_tab2">Jeu installé</button>
+      <button class="preview-tab" data-src="assets/screenshots/launcher-versions.jpg" data-i18n="preview_tab3">Versions</button>
     </div>
     <div class="preview-frame" data-reveal>
-      <img id="preview-img" src="assets/screenshots/launcher-carousel.png" alt="Accio Launcher" loading="lazy">
+      <img id="preview-img" src="assets/screenshots/launcher-catalogue.jpg" alt="Accio Launcher" loading="lazy">
     </div>
+    <ul class="preview-features" data-reveal>
+      <li data-i18n="pf1">Téléchargement en un clic, reprise après coupure</li>
+      <li data-i18n="pf2">Français, anglais, espagnol</li>
+      <li data-i18n="pf3">Cinq thèmes de maison</li>
+      <li data-i18n="pf4">Temps de jeu et historique des parties</li>
+      <li data-i18n="pf5">Réparation d'une installation abîmée</li>
+      <li data-i18n="pf6">Se met à jour tout seul</li>
+    </ul>
   </section>
 
   <!-- ==================== BEFORE / AFTER ==================== -->
@@ -177,21 +193,22 @@
     <h2 class="section-heading" data-reveal data-i18n="compare_heading">Avant / Après</h2>
     <p class="compare-sub" data-reveal data-i18n="compare_sub">L'impact des améliorations graphiques sur les jeux Harry Potter.</p>
 
-    <!-- Game selector tabs -->
+    <!-- Scene selector tabs -->
     <div class="compare-tabs" data-reveal>
-      <button class="compare-tab active" data-before="assets/compare/hp1-before.png" data-after="assets/compare/hp1-after.png">HP1 — L'école des sorciers</button>
-      <!-- <button class="compare-tab" data-before="assets/compare/hp2-before.png" data-after="assets/compare/hp2-after.png">HP2 — La Chambre des secrets</button> -->
-      <!-- <button class="compare-tab" data-before="assets/compare/hp3-before.png" data-after="assets/compare/hp3-after.png">HP3 — Le Prisonnier d'Azkaban</button> -->
+      <button class="compare-tab active" data-before="assets/compare/hp1-couloir-before.jpg" data-after="assets/compare/hp1-couloir-after.jpg" data-i18n="ctab1">HP1 — Couloirs de Poudlard</button>
+      <button class="compare-tab" data-before="assets/compare/hp5-salle-commune-before.jpg" data-after="assets/compare/hp5-salle-commune-after.jpg" data-i18n="ctab2">HP5 — Salle commune</button>
+      <button class="compare-tab" data-before="assets/compare/hp5-bibliotheque-before.jpg" data-after="assets/compare/hp5-bibliotheque-after.jpg" data-i18n="ctab3">HP5 — Bibliothèque</button>
+      <button class="compare-tab" data-before="assets/compare/hp5-chateau-before.jpg" data-after="assets/compare/hp5-chateau-after.jpg" data-i18n="ctab4">HP5 — Le château</button>
     </div>
 
     <div class="slider" id="slider" data-reveal role="slider" aria-label="Comparaison avant/après" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
       <div class="slider-hint" id="slider-hint" data-i18n="slider_hint">Glissez pour comparer</div>
       <div class="slider-before">
-        <img id="img-before" src="assets/compare/hp1-before.png" alt="Rendu graphique original" draggable="false">
+        <img id="img-before" src="assets/compare/hp1-couloir-before.jpg" alt="Rendu graphique original" draggable="false">
         <div class="slider-placeholder">Avant — Rendu original</div>
       </div>
       <div class="slider-after" id="slider-after">
-        <img id="img-after" src="assets/compare/hp1-after.png" alt="Rendu graphique amélioré" draggable="false">
+        <img id="img-after" src="assets/compare/hp1-couloir-after.jpg" alt="Rendu graphique amélioré" draggable="false">
         <div class="slider-placeholder slider-placeholder--after">Après — Amélioré</div>
       </div>
       <div class="slider-handle" id="slider-handle">
@@ -204,22 +221,48 @@
     </div>
   </section>
 
-  <!-- ==================== COMMUNITY QUOTES (hidden until real quotes) ==================== -->
-  <section id="quotes" class="quotes" style="display:none">
-    <h2 class="section-heading" data-reveal data-i18n="quotes_heading">Ce qu'en dit la communauté</h2>
-    <div class="quotes-grid" data-reveal>
-      <blockquote class="quote-card">
-        <p data-i18n="quote1">J'ai pas touché à HP1 depuis 2003. Le relancer en 1080p avec le nouveau renderer, c'était un choc. Merci pour ce projet.</p>
-        <cite data-i18n="quote_cite1">— Membre Discord</cite>
-      </blockquote>
-      <blockquote class="quote-card">
-        <p data-i18n="quote2">Mon fils découvre les jeux HP que je faisais à son âge. Le launcher rend tout tellement simple.</p>
-        <cite data-i18n="quote_cite2">— Membre Discord</cite>
-      </blockquote>
-      <blockquote class="quote-card">
-        <p data-i18n="quote3">Enfin un truc qui marche sur Windows 11 sans passer 2h à configurer la compatibilité.</p>
-        <cite data-i18n="quote_cite3">— Membre Discord</cite>
-      </blockquote>
+  <!-- ==================== COMMUNAUTÉ ==================== -->
+  <section id="community" class="community">
+    <h2 class="section-heading" data-reveal data-i18n="community_heading">La communauté</h2>
+    <p class="community-sub" data-reveal data-i18n="community_sub">Le launcher avance avec ceux qui y jouent. Un bug signalé, c'est un bug corrigé — et une belle capture, c'est la meilleure vitrine du projet.</p>
+
+    <div class="community-grid" data-reveal>
+
+      <article class="ccard">
+        <svg class="ccard-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3.5 2 20.5h20L12 3.5z"/><path d="M12 10v4.4"/><path d="M12 17.6v.1"/>
+        </svg>
+        <h3 data-i18n="ccard1_t">Signaler un bug</h3>
+        <p data-i18n="ccard1_d">Un jeu qui refuse de démarrer, un téléchargement qui s'arrête, un affichage de travers ? Ouvrez un ticket sur GitHub. C'est le chemin le plus court pour que ce soit réparé — et ça évite que dix personnes reperdent la même soirée.</p>
+        <div class="ccard-links">
+          <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener" data-i18n="ccard1_cta">Ouvrir un ticket</a>
+        </div>
+      </article>
+
+      <article class="ccard">
+        <svg class="ccard-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2.5" y="5" width="19" height="14" rx="2"/><circle cx="8" cy="10" r="1.7"/><path d="M3.5 17.5l5-5 3.5 3.5 3.5-3 5 4.5"/>
+        </svg>
+        <h3 data-i18n="ccard2_t">Partager vos captures</h3>
+        <p data-i18n="ccard2_d">Un couloir de Poudlard sous la bonne lumière, un duel pris au bon moment, un château au coucher du soleil : montrez-les. Sur le Discord ou sur GitHub — les plus belles seront mises en avant.</p>
+        <div class="ccard-links">
+          <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a>
+          <a href="https://github.com/ludvdber/AccioLauncher/issues/new?title=Capture%20%E2%80%94%20&amp;body=Votre%20capture%20(glissez%20l%27image%20ici)%20%3A%0A%0AJeu%20%3A%0APseudo%20%C3%A0%20cr%C3%A9diter%20%3A" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+
+      <article class="ccard">
+        <svg class="ccard-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2.5A6.5 6.5 0 0 0 8 14.2v2.3h8v-2.3A6.5 6.5 0 0 0 12 2.5z"/><path d="M9.5 19.5h5"/><path d="M10.5 21.8h3"/>
+        </svg>
+        <h3 data-i18n="ccard3_t">Proposer une idée</h3>
+        <p data-i18n="ccard3_d">Une fonction qui manque, un détail qui agace ? Dites-le. Le launcher parle français, anglais et espagnol, et ajouter une langue ne demande pas une ligne de code — juste un fichier de traduction.</p>
+        <div class="ccard-links">
+          <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener" data-i18n="ccard3_cta">Proposer</a>
+          <a href="https://github.com/ludvdber/AccioLauncher/blob/main/docs/TRANSLATORS.md" target="_blank" rel="noopener" data-i18n="ccard3_cta2">Traduire</a>
+        </div>
+      </article>
+
     </div>
   </section>
 
@@ -239,15 +282,27 @@
         </details>
         <details class="faq-item">
           <summary data-i18n="faq3_q">C'est sûr ?</summary>
-          <p data-i18n="faq3_a">Code public sur GitHub. HTTPS uniquement, anti-path traversal, prévention Zip Slip. Aucune donnée collectée.</p>
+          <p data-i18n="faq3_a">Le code est public sur GitHub. Chaque archive est vérifiée par son empreinte pendant le téléchargement : un fichier abîmé ou modifié en route est refusé. Aucun compte, aucune donnée collectée, aucune pub.</p>
         </details>
         <details class="faq-item">
           <summary data-i18n="faq4_q">Quelle qualité graphique ?</summary>
-          <p data-i18n="faq4_a">1920×1080, renderers D3D11 (HP1-HP2) et DGVoodoo2 (HP3-HP8). Antialiasing, SSAO, HDR. Tout est pré-configuré.</p>
+          <p data-i18n="faq4_a">1920×1080, image nettoyée et lumière retravaillée selon les jeux. Tout est pré-configuré : rien à installer ni à régler à côté.</p>
         </details>
         <details class="faq-item">
-          <summary data-i18n="faq5_q">Windows 11 ?</summary>
-          <p data-i18n="faq5_a">Oui. Windows 10 et 11, DirectX 11, 8 Go RAM, 2 Go VRAM.</p>
+          <summary data-i18n="faq5_q">Les 8 jeux sont tous disponibles ?</summary>
+          <p data-i18n="faq5_a">Oui, depuis la version 1.0 : de l'École des Sorciers (2001) aux Reliques de la Mort partie 2 (2011). Le catalogue est complet.</p>
+        </details>
+        <details class="faq-item">
+          <summary data-i18n="faq6_q">Windows affiche un avertissement ?</summary>
+          <p data-i18n="faq6_a">« Windows a protégé votre ordinateur » est attendu : le launcher est gratuit et n'a pas de certificat de signature, qui coûte plusieurs centaines d'euros par an. Cliquez sur <em>Informations complémentaires</em>, puis <em>Exécuter quand même</em>. L'empreinte du fichier est publiée sur la page de la release si vous voulez la vérifier vous-même.</p>
+        </details>
+        <details class="faq-item">
+          <summary data-i18n="faq7_q">Il faut le réinstaller à chaque version ?</summary>
+          <p data-i18n="faq7_a">Non. Le launcher se met à jour lui-même, en un clic, et les jeux déjà installés restent en place.</p>
+        </details>
+        <details class="faq-item">
+          <summary data-i18n="faq8_q">Quelle configuration ?</summary>
+          <p data-i18n="faq8_a">Windows 10 ou 11, 8 Go de mémoire, 2 Go de mémoire vidéo. Comptez la place du jeu le plus lourd : le launcher vérifie l'espace libre et prévient avant de télécharger.</p>
         </details>
       </div>
 
@@ -276,7 +331,14 @@
   <!-- FOOTER -->
   <footer class="footer">
     <p id="version">Accio Launcher</p>
-    <p class="footer-oss" data-i18n="footer_oss">Code source disponible sur <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a> — MIT License</p>
+    <p class="footer-oss" data-i18n="footer_oss">Code source sur <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a> — licence MIT ; l'exécutable distribué est sous GPL v3.</p>
+    <div class="footer-links">
+      <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener" data-i18n="fl_launcher">Le launcher</a>
+      <a href="https://github.com/ludvdber/accio-launcher-games" target="_blank" rel="noopener" data-i18n="fl_catalog">Le catalogue des jeux</a>
+      <a href="https://github.com/ludvdber/AccioLauncher/issues" target="_blank" rel="noopener" data-i18n="fl_issues">Signaler un bug</a>
+      <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a>
+      <a href="https://ko-fi.com/ludovic01" target="_blank" rel="noopener">Ko-fi</a>
+    </div>
     <div class="legal">
       <p data-i18n="legal1">Accio Launcher est un projet communautaire indépendant, non affilié à Warner Bros. Entertainment Inc. ou Electronic Arts Inc. Harry Potter™ est une marque déposée de Warner Bros. Entertainment Inc. © Wizarding World.</p>
       <p data-i18n="legal2">Ce logiciel est fourni gratuitement, en l'état. Les jeux doivent être possédés légalement par l'utilisateur.</p>
@@ -303,9 +365,10 @@
     "operatingSystem": "Windows 10, Windows 11",
     "applicationCategory": "GameApplication",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-    "description": "Launcher pour les 8 jeux Harry Potter PC (2001-2011) avec améliorations graphiques modernes.",
+    "description": "Launcher pour les 8 jeux Harry Potter PC (2001-2011) avec améliorations graphiques modernes. Catalogue complet, téléchargement et installation en un clic.",
     "downloadUrl": "https://github.com/ludvdber/AccioLauncher/releases/latest",
-    "softwareVersion": "0.5.0",
+    "softwareVersion": "1.0.2",
+    "inLanguage": ["fr", "en", "es"],
     "author": { "@type": "Person", "name": "ludvdber" }
   }
   </script>

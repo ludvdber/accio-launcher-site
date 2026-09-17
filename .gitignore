@@ -15,3 +15,18 @@ node_modules/
 # Claude Code
 .claude/
 CLAUDE.md
+
+# Raw material kept on disk but never published: full-resolution game captures,
+# complete logo pack (SVG masters, splash screens, every icon size). Only the
+# few files the page actually loads live in assets/.
+_local/
+
+# Screenshots dropped at the repo root before being cropped into assets/.
+# Nothing at the root is part of the site.
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+/*.mp4
+/*.7z
+/*.zip
