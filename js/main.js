@@ -272,6 +272,21 @@
     })
     .catch(function () {});
 
+  /* --- Apres un clic sur Telecharger ---
+     Le fichier part de GitHub sans rien changer a la page : on confirme que
+     c'est parti, on souhaite bon jeu, et on glisse l'etoile en seconde ligne.
+     Le bouton de la barre de navigation n'y a pas droit : c'est un raccourci,
+     et le bloc s'afficherait loin de l'endroit ou le visiteur regarde. */
+  var thanks = document.getElementById('dl-thanks');
+  if (thanks) {
+    document.querySelectorAll('a.cta[href*="releases/latest/download/"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btn.insertAdjacentElement('afterend', thanks);
+        thanks.hidden = false;
+      });
+    });
+  }
+
   /* --- Discord : nombre de membres, en direct ---
      L'API publique des invitations repond sans cle et autorise l'appel depuis le
      navigateur. Si elle ne repond pas, la ligne reste masquee : pas de trou. */
@@ -593,6 +608,8 @@
       ph_before: 'Before — Original', ph_after: 'After — Enhanced',
       aria_music: 'Music', title_music: 'Ambient music', aria_menu: 'Menu',
       aria_close: 'Close', aria_compare: 'Before/after comparison', aria_top: 'Back to top',
+      dl_thanks_title: 'Your download has started. Enjoy the games!',
+      dl_thanks_star: 'If you like it, a <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">star on GitHub</a> will help it get noticed.',
       ee_main: 'I solemnly swear that I am up to no good.',
       ee_sub: 'Mischief managed.'
     },
@@ -664,6 +681,8 @@
       ph_before: 'Antes — Original', ph_after: 'Después — Mejorado',
       aria_music: 'Música', title_music: 'Música ambiental', aria_menu: 'Menú',
       aria_close: 'Cerrar', aria_compare: 'Comparación antes/después', aria_top: 'Volver arriba',
+      dl_thanks_title: 'La descarga ha empezado. ¡Que lo disfrutes!',
+      dl_thanks_star: 'Si te gusta, una <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">estrella en GitHub</a> le ayudará a darse a conocer.',
       ee_main: 'Juro solemnemente que mis intenciones no son buenas.',
       ee_sub: 'Travesura realizada.'
     }

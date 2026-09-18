@@ -169,7 +169,24 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   font-size:13px; color:var(--muted); letter-spacing:0.5px;
 }
 .hero-sep { margin:0 6px; opacity:0.4; }
-#dl-count { color:var(--gold-l); font-weight:700; font-size:19px; letter-spacing:1px; }
+
+/* Confirmation apres un clic sur Telecharger. Elle n'apparait qu'en reponse au
+   geste du visiteur, jamais d'elle-meme : c'est ce qui la rend acceptable. */
+.dl-thanks {
+  max-width:440px; margin:18px auto 0;
+  padding:12px 18px;
+  border:1px solid rgba(212,160,23,0.28);
+  background:rgba(6,6,17,0.62);
+  font-family:var(--serif); font-size:13px; line-height:1.6;
+  color:var(--muted); text-align:center; text-shadow:none;
+  animation:dlThanksIn 0.45s ease-out;
+}
+.dl-thanks-title { color:var(--gold-l); font-weight:700; margin-bottom:2px; }
+.dl-thanks-title::before { content:'\2713'; margin-right:8px; }
+.dl-thanks a { color:var(--text); border-bottom:1px solid rgba(212,160,23,0.4); transition:color 0.2s, border-color 0.2s; }
+.dl-thanks a:hover { color:var(--gold); border-bottom-color:var(--gold); }
+@keyframes dlThanksIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
+#dl-count { color:var(--gold-l); font-weight:700; }
 .scroll-hint {
   position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
   z-index:2; opacity:0.5; animation:bob 2.5s ease-in-out infinite;
@@ -775,6 +792,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   .js [data-reveal] { opacity:1; transform:none; transition:none; }
   .js .hero-content { animation:none; }
   .cta-shimmer { animation:none; }
+  .dl-thanks { animation:none; }
   .hero .cta { animation:none; }
   .js .hero-stagger { animation:none; opacity:1; transform:none; }
   .scroll-hint { animation:none; }
