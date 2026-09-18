@@ -1,73 +1,39 @@
-# Accio Launcher — Site
+# Accio Launcher — le site
 
-Page vitrine d'[Accio Launcher](https://github.com/ludvdber/AccioLauncher), le launcher pour les
+![Accio Launcher — les 8 jeux Harry Potter PC réunis dans un seul launcher](assets/social-preview-v2.jpg)
+
+Le dépôt de la page d'accueil d'**Accio Launcher**, le launcher qui réunit les
 8 jeux Harry Potter PC (2001–2011).
 
 **→ [acciolauncher.be](https://acciolauncher.be/)**
 
-## Ce qu'il y a dedans
+## Le reste du projet
 
-HTML, CSS et JavaScript à la main. Pas de framework, pas de bundler, pas de dépendance :
-ce qui est dans le dépôt est exactement ce qui est servi.
+- **[Le launcher](https://github.com/ludvdber/AccioLauncher)** — l'application, les versions, les tickets
+- **[Le catalogue des jeux](https://github.com/ludvdber/accio-launcher-games)** — ce que le launcher installe
+- **[Le Discord](https://discord.gg/TNwDQd7KGe)** — questions, captures, entraide
 
-```text
-index.html          page unique : hero, jeux, aperçu du launcher,
-                    avant/après, communauté, FAQ, footer
-css/styles.css      tous les styles (variables dans :root, polices Cinzel auto-hébergées)
-js/main.js          une IIFE : particules, animation de frappe, apparitions au scroll,
-                    slider avant/après, onglets, sélecteur FR/EN/ES, compteur de
-                    téléchargements et version lus sur l'API GitHub
-assets/             images, polices, audio, vidéo — voir ci-dessous
-```
+Un bug, une idée ? [Ouvre un ticket](https://github.com/ludvdber/AccioLauncher/issues).
 
-Le site parle trois langues, comme le launcher : le français est écrit dans le HTML,
-l'anglais et l'espagnol vivent dans les dictionnaires `i18n.en` et `i18n.es` de
-`js/main.js`. Chaque texte porte un attribut `data-i18n` — un nouveau texte a besoin
-des trois. Les textes remplis par le JavaScript (version, poids, compteur Discord) n'en
-portent pas : ils ont chacun une petite fonction `render*()` rappelée à chaque
-changement de langue.
+## Aperçu
 
-Les textes qui ne sont pas du contenu mais des attributs portent `data-i18n-alt`,
-`data-i18n-label` ou `data-i18n-title` : description d'une image, libellé d'un bouton
-sans mot. Le titre de la page et sa description suivent aussi, via `page_title` et
-`page_desc`.
+Le launcher :
 
-À la première visite, la langue du navigateur décide : anglais ou espagnol si c'est
-celle du visiteur, français sinon. Le choix fait à la main est retenu dans
-`localStorage` sous la clé `accio-lang`.
+![Le launcher Accio, fiche d'un jeu et carrousel des huit jaquettes](assets/screenshots/launcher-catalogue.jpg)
 
-## Images
+Ce que les améliorations graphiques donnent, sur un couloir de Poudlard :
 
-Les polices sont servies en WOFF2 (76 Ko à deux, contre 316 Ko en TTF) ; Cinzel reste
-une police variable, de graisse 400 à 900.
+|                               Avant                                |                               Après                               |
+|:----------------------------------------------------------------:|:---------------------------------------------------------------:|
+| ![Rendu graphique original](assets/compare/hp1-couloir-before.jpg) | ![Rendu graphique amélioré](assets/compare/hp1-couloir-after.jpg) |
 
-Tout ce que la page charge est un JPEG en 1920×1080, entre 200 et 450 Ko. Les captures
-brutes en pleine résolution et le pack logo complet restent sur le disque dans `_local/`,
-qui est ignoré par git — comme toute image déposée à la racine du dépôt.
+## Licence
 
-Les paires avant/après sont recadrées en 16:9 après alignement : le rendu amélioré a un
-champ de vision plus étroit que l'original, et un slider mal aligné donne l'impression
-que la caméra bouge.
-
-## Aperçu local
-
-Aucune installation, aucune compilation. Un serveur statique suffit :
-
-```bash
-python -m http.server
-# ou
-npx serve .
-```
-
-Puis `Ctrl+Shift+R` pour passer outre le cache du navigateur.
-
-## Mise en ligne
-
-Un push sur `main` suffit : GitHub Pages sert la racine du dépôt. `.nojekyll` désactive
-le traitement Jekyll, `CNAME` porte le domaine.
+**Tous droits réservés.** Ce site est un travail personnel : son code, ses textes et sa
+mise en page ne sont pas réutilisables sans mon accord écrit. Voir [LICENSE](LICENSE).
 
 ## Mentions
 
 Projet communautaire indépendant, non affilié à Warner Bros. Entertainment Inc. ni à
-Electronic Arts Inc. Les jaquettes et visuels des jeux appartiennent à leurs ayants droit.
-Harry Potter™ est une marque déposée de Warner Bros. Entertainment Inc.
+Electronic Arts Inc. Les jaquettes et visuels des jeux appartiennent à leurs ayants
+droit. Harry Potter™ est une marque déposée de Warner Bros. Entertainment Inc.
