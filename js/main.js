@@ -200,6 +200,20 @@
   /* --- GitHub data --- */
   var dlEl = document.getElementById('dl-count');
   var verEl = document.getElementById('version');
+  var buildEl = document.getElementById('dl-build');
+  var latestTag = '', latestSize = 0;
+
+  // Version et poids reels sous le bouton. Sans reponse de l'API, la ligne garde
+  // son texte de repli ecrit dans le HTML : elle ne doit jamais rester vide.
+  function renderBuild() {
+    if (!buildEl) return;
+    var en = currentLang === 'en';
+    var parts = [];
+    if (latestTag) parts.push('Version ' + latestTag.replace(/^v/, ''));
+    if (latestSize) parts.push(Math.round(latestSize / 1048576) + (en ? ' MB' : ' Mo'));
+    parts.push(en ? 'Windows 10 and 11' : 'Windows 10 et 11');
+    buildEl.textContent = parts.join(' · ');
+  }
   fetch('https://api.github.com/repos/ludvdber/AccioLauncher/releases?per_page=100')
     .then(function (r) { if (!r.ok) throw r; return r.json(); })
     .then(function (rel) {
@@ -207,6 +221,12 @@
       rel.forEach(function (r) { r.assets.forEach(function (a) { t += a.download_count; }); });
       if (dlEl) animateCount(dlEl, t);
       var latest = rel.find(function (r) { return !r.prerelease; }) || rel[0];
+      if (latest) {
+        latestTag = latest.tag_name || '';
+        var exe = latest.assets.filter(function (a) { return /\.exe$/i.test(a.name); })[0];
+        latestSize = exe ? exe.size : 0;
+        renderBuild();
+      }
       if (latest && verEl) {
         var vTxt = 'Accio Launcher ' + latest.tag_name;
         if (latest.published_at) {
@@ -220,6 +240,31 @@
       }
     })
     .catch(function () {});
+
+  /* --- Discord : nombre de membres, en direct ---
+     L'API publique des invitations repond sans cle et autorise l'appel depuis le
+     navigateur. Si elle ne repond pas, la ligne reste masquee : pas de trou. */
+  var liveEl = document.getElementById('community-live');
+  var dMembers = 0, dOnline = 0;
+
+  function renderDiscord() {
+    if (!liveEl || !dMembers) return;
+    liveEl.innerHTML = currentLang === 'en'
+      ? 'The Discord has <b>' + dMembers + '</b> members, <b>' + dOnline + '</b> of them online right now.'
+      : 'Le Discord compte <b>' + dMembers + '</b> membres, dont <b>' + dOnline + '</b> en ligne en ce moment.';
+    liveEl.hidden = false;
+  }
+
+  if (liveEl) {
+    fetch('https://discord.com/api/v10/invites/TNwDQd7KGe?with_counts=true')
+      .then(function (r) { if (!r.ok) throw r; return r.json(); })
+      .then(function (d) {
+        dMembers = d.approximate_member_count || 0;
+        dOnline = d.approximate_presence_count || 0;
+        renderDiscord();
+      })
+      .catch(function () {});
+  }
 
   /* --- Comparison slider --- */
   var slider = document.getElementById('slider');
@@ -287,7 +332,12 @@
     }
   }
   if (typed) {
-    setTimeout(typeNext, 800);
+    if (reduced) {
+      typed.classList.add('typed-done');
+    } else {
+      typed.textContent = '';
+      setTimeout(typeNext, 800);
+    }
   }
 
   /* --- Back to top --- */
@@ -306,9 +356,12 @@
   if (heroFade && !reduced) {
     addEventListener('scroll', function () {
       var ratio = Math.min(scrollY / (innerHeight * 0.7), 1);
+      // Les valeurs de depart doivent etre celles du CSS : sinon le hero
+      // s'assombrit d'un coup au premier pixel de defilement, et n'y revient
+      // jamais puisque ce style en ligne l'emporte ensuite sur la feuille.
       heroFade.style.background =
-        'radial-gradient(ellipse at center, rgba(6,6,17,' + (0.45 + ratio * 0.4) + ') 0%, rgba(6,6,17,1) ' + (85 - ratio * 30) + '%),' +
-        'linear-gradient(180deg, rgba(6,6,17,' + (0.3 + ratio * 0.5) + ') 0%, rgba(6,6,17,' + (0.6 + ratio * 0.4) + ') 50%, rgba(6,6,17,1) 100%)';
+        'radial-gradient(ellipse at center, rgba(6,6,17,' + (0.12 + ratio * 0.68) + ') 0%, rgba(6,6,17,1) ' + (92 - ratio * 37) + '%),' +
+        'linear-gradient(180deg, rgba(6,6,17,' + (0.06 + ratio * 0.64) + ') 0%, rgba(6,6,17,' + (0.22 + ratio * 0.68) + ') 50%, rgba(6,6,17,1) 100%)';
     });
   }
 
@@ -432,6 +485,9 @@
       hero_cta: 'Download — Free', hero_downloads: 'downloads',
       hero_all_games: 'All 8 games available',
       hero_typed: 'Relive all 8 Harry Potter PC games with modern graphics.',
+      hero_notes: 'Release notes',
+      hero_warn_q: 'Windows will show a warning the first time — that is expected.',
+      hero_warn_a: 'The launcher is free and is not signed with a paid certificate, so Windows shows “Windows protected your PC”. Click <em>More info</em>, then <em>Run anyway</em>.',
       games_heading: 'The Games', games_sub: '2001 – 2011. Ten years of Harry Potter PC games, united in a single launcher. All eight are online and playable.', games_cta: 'Download Accio Launcher',
       game1_title: "Philosopher's Stone",
       game2_title: 'Chamber of Secrets',
@@ -464,12 +520,12 @@
       ccard3_d: 'Something missing, something that annoys you? Say so. The launcher speaks French, English and Spanish, and adding a language takes no code at all — just a translation file.',
       ccard3_cta: 'Suggest', ccard3_cta2: 'Translate',
       faq_heading: 'FAQ',
-      faq1_q: 'Is it legal?', faq1_a: 'The launcher lets you download and install games, but you should own them legally. Otherwise, downloading is at your own risk. The code is open-source on GitHub.',
+      faq1_q: 'Is it legal?', faq1_a: 'Accio Launcher is a tool: it contains no game files. It downloads archives of games that have not been sold for years and installs them for you. You are expected to own the games you install, and making sure of that under your own country’s rules is up to you. The code is public, and the project is affiliated with neither Warner Bros. nor Electronic Arts.',
       faq2_q: 'Is it free?', faq2_a: 'Yes, entirely. Open-source, no ads, no tracking.',
       faq3_q: 'Is it safe?', faq3_a: 'The code is public on GitHub. Every archive is checked against its fingerprint while it downloads: a file damaged or altered on the way is rejected. No account, no data collected, no ads.',
       faq4_q: 'What graphic quality?', faq4_a: '1920×1080, with a cleaner image and reworked lighting depending on the game. Everything is pre-configured: nothing to install or tweak on the side.',
       faq5_q: 'Are all 8 games available?', faq5_a: "Yes, since version 1.0: from the Philosopher's Stone (2001) to Deathly Hallows Part 2 (2011). The catalogue is complete.",
-      faq6_q: 'Windows shows a warning?', faq6_a: '“Windows protected your PC” is expected: the launcher is free and has no code-signing certificate, which costs several hundred euros a year. Click <em>More info</em>, then <em>Run anyway</em>. The file fingerprint is published on the release page if you want to check it yourself.',
+      faq6_q: 'Windows shows a warning?', faq6_a: '“Windows protected your PC” is expected: the launcher is free and has no code-signing certificate, which costs several hundred euros a year. Click <em>More info</em>, then <em>Run anyway</em>. The file comes straight from GitHub, published by the project’s own repository — the same source as the code.',
       faq7_q: 'Reinstall it for every version?', faq7_a: 'No. The launcher updates itself in one click, and games already installed stay where they are.',
       faq8_q: 'What do I need?', faq8_a: 'Windows 10 or 11, 8 GB of memory, 2 GB of video memory. Leave room for the largest game: the launcher checks free space and warns you before downloading.',
       support_heading: 'Support the project',
@@ -509,14 +565,20 @@
       activeDetail.querySelector('.gcard-detail-title').textContent = gd.t;
       activeDetail.querySelector('.gcard-detail-text').textContent = gd.d;
     }
+    renderBuild();
+    renderDiscord();
     // Re-run typing animation with correct language
     if (typed && lang !== typedLang) {
       typedLang = lang;
-      typed.textContent = '';
-      typed.classList.remove('typed-done');
-      ti = 0;
       phrase = lang === 'en' ? i18n.en.hero_typed : frPhrase;
-      setTimeout(typeNext, 200);
+      if (reduced) {
+        typed.textContent = phrase;
+      } else {
+        typed.textContent = '';
+        typed.classList.remove('typed-done');
+        ti = 0;
+        setTimeout(typeNext, 200);
+      }
     }
   }
 

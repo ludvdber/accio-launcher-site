@@ -8,10 +8,16 @@
   <link rel="canonical" href="https://acciolauncher.be/">
   <meta property="og:title" content="Accio Launcher — Tous les jeux Harry Potter PC">
   <meta property="og:description" content="Un seul launcher pour les 8 jeux Harry Potter PC. Les huit sont en ligne. Gratuit et open-source.">
-  <meta property="og:image" content="https://acciolauncher.be/assets/social_preview.png">
+  <meta property="og:image" content="https://acciolauncher.be/assets/social-preview-v2.jpg">
   <meta property="og:url" content="https://acciolauncher.be/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Accio Launcher">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Accio Launcher — les 8 jeux Harry Potter PC réunis dans un seul launcher.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://acciolauncher.be/assets/social-preview-v2.jpg">
   <meta name="theme-color" content="#060611">
   <script>document.documentElement.classList.replace('no-js','js');</script>
   <link rel="icon" type="image/svg+xml" href="assets/brand/mark.svg">
@@ -33,7 +39,7 @@
       <a href="#faq">FAQ</a>
       <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a>
     </div>
-    <a href="https://github.com/ludvdber/AccioLauncher/releases/latest" class="nav-dl" target="_blank" rel="noopener" data-i18n="nav_dl">Télécharger</a>
+    <a href="https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher.exe" class="nav-dl" target="_blank" rel="noopener" data-i18n="nav_dl">Télécharger</a>
     <button class="nav-music" id="nav-music" aria-label="Musique" title="Musique d'ambiance">
       <svg class="music-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
       <svg class="music-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><line x1="1" y1="1" x2="23" y2="23" stroke-width="2"/></svg>
@@ -52,17 +58,23 @@
     </video>
     <div class="hero-fade"></div>
     <div class="hero-content">
-      <h1 class="hero-stagger">Accio Launcher</h1>
-      <p class="hero-sub hero-stagger" id="hero-typed"></p>
-      <noscript><p class="hero-sub">Revivez les 8 jeux Harry Potter PC avec des graphismes modernes.</p></noscript>
-      <a href="https://github.com/ludvdber/AccioLauncher/releases/latest" class="cta hero-stagger" target="_blank" rel="noopener">
+      <h1 class="hero-stagger hero-stagger--1">Accio Launcher</h1>
+      <p class="hero-sub hero-stagger hero-stagger--2" id="hero-typed">Revivez les 8 jeux Harry Potter PC avec des graphismes modernes.</p>
+      <a href="https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher.exe" class="cta hero-stagger hero-stagger--3" target="_blank" rel="noopener">
         <span class="cta-text" data-i18n="hero_cta">Télécharger — Gratuit</span>
         <span class="cta-shimmer"></span>
       </a>
-      <div class="hero-meta hero-stagger">
-        <span data-i18n="hero_all_games">Les 8 jeux disponibles</span>
+      <p class="hero-dl hero-stagger hero-stagger--4">
+        <span id="dl-build">Windows 10 et 11</span>
         <span class="hero-sep">·</span>
-        <span>Windows 10/11</span>
+        <a href="https://github.com/ludvdber/AccioLauncher/releases/latest" target="_blank" rel="noopener" data-i18n="hero_notes">Notes de version</a>
+      </p>
+      <details class="hero-note hero-stagger hero-stagger--5">
+        <summary data-i18n="hero_warn_q">Windows affichera un avertissement au premier lancement — c'est normal.</summary>
+        <p data-i18n="hero_warn_a">Le launcher est gratuit et n'est pas signé par un certificat payant : Windows affiche donc « Windows a protégé votre ordinateur ». Cliquez sur <em>Informations complémentaires</em>, puis <em>Exécuter quand même</em>.</p>
+      </details>
+      <div class="hero-meta hero-stagger hero-stagger--6">
+        <span data-i18n="hero_all_games">Les 8 jeux disponibles</span>
         <span class="hero-sep">·</span>
         <span>Open-source</span>
         <span class="hero-sep">·</span>
@@ -81,56 +93,56 @@
 
     <div class="gcard-grid" id="gcard-grid">
       <article class="gcard" data-game="0" data-row="0" data-reveal>
-        <img src="assets/covers/hp1.jpg" alt="HP1" loading="lazy">
+        <img src="assets/covers/hp1.jpg" alt="Jaquette de Harry Potter à l'école des sorciers (2001)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2001</span>
           <h3 data-i18n="game1_title">À l'école des sorciers</h3>
         </div>
       </article>
       <article class="gcard" data-game="1" data-row="0" data-reveal>
-        <img src="assets/covers/hp2.jpg" alt="HP2" loading="lazy">
+        <img src="assets/covers/hp2.jpg" alt="Jaquette de Harry Potter et la Chambre des secrets (2002)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2002</span>
           <h3 data-i18n="game2_title">La Chambre des secrets</h3>
         </div>
       </article>
       <article class="gcard" data-game="2" data-row="0" data-reveal>
-        <img src="assets/covers/hp3.jpg" alt="HP3" loading="lazy">
+        <img src="assets/covers/hp3.jpg" alt="Jaquette de Harry Potter et le Prisonnier d'Azkaban (2004)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2004</span>
           <h3 data-i18n="game3_title">Le Prisonnier d'Azkaban</h3>
         </div>
       </article>
       <article class="gcard" data-game="3" data-row="0" data-reveal>
-        <img src="assets/covers/hp4.jpg" alt="HP4" loading="lazy">
+        <img src="assets/covers/hp4.jpg" alt="Jaquette de Harry Potter et la Coupe de feu (2005)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2005</span>
           <h3 data-i18n="game4_title">La Coupe de feu</h3>
         </div>
       </article>
       <article class="gcard" data-game="4" data-row="1" data-reveal>
-        <img src="assets/covers/hp5.jpg" alt="HP5" loading="lazy">
+        <img src="assets/covers/hp5.jpg" alt="Jaquette de Harry Potter et l'Ordre du Phénix (2007)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2007</span>
           <h3 data-i18n="game5_title">L'Ordre du Phénix</h3>
         </div>
       </article>
       <article class="gcard" data-game="5" data-row="1" data-reveal>
-        <img src="assets/covers/hp6.jpg" alt="HP6" loading="lazy">
+        <img src="assets/covers/hp6.jpg" alt="Jaquette de Harry Potter et le Prince de sang-mêlé (2009)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2009</span>
           <h3 data-i18n="game6_title">Le Prince de sang-mêlé</h3>
         </div>
       </article>
       <article class="gcard" data-game="6" data-row="1" data-reveal>
-        <img src="assets/covers/hp7a.jpg" alt="HP7a" loading="lazy">
+        <img src="assets/covers/hp7a.jpg" alt="Jaquette de Harry Potter et les Reliques de la Mort — partie 1 (2010)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2010</span>
           <h3 data-i18n="game7_title">Les Reliques de la Mort — 1</h3>
         </div>
       </article>
       <article class="gcard" data-game="7" data-row="1" data-reveal>
-        <img src="assets/covers/hp7b.jpg" alt="HP7b" loading="lazy">
+        <img src="assets/covers/hp7b.jpg" alt="Jaquette de Harry Potter et les Reliques de la Mort — partie 2 (2011)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2011</span>
           <h3 data-i18n="game8_title">Les Reliques de la Mort — 2</h3>
@@ -156,7 +168,7 @@
 
     <!-- 2nd CTA -->
     <div class="games-cta" data-reveal>
-      <a href="https://github.com/ludvdber/AccioLauncher/releases/latest" class="cta" target="_blank" rel="noopener">
+      <a href="https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher.exe" class="cta" target="_blank" rel="noopener">
         <span class="cta-text" data-i18n="games_cta">Télécharger Accio Launcher</span>
         <span class="cta-shimmer"></span>
       </a>
@@ -173,7 +185,7 @@
       <button class="preview-tab" data-src="assets/screenshots/launcher-versions.jpg" data-i18n="preview_tab3">Versions</button>
     </div>
     <div class="preview-frame" data-reveal>
-      <img id="preview-img" src="assets/screenshots/launcher-catalogue.jpg" alt="Accio Launcher" loading="lazy">
+      <img id="preview-img" src="assets/screenshots/launcher-catalogue.jpg" alt="Le launcher Accio, fiche d'un jeu et carrousel des huit jaquettes" loading="lazy">
     </div>
     <ul class="preview-features" data-reveal>
       <li data-i18n="pf1">Téléchargement en un clic, reprise après coupure</li>
@@ -261,15 +273,17 @@
       </article>
 
     </div>
+
+    <p class="community-live" id="community-live" hidden></p>
   </section>
 
   <!-- ==================== FAQ + SUPPORT ==================== -->
   <section id="faq" class="bottom">
     <div class="faq-wrap">
       <h2 class="section-heading" data-reveal data-i18n="faq_heading">Questions fréquentes</h2>
-        <details class="faq-item" open>
+        <details class="faq-item">
           <summary data-i18n="faq1_q">C'est légal ?</summary>
-          <p data-i18n="faq1_a">Le launcher permet de télécharger et installer les jeux, mais vous devez les posséder légalement. Sinon, le téléchargement se fait sous votre responsabilité. Le code est open-source sur GitHub.</p>
+          <p data-i18n="faq1_a">Accio Launcher est un outil : il ne contient aucun fichier de jeu. Il télécharge des archives de jeux qui ne sont plus vendus depuis des années et les installe pour vous. Vous devez posséder les jeux que vous installez, et c'est à vous de vous en assurer selon les règles de votre pays. Le code est public, et le projet n'est affilié ni à Warner Bros. ni à Electronic Arts.</p>
         </details>
         <details class="faq-item">
           <summary data-i18n="faq2_q">C'est gratuit ?</summary>
@@ -289,7 +303,7 @@
         </details>
         <details class="faq-item">
           <summary data-i18n="faq6_q">Windows affiche un avertissement ?</summary>
-          <p data-i18n="faq6_a">« Windows a protégé votre ordinateur » est attendu : le launcher est gratuit et n'a pas de certificat de signature, qui coûte plusieurs centaines d'euros par an. Cliquez sur <em>Informations complémentaires</em>, puis <em>Exécuter quand même</em>. L'empreinte du fichier est publiée sur la page de la release si vous voulez la vérifier vous-même.</p>
+          <p data-i18n="faq6_a">« Windows a protégé votre ordinateur » est attendu : le launcher est gratuit et n'a pas de certificat de signature, qui coûte plusieurs centaines d'euros par an. Cliquez sur <em>Informations complémentaires</em>, puis <em>Exécuter quand même</em>. Le fichier vient directement de GitHub, publié par le dépôt du projet : c'est la même source que le code.</p>
         </details>
         <details class="faq-item">
           <summary data-i18n="faq7_q">Il faut le réinstaller à chaque version ?</summary>
@@ -359,7 +373,7 @@
     "applicationCategory": "GameApplication",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
     "description": "Launcher pour les 8 jeux Harry Potter PC (2001-2011) avec améliorations graphiques modernes. Catalogue complet, téléchargement et installation en un clic.",
-    "downloadUrl": "https://github.com/ludvdber/AccioLauncher/releases/latest",
+    "downloadUrl": "https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher.exe",
     "softwareVersion": "1.0.2",
     "inLanguage": ["fr", "en", "es"],
     "author": { "@type": "Person", "name": "ludvdber" }
