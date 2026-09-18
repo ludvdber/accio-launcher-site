@@ -15,14 +15,21 @@ index.html          page unique : hero, jeux, aperçu du launcher,
                     avant/après, communauté, FAQ, footer
 css/styles.css      tous les styles (variables dans :root, polices Cinzel auto-hébergées)
 js/main.js          une IIFE : particules, animation de frappe, apparitions au scroll,
-                    slider avant/après, onglets, bascule FR/EN, compteur de
+                    slider avant/après, onglets, sélecteur FR/EN/ES, compteur de
                     téléchargements et version lus sur l'API GitHub
 assets/             images, polices, audio, vidéo — voir ci-dessous
 ```
 
-Le site est bilingue : le français est écrit dans le HTML, l'anglais vit dans le
-dictionnaire `i18n.en` de `js/main.js`. Chaque texte porte un attribut `data-i18n` —
-un nouveau texte a besoin des deux.
+Le site parle trois langues, comme le launcher : le français est écrit dans le HTML,
+l'anglais et l'espagnol vivent dans les dictionnaires `i18n.en` et `i18n.es` de
+`js/main.js`. Chaque texte porte un attribut `data-i18n` — un nouveau texte a besoin
+des trois. Les textes remplis par le JavaScript (version, poids, compteur Discord) n'en
+portent pas : ils ont chacun une petite fonction `render*()` rappelée à chaque
+changement de langue.
+
+À la première visite, la langue du navigateur décide : anglais ou espagnol si c'est
+celle du visiteur, français sinon. Le choix fait à la main est retenu dans
+`localStorage` sous la clé `accio-lang`.
 
 ## Images
 

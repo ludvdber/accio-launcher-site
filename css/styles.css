@@ -247,15 +247,23 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 /* ===========================================
    LANG TOGGLE
    =========================================== */
-.lang-toggle {
+.lang-switch {
+  display:flex; align-items:stretch;
+  border:1px solid var(--border);
+  margin-left:4px; flex-shrink:0;
+  transition:border-color 0.3s;
+}
+.lang-switch:hover { border-color:var(--gold-d); }
+.lang-switch button {
   font-family:var(--serif); font-size:11px; font-weight:700;
   letter-spacing:1px; color:var(--muted);
-  background:none; border:1px solid var(--border);
-  padding:4px 10px; cursor:pointer;
-  transition:color 0.3s, border-color 0.3s;
-  margin-left:4px; flex-shrink:0;
+  background:none; border:none; padding:4px 9px; cursor:pointer;
+  transition:color 0.3s, background 0.3s;
 }
-.lang-toggle:hover { color:var(--gold); border-color:var(--gold-d); }
+.lang-switch button + button { border-left:1px solid var(--border); }
+.lang-switch button:hover { color:var(--gold); }
+.lang-switch button.is-active { color:var(--gold); background:rgba(212,160,23,0.12); }
+.lang-switch button:focus-visible { outline:1px solid var(--gold); outline-offset:-1px; }
 
 /* Music toggle */
 .nav-music {
@@ -726,8 +734,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   .compare-tab { font-size:11px; padding:6px 12px; }
   .community-grid { grid-template-columns:1fr; }
   .preview-features { gap:8px 20px; justify-content:flex-start; }
+  #nav { padding:0 16px; gap:12px; }
   .nav-brand { font-size:14px; }
   .nav-music { display:none; }
+  /* Le nom, le bouton de telechargement et trois langues ne tiennent pas de front
+     sur un telephone : les langues rejoignent le menu, ou elles ont de vraies
+     cibles tactiles. La langue du navigateur reste detectee a l'ouverture. */
+  .lang-switch {
+    display:none; position:fixed; left:50%; bottom:14vh;
+    transform:translateX(-50%); margin-left:0; z-index:100;
+  }
+  .nav-links.open ~ .lang-switch { display:flex; }
+  .lang-switch button { font-size:13px; padding:10px 16px; }
   .nav-burger { display:block; }
   .nav-links {
     display:none; position:fixed; inset:52px 0 0 0;
@@ -745,6 +763,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 
 @media(max-width:480px) {
+  #nav { padding:0 12px; }
+  .nav-brand { font-size:13px; }
+  .nav-dl { padding:4px 8px; letter-spacing:1px; }
   .slider { aspect-ratio:4/3; }
   .gcard-detail-content { padding:20px 32px 20px 16px; }
 }

@@ -134,6 +134,16 @@
       { y:'2009', t:'Half-Blood Prince', d:"Three gameplay pillars: real-time wizard duels, potion brewing, and free exploration of Hogwarts. The castle has been further enriched with new areas and side missions. Face increasingly formidable opponents in duels, master the subtle art of the Half-Blood Prince's potions, and uncover the school's darkest secrets." },
       { y:'2010', t:'Deathly Hallows — Part 1', d:"A total break from previous entries. No more Hogwarts exploration: this is a third-person action game where Harry, Ron, and Hermione flee the Death Eaters across England. Cover system, varied offensive spells, and stealth missions. From the Ministry of Magic to the Forest of Dean, the hunt for Horcruxes begins." },
       { y:'2011', t:'Deathly Hallows — Part 2', d:"The Battle of Hogwarts. The final game in the series focuses all its action on the ultimate confrontation. Play as Harry, but also Hermione, Ron, Ginny, Seamus, Neville, and even Professor McGonagall in varied missions. Defend the castle room by room, destroy the last Horcruxes, and face Voldemort in one final duel." }
+    ],
+    es: [
+      { y:'2001', t:'La piedra filosofal', d:'Juego de acción y aventura en 3D donde encarnas a Harry durante su primer curso en Hogwarts. Aprende hechizos como Flipendo y Lumos, explora el castillo y sus alrededores, y reúne grageas Bertie Bott de todos los sabores y cromos de magos famosos. De las clases de vuelo en escoba a los enfrentamientos en los subterráneos, revive la aventura que descubrió Hogwarts a toda una generación de jugadores.' },
+      { y:'2002', t:'La cámara secreta', d:'Vuelve a Hogwarts para un segundo curso aún más rico. El castillo es ya un auténtico mundo abierto que puedes recorrer libremente entre clase y clase. Nuevos hechizos, duelos de magos, partidos de quidditch jugables y un bestiario ampliado con los elfos domésticos, las acromántulas y el basilisco. El juego que definió lo que podía ser un mundo de Harry Potter interactivo.' },
+      { y:'2004', t:'El prisionero de Azkaban', d:'Por primera vez juegas con tres personajes: Harry, Ron y Hermione. Cada uno tiene habilidades únicas, imprescindibles para resolver los enigmas. Harry lanza Expecto Patronum, Hermione se cuela con Scabbers, Ron usa su fuerza. El juego cooperativo da una profundidad real a la exploración de Hogwarts y sus alrededores, de la Casa de los Gritos al Bosque Prohibido.' },
+      { y:'2005', t:'El cáliz de fuego', d:'El Torneo de los Tres Magos en cooperativo para hasta 3 jugadores. Enfréntate al Colacuerno Húngaro, sumérgete en el Lago Negro y recorre el laberinto del Torneo. El juego apuesta por la acción y el trabajo en equipo: lanza hechizos combinados, protege a tus aliados y adapta tu estrategia a cada prueba. Un ritmo nervioso que se aleja por completo del resto de la serie.' },
+      { y:'2007', t:'La Orden del Fénix', d:'Hogwarts en mundo abierto como nunca antes. Cada pasillo, cada sala, cada pasadizo secreto está modelado y se puede recorrer libremente. Recluta a los miembros del Ejército de Dumbledore, aprende nuevos hechizos con la varita controlada con el stick analógico y enfréntate a Umbridge y a los mortífagos. La representación más fiel y ambiciosa del castillo jamás creada en un videojuego.' },
+      { y:'2009', t:'El misterio del príncipe', d:'Tres pilares de juego: los duelos de magos en tiempo real, la preparación de pociones y la exploración libre de Hogwarts. El castillo se ha enriquecido aún más con nuevas zonas y misiones secundarias. Enfréntate a rivales cada vez más temibles en duelo, domina el arte sutil de las pociones del Príncipe Mestizo y descubre los secretos más oscuros del colegio.' },
+      { y:'2010', t:'Las Reliquias de la Muerte — Parte 1', d:'Ruptura total con las entregas anteriores. Se acabó la exploración de Hogwarts: llega un juego de acción en tercera persona donde Harry, Ron y Hermione huyen de los mortífagos por toda Inglaterra. Sistema de coberturas, hechizos ofensivos variados y misiones de infiltración. Del Ministerio de Magia al bosque de Dean, empieza la caza de los Horrocruxes.' },
+      { y:'2011', t:'Las Reliquias de la Muerte — Parte 2', d:'La Batalla de Hogwarts. El último juego de la serie concentra toda su acción en el enfrentamiento final. Encarna a Harry, pero también a Hermione, Ron, Ginny, Seamus, Neville e incluso a la profesora McGonagall en misiones variadas. Defiende el castillo sala por sala, destruye los últimos Horrocruxes y enfréntate a Voldemort en un duelo definitivo.' }
     ]
   };
   var bgMap = [
@@ -205,13 +215,18 @@
 
   // Version et poids reels sous le bouton. Sans reponse de l'API, la ligne garde
   // son texte de repli ecrit dans le HTML : elle ne doit jamais rester vide.
+  var buildWords = {
+    fr: { unit: ' Mo', os: 'Windows 10 et 11' },
+    en: { unit: ' MB', os: 'Windows 10 and 11' },
+    es: { unit: ' MB', os: 'Windows 10 u 11' }
+  };
   function renderBuild() {
     if (!buildEl) return;
-    var en = currentLang === 'en';
+    var w = buildWords[currentLang] || buildWords.fr;
     var parts = [];
     if (latestTag) parts.push('Version ' + latestTag.replace(/^v/, ''));
-    if (latestSize) parts.push(Math.round(latestSize / 1048576) + (en ? ' MB' : ' Mo'));
-    parts.push(en ? 'Windows 10 and 11' : 'Windows 10 et 11');
+    if (latestSize) parts.push(Math.round(latestSize / 1048576) + w.unit);
+    parts.push(w.os);
     buildEl.textContent = parts.join(' · ');
   }
   fetch('https://api.github.com/repos/ludvdber/AccioLauncher/releases?per_page=100')
@@ -231,9 +246,12 @@
         var vTxt = 'Accio Launcher ' + latest.tag_name;
         if (latest.published_at) {
           var d = new Date(latest.published_at);
-          var months = currentLang === 'en'
-            ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-            : ['jan.','fév.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+          var monthNames = {
+            fr: ['jan.','fév.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'],
+            en: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+            es: ['ene.','feb.','mar.','abr.','may.','jun.','jul.','ago.','sept.','oct.','nov.','dic.']
+          };
+          var months = monthNames[currentLang] || monthNames.fr;
           vTxt += ' — ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
         }
         verEl.textContent = vTxt;
@@ -249,9 +267,13 @@
 
   function renderDiscord() {
     if (!liveEl || !dMembers) return;
-    liveEl.innerHTML = currentLang === 'en'
-      ? 'The Discord has <b>' + dMembers + '</b> members, <b>' + dOnline + '</b> of them online right now.'
-      : 'Le Discord compte <b>' + dMembers + '</b> membres, dont <b>' + dOnline + '</b> en ligne en ce moment.';
+    if (currentLang === 'en') {
+      liveEl.innerHTML = 'The Discord has <b>' + dMembers + '</b> members, <b>' + dOnline + '</b> of them online right now.';
+    } else if (currentLang === 'es') {
+      liveEl.innerHTML = 'El Discord tiene <b>' + dMembers + '</b> miembros, <b>' + dOnline + '</b> de ellos conectados ahora mismo.';
+    } else {
+      liveEl.innerHTML = 'Le Discord compte <b>' + dMembers + '</b> membres, dont <b>' + dOnline + '</b> en ligne en ce moment.';
+    }
     liveEl.hidden = false;
   }
 
@@ -321,22 +343,32 @@
   var frPhrase = 'Revivez les 8 jeux Harry Potter PC avec des graphismes modernes.';
   var phrase = frPhrase;
   var typedLang = 'fr';
-  var ti = 0;
-  function typeNext() {
-    if (typed && ti < phrase.length) {
+  var ti = 0, typeRun = 0;
+  // Chaque frappe porte un jeton : changer de langue en cours de route annule
+  // la precedente au lieu de melanger deux phrases dans le meme element.
+  function typeNext(run) {
+    if (run !== typeRun || !typed) return;
+    if (ti < phrase.length) {
       typed.textContent += phrase[ti];
       ti++;
-      setTimeout(typeNext, 35 + Math.random() * 25);
-    } else if (typed) {
+      setTimeout(function () { typeNext(run); }, 35 + Math.random() * 25);
+    } else {
       typed.classList.add('typed-done');
     }
+  }
+  function startTyping(delay) {
+    typeRun++;
+    var run = typeRun;
+    ti = 0;
+    typed.textContent = '';
+    typed.classList.remove('typed-done');
+    setTimeout(function () { typeNext(run); }, delay);
   }
   if (typed) {
     if (reduced) {
       typed.classList.add('typed-done');
     } else {
-      typed.textContent = '';
-      setTimeout(typeNext, 800);
+      startTyping(800);
     }
   }
 
@@ -483,7 +515,6 @@
     en: {
       nav_games: 'Games', nav_compare: 'Before/After', nav_community: 'Community', nav_dl: 'Download',
       hero_cta: 'Download — Free', hero_downloads: 'downloads',
-      hero_all_games: 'All 8 games available',
       hero_typed: 'Relive all 8 Harry Potter PC games with modern graphics.',
       hero_notes: 'Release notes',
       hero_warn_q: 'Windows will show a warning the first time — that is expected.',
@@ -537,11 +568,68 @@
       legal2: 'This software is provided free of charge, as-is. Games must be legally owned by the user.',
       ee_main: 'I solemnly swear that I am up to no good.',
       ee_sub: 'Mischief managed.'
+    },
+    es: {
+      nav_games: 'Juegos', nav_compare: 'Antes/Después', nav_community: 'Comunidad', nav_dl: 'Descargar',
+      hero_cta: 'Descargar — Gratis', hero_downloads: 'descargas',
+      hero_typed: 'Revive los 8 juegos de Harry Potter para PC con gráficos modernos.',
+      hero_notes: 'Notas de la versión',
+      hero_warn_q: 'Windows mostrará un aviso la primera vez — es normal.',
+      hero_warn_a: 'El launcher es gratuito y no está firmado con un certificado de pago: por eso Windows muestra «Windows protegió su PC». Haz clic en <em>Más información</em> y luego en <em>Ejecutar de todas formas</em>.',
+      games_heading: 'Los juegos', games_sub: '2001 – 2011. Diez años de juegos de Harry Potter para PC, reunidos en un solo launcher. Los ocho están en línea y se pueden jugar.', games_cta: 'Descargar Accio Launcher',
+      game1_title: 'La piedra filosofal',
+      game2_title: 'La cámara secreta',
+      game3_title: 'El prisionero de Azkaban',
+      game4_title: 'El cáliz de fuego',
+      game5_title: 'La Orden del Fénix',
+      game6_title: 'El misterio del príncipe',
+      game7_title: 'Las Reliquias de la Muerte — 1',
+      game8_title: 'Las Reliquias de la Muerte — 2',
+      preview_heading: 'El launcher', preview_sub: 'Todo está listo desde el primer arranque. Elige un juego, haz clic y juega.',
+      preview_tab1: 'El catálogo', preview_tab2: 'Juego instalado', preview_tab3: 'Versiones',
+      pf1: 'Descarga en un clic, se reanuda tras un corte',
+      pf2: 'Español, francés e inglés',
+      pf3: 'Cinco temas de las casas de Hogwarts',
+      pf4: 'Tiempo de juego e historial de partidas',
+      pf5: 'Repara una instalación dañada',
+      pf6: 'Se actualiza solo',
+      compare_heading: 'Antes / Después', compare_sub: 'El impacto de las mejoras gráficas en los juegos de Harry Potter.',
+      ctab1: 'HP1 — Pasillos de Hogwarts', ctab2: 'HP5 — Sala común',
+      ctab3: 'HP5 — Biblioteca', ctab4: 'HP5 — El castillo',
+      slider_hint: 'Arrastra para comparar',
+      community_heading: 'La comunidad',
+      community_sub: 'El launcher avanza con quienes lo usan. Un fallo avisado es un fallo corregido — y una buena captura es el mejor escaparate del proyecto.',
+      ccard1_t: 'Informar de un fallo',
+      ccard1_d: '¿Un juego que no arranca, una descarga que se detiene, algo que se ve torcido? Abre un ticket en GitHub. Es el camino más corto para que se arregle — y evita que otras diez personas pierdan la misma tarde.',
+      ccard1_cta: 'Abrir un ticket',
+      ccard2_t: 'Comparte tus capturas',
+      ccard2_d: 'Un pasillo de Hogwarts con la luz justa, un duelo captado en el momento exacto, el castillo al atardecer: enséñalas. En Discord o en GitHub — las mejores se destacarán.',
+      ccard3_t: 'Proponer una idea',
+      ccard3_d: '¿Falta algo, hay un detalle que molesta? Dilo. El launcher habla español, francés e inglés, y añadir un idioma no pide ni una línea de código — solo un archivo de traducción.',
+      ccard3_cta: 'Proponer', ccard3_cta2: 'Traducir',
+      faq_heading: 'Preguntas frecuentes',
+      faq1_q: '¿Es legal?', faq1_a: 'Accio Launcher es una herramienta: no contiene ningún archivo de los juegos. Descarga archivos de juegos que llevan años sin venderse y los instala por ti. Debes poseer los juegos que instalas, y comprobarlo según las normas de tu país es cosa tuya. El código es público, y el proyecto no está afiliado ni a Warner Bros. ni a Electronic Arts.',
+      faq2_q: '¿Es gratis?', faq2_a: 'Sí, del todo. Código abierto, sin publicidad, sin rastreo.',
+      faq3_q: '¿Es seguro?', faq3_a: 'El código es público en GitHub. Cada archivo se verifica con su huella durante la descarga: un archivo dañado o modificado por el camino se rechaza. Sin cuenta, sin datos recogidos, sin publicidad.',
+      faq4_q: '¿Qué calidad gráfica?', faq4_a: '1920×1080, con una imagen más limpia y la iluminación retocada según el juego. Todo viene preconfigurado: nada que instalar ni ajustar aparte.',
+      faq5_q: '¿Están los 8 juegos disponibles?', faq5_a: 'Sí, desde la versión 1.0: de la Piedra Filosofal (2001) a las Reliquias de la Muerte parte 2 (2011). El catálogo está completo.',
+      faq6_q: '¿Windows muestra un aviso?', faq6_a: '«Windows protegió su PC» es lo esperado: el launcher es gratuito y no tiene certificado de firma, que cuesta varios cientos de euros al año. Haz clic en <em>Más información</em> y luego en <em>Ejecutar de todas formas</em>. El archivo viene directamente de GitHub, publicado por el repositorio del proyecto: es la misma fuente que el código.',
+      faq7_q: '¿Hay que reinstalarlo en cada versión?', faq7_a: 'No. El launcher se actualiza solo, en un clic, y los juegos ya instalados se quedan donde están.',
+      faq8_q: '¿Qué configuración hace falta?', faq8_a: 'Windows 10 u 11, 8 GB de memoria, 2 GB de memoria de vídeo. Cuenta con el espacio del juego más pesado: el launcher comprueba el espacio libre y avisa antes de descargar.',
+      support_heading: 'Apoyar el proyecto',
+      support_text: 'Desarrollado por una sola persona apasionada, en su tiempo libre. Sin publicidad, sin monetización — solo las ganas de devolver la vida a estos juegos.',
+      kofi_cta: '☕ Invitar a un café en Ko-fi',
+      footer_oss: 'Código fuente en <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a> — licencia MIT; el ejecutable distribuido es GPL v3.',
+      fl_launcher: 'El launcher', fl_catalog: 'El catálogo de juegos', fl_issues: 'Informar de un fallo',
+      legal1: 'Accio Launcher es un proyecto comunitario independiente, no afiliado a Warner Bros. Entertainment Inc. ni a Electronic Arts Inc. Harry Potter™ es una marca registrada de Warner Bros. Entertainment Inc. © Wizarding World.',
+      legal2: 'Este software se ofrece de forma gratuita, tal cual. El usuario debe poseer legalmente los juegos.',
+      ee_main: 'Juro solemnemente que mis intenciones no son buenas.',
+      ee_sub: 'Travesura realizada.'
     }
   };
 
   var currentLang = 'fr';
-  var langBtn = document.getElementById('lang-toggle');
+  var langBtns = document.querySelectorAll('#lang-switch button[data-lang]');
   var frTexts = {};
 
   // Save original FR texts
@@ -550,10 +638,15 @@
   });
 
   function setLang(lang) {
+    if (lang !== 'fr' && !i18n[lang]) lang = 'fr';
     currentLang = lang;
-    document.documentElement.lang = lang === 'fr' ? 'fr' : 'en';
-    if (langBtn) langBtn.textContent = lang === 'fr' ? 'EN' : 'FR';
-    var dict = lang === 'fr' ? frTexts : i18n.en;
+    document.documentElement.lang = lang;
+    langBtns.forEach(function (b) {
+      var on = b.getAttribute('data-lang') === lang;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    var dict = lang === 'fr' ? frTexts : i18n[lang];
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var key = el.getAttribute('data-i18n');
       if (dict[key] !== undefined) el.innerHTML = dict[key];
@@ -570,22 +663,33 @@
     // Re-run typing animation with correct language
     if (typed && lang !== typedLang) {
       typedLang = lang;
-      phrase = lang === 'en' ? i18n.en.hero_typed : frPhrase;
-      if (reduced) {
-        typed.textContent = phrase;
-      } else {
-        typed.textContent = '';
-        typed.classList.remove('typed-done');
-        ti = 0;
-        setTimeout(typeNext, 200);
-      }
+      phrase = lang === 'fr' ? frPhrase : i18n[lang].hero_typed;
+      if (reduced) { typed.textContent = phrase; } else { startTyping(200); }
     }
   }
 
-  if (langBtn) {
-    langBtn.addEventListener('click', function () {
-      setLang(currentLang === 'fr' ? 'en' : 'fr');
+  langBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var lang = b.getAttribute('data-lang');
+      setLang(lang);
+      try { localStorage.setItem('accio-lang', lang); } catch (e) {}
+      // Sur mobile le selecteur vit dans le menu : le choix fait, on referme.
+      if (navLinks && burger && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
     });
+  });
+
+  // Langue d'ouverture : le choix precedent s'il existe, sinon celle du
+  // navigateur si on la parle, sinon le francais.
+  var startLang = '';
+  try { startLang = localStorage.getItem('accio-lang') || ''; } catch (e) {}
+  if (!startLang) {
+    var navLang = (navigator.language || '').slice(0, 2).toLowerCase();
+    if (navLang === 'en' || navLang === 'es') startLang = navLang;
   }
+  if (startLang && startLang !== 'fr') setLang(startLang);
 
 })();
