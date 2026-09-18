@@ -164,12 +164,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .hero-note p { margin-top:10px; }
 .hero-note em { color:var(--text); font-style:normal; }
 .hero-meta {
-  margin-top:10px;
+  margin-top:16px;
   font-family:var(--serif);
   font-size:13px; color:var(--muted); letter-spacing:0.5px;
 }
 .hero-sep { margin:0 6px; opacity:0.4; }
-#dl-count { color:var(--gold-l); font-weight:700; }
+#dl-count { color:var(--gold-l); font-weight:700; font-size:19px; letter-spacing:1px; }
 .scroll-hint {
   position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
   z-index:2; opacity:0.5; animation:bob 2.5s ease-in-out infinite;

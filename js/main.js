@@ -212,15 +212,15 @@
   var dlEl = document.getElementById('dl-count');
   var verEl = document.getElementById('version');
   var buildEl = document.getElementById('dl-build');
-  var latestTag = '', latestSize = 0;
+  var latestTag = '';
 
   // Version et poids reels sous le bouton. Sans reponse de l'API, la ligne garde
   // son texte de repli ecrit dans le HTML : elle ne doit jamais rester vide.
   var RELEASES_URL = 'https://github.com/ludvdber/AccioLauncher/releases/latest';
   var buildWords = {
-    fr: { unit: ' Mo', os: 'Windows 10 et 11', notes: 'Notes de version' },
-    en: { unit: ' MB', os: 'Windows 10 and 11', notes: 'Release notes' },
-    es: { unit: ' MB', os: 'Windows 10 u 11', notes: 'Notas de la versión' }
+    fr: { os: 'Windows 10 et 11', oss: 'Open-source', notes: 'Notes de version' },
+    en: { os: 'Windows 10 and 11', oss: 'Open-source', notes: 'Release notes' },
+    es: { os: 'Windows 10 u 11', oss: 'Código abierto', notes: 'Notas de la versión' }
   };
   // Le numero de version est lui-meme le lien vers le changelog. Tant que l'API
   // n'a pas repondu, le lien garde son libelle : le changelog reste joignable.
@@ -230,8 +230,8 @@
     var label = latestTag ? 'Version ' + latestTag.replace(/^v/, '') : w.notes;
     var parts = ['<a href="' + RELEASES_URL + '" target="_blank" rel="noopener" title="' +
                  w.notes + '">' + label + '</a>'];
-    if (latestSize) parts.push(Math.round(latestSize / 1048576) + w.unit);
     parts.push(w.os);
+    parts.push(w.oss);
     buildEl.innerHTML = parts.join('<span class="hero-sep">·</span>');
   }
   fetch('https://api.github.com/repos/ludvdber/AccioLauncher/releases?per_page=100')
@@ -243,8 +243,6 @@
       var latest = rel.find(function (r) { return !r.prerelease; }) || rel[0];
       if (latest) {
         latestTag = latest.tag_name || '';
-        var exe = latest.assets.filter(function (a) { return /\.exe$/i.test(a.name); })[0];
-        latestSize = exe ? exe.size : 0;
         renderBuild();
         // Les donnees structurees annoncaient une version figee dans le HTML :
         // elle vient maintenant du meme tag que le reste.

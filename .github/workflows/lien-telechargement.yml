@@ -1,0 +1,28 @@
+name: Lien de téléchargement
+
+# Ce lien peut casser sans qu'on touche au site : il suffit que l'exécutable
+# change de nom dans une sortie du launcher. Contrôle hebdomadaire.
+
+on:
+  schedule:
+    - cron: '0 6 * * 1' # tous les lundis, 6 h UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lien:
+    name: Le bouton pointe-t-il toujours sur un fichier ?
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Vérifier la dernière version publiée
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node tests/distant.mjs
