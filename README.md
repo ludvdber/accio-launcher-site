@@ -27,11 +27,19 @@ des trois. Les textes remplis par le JavaScript (version, poids, compteur Discor
 portent pas : ils ont chacun une petite fonction `render*()` rappelée à chaque
 changement de langue.
 
+Les textes qui ne sont pas du contenu mais des attributs portent `data-i18n-alt`,
+`data-i18n-label` ou `data-i18n-title` : description d'une image, libellé d'un bouton
+sans mot. Le titre de la page et sa description suivent aussi, via `page_title` et
+`page_desc`.
+
 À la première visite, la langue du navigateur décide : anglais ou espagnol si c'est
 celle du visiteur, français sinon. Le choix fait à la main est retenu dans
 `localStorage` sous la clé `accio-lang`.
 
 ## Images
+
+Les polices sont servies en WOFF2 (76 Ko à deux, contre 316 Ko en TTF) ; Cinzel reste
+une police variable, de graisse 400 à 900.
 
 Tout ce que la page charge est un JPEG en 1920×1080, entre 200 et 450 Ko. Les captures
 brutes en pleine résolution et le pack logo complet restent sur le disque dans `_local/`,

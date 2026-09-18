@@ -2,8 +2,8 @@
    ACCIO LAUNCHER — V2
    =========================================== */
 
-@font-face { font-family:'Cinzel'; src:url('../assets/fonts/Cinzel-Variable.ttf') format('truetype'); font-weight:400 900; font-display:swap; }
-@font-face { font-family:'Cinzel Decorative'; src:url('../assets/fonts/CinzelDecorative-Bold.ttf') format('truetype'); font-weight:700; font-display:swap; }
+@font-face { font-family:'Cinzel'; src:url('../assets/fonts/Cinzel-Variable.woff2') format('woff2'); font-weight:400 900; font-display:swap; }
+@font-face { font-family:'Cinzel Decorative'; src:url('../assets/fonts/CinzelDecorative-Bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
 
 :root {
   --dark: #060611;

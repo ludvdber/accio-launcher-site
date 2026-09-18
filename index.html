@@ -40,16 +40,16 @@
       <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a>
     </div>
     <a href="https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher.exe" class="nav-dl" target="_blank" rel="noopener" data-i18n="nav_dl">Télécharger</a>
-    <button class="nav-music" id="nav-music" aria-label="Musique" title="Musique d'ambiance">
+    <button class="nav-music" id="nav-music" data-i18n-label="aria_music" aria-label="Musique" data-i18n-title="title_music" title="Musique d'ambiance">
       <svg class="music-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
       <svg class="music-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><line x1="1" y1="1" x2="23" y2="23" stroke-width="2"/></svg>
     </button>
-    <div class="lang-switch" id="lang-switch" role="group" aria-label="Langue / Language / Idioma">
-      <button type="button" data-lang="fr" lang="fr" class="is-active" aria-pressed="true">FR</button>
-      <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
-      <button type="button" data-lang="es" lang="es" aria-pressed="false">ES</button>
+    <div class="lang-switch" id="lang-switch" role="radiogroup" aria-label="Langue / Language / Idioma">
+      <button type="button" role="radio" data-lang="fr" lang="fr" class="is-active" aria-checked="true" tabindex="0">FR</button>
+      <button type="button" role="radio" data-lang="en" lang="en" aria-checked="false" tabindex="-1">EN</button>
+      <button type="button" role="radio" data-lang="es" lang="es" aria-checked="false" tabindex="-1">ES</button>
     </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
+    <button class="nav-burger" id="nav-burger" data-i18n-label="aria_menu" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-progress" id="nav-progress"></div>
@@ -69,9 +69,7 @@
         <span class="cta-shimmer"></span>
       </a>
       <p class="hero-dl hero-stagger hero-stagger--4">
-        <span id="dl-build">Windows 10 et 11</span>
-        <span class="hero-sep">·</span>
-        <a href="https://github.com/ludvdber/AccioLauncher/releases/latest" target="_blank" rel="noopener" data-i18n="hero_notes">Notes de version</a>
+        <span id="dl-build"><a href="https://github.com/ludvdber/AccioLauncher/releases/latest" target="_blank" rel="noopener">Notes de version</a><span class="hero-sep">·</span>Windows 10 et 11</span>
       </p>
       <details class="hero-note hero-stagger hero-stagger--5">
         <summary data-i18n="hero_warn_q">Windows affichera un avertissement au premier lancement — c'est normal.</summary>
@@ -95,56 +93,56 @@
 
     <div class="gcard-grid" id="gcard-grid">
       <article class="gcard" data-game="0" data-row="0" data-reveal>
-        <img src="assets/covers/hp1.jpg" alt="Jaquette de Harry Potter à l'école des sorciers (2001)" loading="lazy">
+        <img src="assets/covers/hp1.jpg" data-i18n-alt="alt_hp1" alt="Jaquette de Harry Potter à l'école des sorciers (2001)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2001</span>
           <h3 data-i18n="game1_title">À l'école des sorciers</h3>
         </div>
       </article>
       <article class="gcard" data-game="1" data-row="0" data-reveal>
-        <img src="assets/covers/hp2.jpg" alt="Jaquette de Harry Potter et la Chambre des secrets (2002)" loading="lazy">
+        <img src="assets/covers/hp2.jpg" data-i18n-alt="alt_hp2" alt="Jaquette de Harry Potter et la Chambre des secrets (2002)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2002</span>
           <h3 data-i18n="game2_title">La Chambre des secrets</h3>
         </div>
       </article>
       <article class="gcard" data-game="2" data-row="0" data-reveal>
-        <img src="assets/covers/hp3.jpg" alt="Jaquette de Harry Potter et le Prisonnier d'Azkaban (2004)" loading="lazy">
+        <img src="assets/covers/hp3.jpg" data-i18n-alt="alt_hp3" alt="Jaquette de Harry Potter et le Prisonnier d'Azkaban (2004)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2004</span>
           <h3 data-i18n="game3_title">Le Prisonnier d'Azkaban</h3>
         </div>
       </article>
       <article class="gcard" data-game="3" data-row="0" data-reveal>
-        <img src="assets/covers/hp4.jpg" alt="Jaquette de Harry Potter et la Coupe de feu (2005)" loading="lazy">
+        <img src="assets/covers/hp4.jpg" data-i18n-alt="alt_hp4" alt="Jaquette de Harry Potter et la Coupe de feu (2005)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2005</span>
           <h3 data-i18n="game4_title">La Coupe de feu</h3>
         </div>
       </article>
       <article class="gcard" data-game="4" data-row="1" data-reveal>
-        <img src="assets/covers/hp5.jpg" alt="Jaquette de Harry Potter et l'Ordre du Phénix (2007)" loading="lazy">
+        <img src="assets/covers/hp5.jpg" data-i18n-alt="alt_hp5" alt="Jaquette de Harry Potter et l'Ordre du Phénix (2007)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2007</span>
           <h3 data-i18n="game5_title">L'Ordre du Phénix</h3>
         </div>
       </article>
       <article class="gcard" data-game="5" data-row="1" data-reveal>
-        <img src="assets/covers/hp6.jpg" alt="Jaquette de Harry Potter et le Prince de sang-mêlé (2009)" loading="lazy">
+        <img src="assets/covers/hp6.jpg" data-i18n-alt="alt_hp6" alt="Jaquette de Harry Potter et le Prince de sang-mêlé (2009)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2009</span>
           <h3 data-i18n="game6_title">Le Prince de sang-mêlé</h3>
         </div>
       </article>
       <article class="gcard" data-game="6" data-row="1" data-reveal>
-        <img src="assets/covers/hp7a.jpg" alt="Jaquette de Harry Potter et les Reliques de la Mort — partie 1 (2010)" loading="lazy">
+        <img src="assets/covers/hp7a.jpg" data-i18n-alt="alt_hp7" alt="Jaquette de Harry Potter et les Reliques de la Mort — partie 1 (2010)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2010</span>
           <h3 data-i18n="game7_title">Les Reliques de la Mort — 1</h3>
         </div>
       </article>
       <article class="gcard" data-game="7" data-row="1" data-reveal>
-        <img src="assets/covers/hp7b.jpg" alt="Jaquette de Harry Potter et les Reliques de la Mort — partie 2 (2011)" loading="lazy">
+        <img src="assets/covers/hp7b.jpg" data-i18n-alt="alt_hp8" alt="Jaquette de Harry Potter et les Reliques de la Mort — partie 2 (2011)" loading="lazy">
         <div class="gcard-overlay">
           <span class="gcard-year">2011</span>
           <h3 data-i18n="game8_title">Les Reliques de la Mort — 2</h3>
@@ -157,7 +155,7 @@
       <div class="gcard-detail" id="gcard-detail">
         <div class="gcard-detail-bg"></div>
         <div class="gcard-detail-content">
-          <button class="gcard-detail-close" aria-label="Fermer">
+          <button class="gcard-detail-close" data-i18n-label="aria_close" aria-label="Fermer">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="4" x2="14" y2="14"/><line x1="14" y1="4" x2="4" y2="14"/></svg>
           </button>
           <span class="gcard-detail-year"></span>
@@ -187,7 +185,7 @@
       <button class="preview-tab" data-src="assets/screenshots/launcher-versions.jpg" data-i18n="preview_tab3">Versions</button>
     </div>
     <div class="preview-frame" data-reveal>
-      <img id="preview-img" src="assets/screenshots/launcher-catalogue.jpg" alt="Le launcher Accio, fiche d'un jeu et carrousel des huit jaquettes" loading="lazy">
+      <img id="preview-img" src="assets/screenshots/launcher-catalogue.jpg" data-i18n-alt="alt_launcher" alt="Le launcher Accio, fiche d'un jeu et carrousel des huit jaquettes" loading="lazy">
     </div>
     <ul class="preview-features" data-reveal>
       <li data-i18n="pf1">Téléchargement en un clic, reprise après coupure</li>
@@ -212,15 +210,15 @@
       <button class="compare-tab" data-before="assets/compare/hp5-chateau-before.jpg" data-after="assets/compare/hp5-chateau-after.jpg" data-i18n="ctab4">HP5 — Le château</button>
     </div>
 
-    <div class="slider" id="slider" data-reveal role="slider" aria-label="Comparaison avant/après" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+    <div class="slider" id="slider" data-reveal role="slider" data-i18n-label="aria_compare" aria-label="Comparaison avant/après" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
       <div class="slider-hint" id="slider-hint" data-i18n="slider_hint">Glissez pour comparer</div>
       <div class="slider-before">
-        <img id="img-before" src="assets/compare/hp1-couloir-before.jpg" alt="Rendu graphique original" draggable="false">
-        <div class="slider-placeholder">Avant — Rendu original</div>
+        <img id="img-before" src="assets/compare/hp1-couloir-before.jpg" data-i18n-alt="alt_before" alt="Rendu graphique original" loading="lazy" draggable="false">
+        <div class="slider-placeholder" data-i18n="ph_before">Avant — Rendu original</div>
       </div>
       <div class="slider-after" id="slider-after">
-        <img id="img-after" src="assets/compare/hp1-couloir-after.jpg" alt="Rendu graphique amélioré" draggable="false">
-        <div class="slider-placeholder slider-placeholder--after">Après — Amélioré</div>
+        <img id="img-after" src="assets/compare/hp1-couloir-after.jpg" data-i18n-alt="alt_after" alt="Rendu graphique amélioré" loading="lazy" draggable="false">
+        <div class="slider-placeholder slider-placeholder--after" data-i18n="ph_after">Après — Amélioré</div>
       </div>
       <div class="slider-handle" id="slider-handle">
         <div class="slider-line"></div>
@@ -361,12 +359,12 @@
   </div>
 
   <!-- Back to top -->
-  <button id="btt" class="btt" aria-label="Retour en haut">
+  <button id="btt" class="btt" data-i18n-label="aria_top" aria-label="Retour en haut">
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 11 9 5 15 11"/></svg>
   </button>
 
   <!-- Structured data -->
-  <script type="application/ld+json">
+  <script type="application/ld+json" id="ld-app">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -376,7 +374,6 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
     "description": "Launcher pour les 8 jeux Harry Potter PC (2001-2011) avec améliorations graphiques modernes. Catalogue complet, téléchargement et installation en un clic.",
     "downloadUrl": "https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher.exe",
-    "softwareVersion": "1.0.2",
     "inLanguage": ["fr", "en", "es"],
     "author": { "@type": "Person", "name": "ludvdber" }
   }

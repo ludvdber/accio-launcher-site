@@ -181,6 +181,7 @@
     el.querySelector('.gcard-detail-text').textContent = data.d;
     el.querySelector('.gcard-detail-bg').style.backgroundImage = 'url(' + bgMap[idx] + ')';
     el.querySelector('.gcard-detail-close').addEventListener('click', closeGame);
+    applyAttrs(el, lang);
 
     // Position arrow under the active card
     var gridRect = gcardGrid.getBoundingClientRect();
@@ -215,19 +216,23 @@
 
   // Version et poids reels sous le bouton. Sans reponse de l'API, la ligne garde
   // son texte de repli ecrit dans le HTML : elle ne doit jamais rester vide.
+  var RELEASES_URL = 'https://github.com/ludvdber/AccioLauncher/releases/latest';
   var buildWords = {
-    fr: { unit: ' Mo', os: 'Windows 10 et 11' },
-    en: { unit: ' MB', os: 'Windows 10 and 11' },
-    es: { unit: ' MB', os: 'Windows 10 u 11' }
+    fr: { unit: ' Mo', os: 'Windows 10 et 11', notes: 'Notes de version' },
+    en: { unit: ' MB', os: 'Windows 10 and 11', notes: 'Release notes' },
+    es: { unit: ' MB', os: 'Windows 10 u 11', notes: 'Notas de la versión' }
   };
+  // Le numero de version est lui-meme le lien vers le changelog. Tant que l'API
+  // n'a pas repondu, le lien garde son libelle : le changelog reste joignable.
   function renderBuild() {
     if (!buildEl) return;
     var w = buildWords[currentLang] || buildWords.fr;
-    var parts = [];
-    if (latestTag) parts.push('Version ' + latestTag.replace(/^v/, ''));
+    var label = latestTag ? 'Version ' + latestTag.replace(/^v/, '') : w.notes;
+    var parts = ['<a href="' + RELEASES_URL + '" target="_blank" rel="noopener" title="' +
+                 w.notes + '">' + label + '</a>'];
     if (latestSize) parts.push(Math.round(latestSize / 1048576) + w.unit);
     parts.push(w.os);
-    buildEl.textContent = parts.join(' · ');
+    buildEl.innerHTML = parts.join('<span class="hero-sep">·</span>');
   }
   fetch('https://api.github.com/repos/ludvdber/AccioLauncher/releases?per_page=100')
     .then(function (r) { if (!r.ok) throw r; return r.json(); })
@@ -241,6 +246,16 @@
         var exe = latest.assets.filter(function (a) { return /\.exe$/i.test(a.name); })[0];
         latestSize = exe ? exe.size : 0;
         renderBuild();
+        // Les donnees structurees annoncaient une version figee dans le HTML :
+        // elle vient maintenant du meme tag que le reste.
+        var ld = document.getElementById('ld-app');
+        if (ld && latestTag) {
+          try {
+            var data = JSON.parse(ld.textContent);
+            data.softwareVersion = latestTag.replace(/^v/, '');
+            ld.textContent = JSON.stringify(data, null, 2);
+          } catch (e) {}
+        }
       }
       if (latest && verEl) {
         var vTxt = 'Accio Launcher ' + latest.tag_name;
@@ -516,7 +531,6 @@
       nav_games: 'Games', nav_compare: 'Before/After', nav_community: 'Community', nav_dl: 'Download',
       hero_cta: 'Download — Free', hero_downloads: 'downloads',
       hero_typed: 'Relive all 8 Harry Potter PC games with modern graphics.',
-      hero_notes: 'Release notes',
       hero_warn_q: 'Windows will show a warning the first time — that is expected.',
       hero_warn_a: 'The launcher is free and is not signed with a paid certificate, so Windows shows “Windows protected your PC”. Click <em>More info</em>, then <em>Run anyway</em>.',
       games_heading: 'The Games', games_sub: '2001 – 2011. Ten years of Harry Potter PC games, united in a single launcher. All eight are online and playable.', games_cta: 'Download Accio Launcher',
@@ -566,6 +580,21 @@
       fl_launcher: 'The launcher', fl_catalog: 'The game catalogue', fl_issues: 'Report a bug',
       legal1: 'Accio Launcher is an independent community project, not affiliated with Warner Bros. Entertainment Inc. or Electronic Arts Inc. Harry Potter™ is a registered trademark of Warner Bros. Entertainment Inc. © Wizarding World.',
       legal2: 'This software is provided free of charge, as-is. Games must be legally owned by the user.',
+      page_title: 'Accio Launcher — Every Harry Potter PC game',
+      page_desc: 'All 8 Harry Potter PC games (2001–2011) in one launcher: one-click download, modernised graphics, everything pre-configured. Free and open-source.',
+      alt_hp1: "Box art for Harry Potter and the Philosopher's Stone (2001)",
+      alt_hp2: 'Box art for Harry Potter and the Chamber of Secrets (2002)',
+      alt_hp3: 'Box art for Harry Potter and the Prisoner of Azkaban (2004)',
+      alt_hp4: 'Box art for Harry Potter and the Goblet of Fire (2005)',
+      alt_hp5: 'Box art for Harry Potter and the Order of the Phoenix (2007)',
+      alt_hp6: 'Box art for Harry Potter and the Half-Blood Prince (2009)',
+      alt_hp7: 'Box art for Harry Potter and the Deathly Hallows — Part 1 (2010)',
+      alt_hp8: 'Box art for Harry Potter and the Deathly Hallows — Part 2 (2011)',
+      alt_launcher: 'The Accio launcher, a game page and the carousel of all eight covers',
+      alt_before: 'Original graphics', alt_after: 'Enhanced graphics',
+      ph_before: 'Before — Original', ph_after: 'After — Enhanced',
+      aria_music: 'Music', title_music: 'Ambient music', aria_menu: 'Menu',
+      aria_close: 'Close', aria_compare: 'Before/after comparison', aria_top: 'Back to top',
       ee_main: 'I solemnly swear that I am up to no good.',
       ee_sub: 'Mischief managed.'
     },
@@ -573,7 +602,6 @@
       nav_games: 'Juegos', nav_compare: 'Antes/Después', nav_community: 'Comunidad', nav_dl: 'Descargar',
       hero_cta: 'Descargar — Gratis', hero_downloads: 'descargas',
       hero_typed: 'Revive los 8 juegos de Harry Potter para PC con gráficos modernos.',
-      hero_notes: 'Notas de la versión',
       hero_warn_q: 'Windows mostrará un aviso la primera vez — es normal.',
       hero_warn_a: 'El launcher es gratuito y no está firmado con un certificado de pago: por eso Windows muestra «Windows protegió su PC». Haz clic en <em>Más información</em> y luego en <em>Ejecutar de todas formas</em>.',
       games_heading: 'Los juegos', games_sub: '2001 – 2011. Diez años de juegos de Harry Potter para PC, reunidos en un solo launcher. Los ocho están en línea y se pueden jugar.', games_cta: 'Descargar Accio Launcher',
@@ -623,19 +651,62 @@
       fl_launcher: 'El launcher', fl_catalog: 'El catálogo de juegos', fl_issues: 'Informar de un fallo',
       legal1: 'Accio Launcher es un proyecto comunitario independiente, no afiliado a Warner Bros. Entertainment Inc. ni a Electronic Arts Inc. Harry Potter™ es una marca registrada de Warner Bros. Entertainment Inc. © Wizarding World.',
       legal2: 'Este software se ofrece de forma gratuita, tal cual. El usuario debe poseer legalmente los juegos.',
+      page_title: 'Accio Launcher — Todos los juegos de Harry Potter para PC',
+      page_desc: 'Los 8 juegos de Harry Potter para PC (2001–2011) en un solo launcher: descarga en un clic, gráficos modernizados, todo preconfigurado. Gratis y de código abierto.',
+      alt_hp1: 'Portada de Harry Potter y la piedra filosofal (2001)',
+      alt_hp2: 'Portada de Harry Potter y la cámara secreta (2002)',
+      alt_hp3: 'Portada de Harry Potter y el prisionero de Azkaban (2004)',
+      alt_hp4: 'Portada de Harry Potter y el cáliz de fuego (2005)',
+      alt_hp5: 'Portada de Harry Potter y la Orden del Fénix (2007)',
+      alt_hp6: 'Portada de Harry Potter y el misterio del príncipe (2009)',
+      alt_hp7: 'Portada de Harry Potter y las Reliquias de la Muerte — Parte 1 (2010)',
+      alt_hp8: 'Portada de Harry Potter y las Reliquias de la Muerte — Parte 2 (2011)',
+      alt_launcher: 'El launcher Accio, la ficha de un juego y el carrusel de las ocho portadas',
+      alt_before: 'Gráficos originales', alt_after: 'Gráficos mejorados',
+      ph_before: 'Antes — Original', ph_after: 'Después — Mejorado',
+      aria_music: 'Música', title_music: 'Música ambiental', aria_menu: 'Menú',
+      aria_close: 'Cerrar', aria_compare: 'Comparación antes/después', aria_top: 'Volver arriba',
       ee_main: 'Juro solemnemente que mis intenciones no son buenas.',
       ee_sub: 'Travesura realizada.'
     }
   };
 
   var currentLang = 'fr';
+  var langSwitch = document.getElementById('lang-switch');
   var langBtns = document.querySelectorAll('#lang-switch button[data-lang]');
-  var frTexts = {};
+  var frTexts = {}, frAttrs = {};
 
   // Save original FR texts
   document.querySelectorAll('[data-i18n]').forEach(function (el) {
     frTexts[el.getAttribute('data-i18n')] = el.innerHTML;
   });
+
+  // Certains textes ne sont pas du contenu mais des attributs : la description
+  // d'une image, le libelle d'un bouton sans mot. Ils se traduisent aussi, sinon
+  // un lecteur d'ecran anglais ou espagnol entend du francais.
+  var I18N_ATTRS = { 'data-i18n-alt': 'alt', 'data-i18n-label': 'aria-label', 'data-i18n-title': 'title' };
+  var attrRoots = [document];
+  if (detailTpl) attrRoots.push(detailTpl.content);
+  attrRoots.forEach(function (root) {
+    Object.keys(I18N_ATTRS).forEach(function (da) {
+      root.querySelectorAll('[' + da + ']').forEach(function (el) {
+        frAttrs[el.getAttribute(da)] = el.getAttribute(I18N_ATTRS[da]);
+      });
+    });
+  });
+
+  function applyAttrs(root, lang) {
+    Object.keys(I18N_ATTRS).forEach(function (da) {
+      root.querySelectorAll('[' + da + ']').forEach(function (el) {
+        var key = el.getAttribute(da);
+        var val = lang === 'fr' ? frAttrs[key] : (i18n[lang] || {})[key];
+        if (val !== undefined && val !== null) el.setAttribute(I18N_ATTRS[da], val);
+      });
+    });
+  }
+
+  var descEl = document.querySelector('meta[name="description"]');
+  var frPage = { title: document.title, desc: descEl ? descEl.getAttribute('content') : '' };
 
   function setLang(lang) {
     if (lang !== 'fr' && !i18n[lang]) lang = 'fr';
@@ -644,13 +715,19 @@
     langBtns.forEach(function (b) {
       var on = b.getAttribute('data-lang') === lang;
       b.classList.toggle('is-active', on);
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.setAttribute('aria-checked', on ? 'true' : 'false');
+      b.tabIndex = on ? 0 : -1;
     });
     var dict = lang === 'fr' ? frTexts : i18n[lang];
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var key = el.getAttribute('data-i18n');
       if (dict[key] !== undefined) el.innerHTML = dict[key];
     });
+    applyAttrs(document, lang);
+    document.title = lang === 'fr' ? frPage.title : (i18n[lang].page_title || frPage.title);
+    if (descEl) {
+      descEl.setAttribute('content', lang === 'fr' ? frPage.desc : (i18n[lang].page_desc || frPage.desc));
+    }
     // Update game detail panel if open
     if (activeGame >= 0 && activeDetail && gameDescs[lang]) {
       var gd = gameDescs[lang][activeGame];
@@ -668,19 +745,40 @@
     }
   }
 
+  function pickLang(lang) {
+    setLang(lang);
+    try { localStorage.setItem('accio-lang', lang); } catch (e) {}
+    // Sur mobile le selecteur vit dans le menu : le choix fait, on referme.
+    if (navLinks && burger && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  }
+
   langBtns.forEach(function (b) {
-    b.addEventListener('click', function () {
-      var lang = b.getAttribute('data-lang');
-      setLang(lang);
-      try { localStorage.setItem('accio-lang', lang); } catch (e) {}
-      // Sur mobile le selecteur vit dans le menu : le choix fait, on referme.
-      if (navLinks && burger && navLinks.classList.contains('open')) {
-        navLinks.classList.remove('open');
-        burger.classList.remove('open');
-        burger.setAttribute('aria-expanded', 'false');
-      }
-    });
+    b.addEventListener('click', function () { pickLang(b.getAttribute('data-lang')); });
   });
+
+  // Un groupe radio se parcourt aux fleches, pas a la tabulation : une seule
+  // tabulation entre dans le groupe, les fleches choisissent la langue.
+  if (langSwitch) {
+    langSwitch.addEventListener('keydown', function (e) {
+      var list = Array.prototype.slice.call(langBtns);
+      var i = list.indexOf(document.activeElement);
+      if (i < 0) return;
+      var next;
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = i - 1;
+      else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = i + 1;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = list.length - 1;
+      else return;
+      e.preventDefault();
+      next = (next + list.length) % list.length;
+      pickLang(list[next].getAttribute('data-lang'));
+      list[next].focus();
+    });
+  }
 
   // Langue d'ouverture : le choix precedent s'il existe, sinon celle du
   // navigateur si on la parle, sinon le francais.
