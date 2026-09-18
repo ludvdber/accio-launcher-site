@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { html, css, RACINE, valeursDe } from './lib.mjs';
+import { html, css, js, RACINE, valeursDe } from './lib.mjs';
 
 const estLocal = (chemin) =>
   chemin &&
@@ -21,6 +21,16 @@ test('chaque fichier référencé par le HTML existe', () => {
   assert.ok(refs.length > 10, `seulement ${refs.length} références trouvées`);
   const absents = refs.filter((r) => !existsSync(join(RACINE, r)));
   assert.deepEqual(absents, [], 'fichiers référencés mais absents du dépôt');
+});
+
+test('les chemins d’images des onglets passent le filtre de main.js', () => {
+  // main.js refuse tout chemin qui ne ressemble pas à assets/…/nom.jpg. Une image
+  // en .png ou avec une majuscule donnerait un onglet qui ne fait rien au clic.
+  const source = js.match(/function localImage[\s\S]*?if \((\/\^.+?\$\/)\.test\(/);
+  assert.ok(source, 'filtre de localImage introuvable dans main.js');
+  const filtre = eval(source[1]);
+  const refuses = valeursDe(/data-(?:src|before|after)="([^"]+)"/g).filter((c) => !filtre.test(c));
+  assert.deepEqual(refuses, [], 'chemins que main.js refusera de charger');
 });
 
 test('chaque fichier référencé par le CSS existe', () => {

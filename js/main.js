@@ -425,6 +425,16 @@
     });
   }
 
+  /* --- Image paths carried by the tabs --- */
+  // Les onglets portent le chemin de leurs images dans un attribut data-*. On
+  // n'accepte qu'un .jpg du dossier assets/ : toute autre valeur est ignorée au
+  // lieu d'aboutir dans un src. Les tests vérifient que le HTML respecte ce filtre.
+  function localImage(el, attr) {
+    var path = el.getAttribute(attr);
+    if (/^assets\/[a-z0-9\/-]+\.jpg$/.test(path)) return path;
+    return null;
+  }
+
   /* --- Compare tabs (switch game pairs) --- */
   var tabs = document.querySelectorAll('.compare-tab');
   var imgBefore = document.getElementById('img-before');
@@ -432,6 +442,9 @@
   if (tabs.length && imgBefore && imgAfter) {
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
+        var srcBefore = localImage(tab, 'data-before');
+        var srcAfter = localImage(tab, 'data-after');
+        if (!srcBefore || !srcAfter) return;
         tabs.forEach(function (t) { t.classList.remove('active'); });
         tab.classList.add('active');
         // Show placeholders
@@ -444,8 +457,8 @@
         }
         hideOnLoad(imgBefore);
         hideOnLoad(imgAfter);
-        imgBefore.src = tab.getAttribute('data-before');
-        imgAfter.src = tab.getAttribute('data-after');
+        imgBefore.src = srcBefore;
+        imgAfter.src = srcAfter;
         if (imgBefore.complete) { var ph = imgBefore.parentElement.querySelector('.slider-placeholder'); if (ph) ph.style.display = 'none'; }
         if (imgAfter.complete) { var ph2 = imgAfter.parentElement.querySelector('.slider-placeholder'); if (ph2) ph2.style.display = 'none'; }
         // Reset slider to 50%
@@ -485,11 +498,12 @@
   if (previewTabs.length && previewImg) {
     previewTabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
+        var newSrc = localImage(tab, 'data-src');
+        if (!newSrc) return;
         previewTabs.forEach(function (t) { t.classList.remove('active'); });
         tab.classList.add('active');
         previewImg.style.opacity = '0';
         setTimeout(function () {
-          var newSrc = tab.getAttribute('data-src');
           previewImg.onload = function () { previewImg.style.opacity = '1'; };
           previewImg.src = newSrc;
           // Fallback if cached (onload already fired)
@@ -588,7 +602,7 @@
       faq7_q: 'Do I need to reinstall it for every update?', faq7_a: 'No. The launcher updates itself in one click, and your installed games stay put.',
       faq8_q: 'What do I need?', faq8_a: 'Windows 10 or 11, 8 GB of RAM and a graphics card with 2 GB of video memory. Make sure you have room for the biggest game — the launcher checks your free space and warns you before downloading.',
       support_heading: 'Support the project',
-      support_text: 'Made by one developer in their spare time. No ads, nothing to buy — just the wish to bring these games back to life.',
+      support_text: 'Made by one person in their spare time, with no ads and nothing to buy — simply to bring these games back to life.',
       kofi_cta: '☕ Buy me a coffee on Ko-fi',
       footer_oss: 'Source code on <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a> — MIT licence; the released executable is under GPL v3.',
       fl_launcher: 'The launcher', fl_catalog: 'The game catalogue', fl_issues: 'Report a bug',
@@ -653,7 +667,7 @@
       ccard3_d: 'Si crees que al launcher le falta alguna función o hay algo que cambiarías, cuéntalo en GitHub. Ya está en español, francés e inglés, y para añadir otro idioma no hace falta programar: basta con traducir un archivo.',
       ccard3_cta: 'Sugerir', ccard3_cta2: 'Ayudar a traducir',
       faq_heading: 'Preguntas frecuentes',
-      faq1_q: '¿Es legal?', faq1_a: 'Accio Launcher es solo una herramienta: no incluye ningún archivo de los juegos. Descarga juegos que llevan años sin venderse y los instala por ti. Se da por hecho que tienes los juegos que instalas, y te corresponde comprobar lo que permite la ley de tu país. El código es público y el proyecto no tiene relación con Warner Bros. ni con Electronic Arts.',
+      faq1_q: '¿Es legal?', faq1_a: 'Accio Launcher no incluye ningún archivo de los juegos: se limita a descargarlos e instalarlos por ti. Son juegos que ya no se venden desde hace años. Los juegos que instales deben ser tuyos, y te corresponde comprobar qué permite la ley de tu país. El código es público y el proyecto no tiene ninguna relación con Warner Bros. ni con Electronic Arts.',
       faq2_q: '¿Es gratis?', faq2_a: 'Sí, completamente. Es de código abierto, no tiene anuncios y no recopila tus datos.',
       faq3_q: '¿Es seguro?', faq3_a: 'El código es público en GitHub. Cada descarga se verifica: si un archivo llega dañado o modificado, se descarta. No hace falta crear una cuenta, no se recopila ningún dato y no hay anuncios.',
       faq4_q: '¿Cómo se ven los gráficos?', faq4_a: 'Full HD (1920×1080), con una imagen más nítida y mejor iluminación, según el juego. Todo viene ya configurado: no tienes que instalar ni ajustar nada más.',
@@ -662,7 +676,7 @@
       faq7_q: '¿Tengo que reinstalarlo con cada actualización?', faq7_a: 'No. El launcher se actualiza con un solo clic y tus juegos instalados se quedan como están.',
       faq8_q: '¿Qué necesito para jugar?', faq8_a: 'Windows 10 u 11, 8 GB de RAM y una tarjeta gráfica con 2 GB de memoria. Asegúrate de tener espacio para el juego más grande: el launcher comprueba el espacio libre y te avisa antes de descargar.',
       support_heading: 'Apoya el proyecto',
-      support_text: 'Lo desarrolla una sola persona en su tiempo libre. Sin anuncios y sin nada que comprar: solo las ganas de devolver la vida a estos juegos.',
+      support_text: 'Lo desarrolla una sola persona en su tiempo libre, sin anuncios ni nada que comprar, solo por las ganas de devolverles la vida a estos juegos.',
       kofi_cta: '☕ Invítame a un café en Ko-fi',
       footer_oss: 'Código fuente en <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a> — licencia MIT; el ejecutable publicado está bajo GPL v3.',
       fl_launcher: 'El launcher', fl_catalog: 'El catálogo de juegos', fl_issues: 'Reportar un error',
