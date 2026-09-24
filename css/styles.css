@@ -231,8 +231,22 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   color:var(--gold-l); transform:translateY(-2px);
   border-color:var(--gold-l);
 }
+/* Deux fichiers, deux boutons. Windows reste l'appel principal ; Linux est une
+   preversion, donc un bouton plus discret qui le dit dans son libelle. */
+.dl-choice { display:flex; flex-wrap:wrap; justify-content:center; align-items:stretch; gap:14px; }
+.cta--alt {
+  display:inline-flex; align-items:center; gap:10px;
+  border-color:var(--gold-d); color:var(--text);
+  font-size:15px; padding:14px 30px;
+}
+.cta--alt:hover { border-color:var(--gold); color:var(--gold-l); }
+.cta-tag {
+  font-size:10px; font-weight:400; letter-spacing:1.5px; color:var(--muted);
+  border:1px solid rgba(154,154,184,0.35); padding:2px 6px; line-height:1.4;
+}
+.dl-thanks-linux { margin-top:8px; padding-top:8px; border-top:1px solid rgba(212,160,23,0.15); }
 /* Subtle pulse on hero CTA */
-.hero .cta {
+.hero .cta:not(.cta--alt) {
   animation:ctaPulse 3s ease-in-out infinite 2s;
 }
 @keyframes ctaPulse {
@@ -774,6 +788,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   .nav-links a { font-size:18px; }
   .nav-dl { margin-left:auto; font-size:10px; padding:4px 10px; }
   .cta { font-size:14px; padding:14px 32px; }
+  .cta--alt { font-size:13px; padding:12px 26px; }
   .gcard-grid { grid-template-columns:repeat(2, 1fr); gap:10px; }
   .gcard-detail-content { padding:28px 36px 28px 20px; }
   .gcard-detail-text { font-size:14px; }
@@ -784,6 +799,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   .nav-brand { font-size:13px; }
   .nav-dl { padding:4px 8px; letter-spacing:1px; }
   .slider { aspect-ratio:4/3; }
+  .dl-choice { flex-direction:column; align-items:center; gap:10px; }
+  .dl-choice .cta { width:100%; max-width:320px; justify-content:center; text-align:center; }
   .gcard-detail-content { padding:20px 32px 20px 16px; }
 }
 

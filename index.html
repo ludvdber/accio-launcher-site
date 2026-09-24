@@ -39,7 +39,7 @@
       <a href="#faq">FAQ</a>
       <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a>
     </div>
-    <a href="https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher.exe" class="nav-dl" target="_blank" rel="noopener" data-i18n="nav_dl">Télécharger</a>
+    <a href="#top" class="nav-dl" data-i18n="nav_dl">Télécharger</a>
     <button class="nav-music" id="nav-music" data-i18n-label="aria_music" aria-label="Musique" data-i18n-title="title_music" title="Musique d'ambiance">
       <svg class="music-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
       <svg class="music-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><line x1="1" y1="1" x2="23" y2="23" stroke-width="2"/></svg>
@@ -64,16 +64,23 @@
     <div class="hero-content">
       <h1 class="hero-stagger hero-stagger--1">Accio Launcher</h1>
       <p class="hero-sub hero-stagger hero-stagger--2" id="hero-typed">Revivez les 8 jeux Harry Potter PC avec des graphismes modernes.</p>
-      <a href="https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher.exe" class="cta hero-stagger hero-stagger--3" target="_blank" rel="noopener">
-        <span class="cta-text" data-i18n="hero_cta">Télécharger — Gratuit</span>
-        <span class="cta-shimmer"></span>
-      </a>
+      <div class="dl-choice hero-stagger hero-stagger--3">
+        <a href="https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher.exe" class="cta" data-os="windows" target="_blank" rel="noopener">
+          <span class="cta-text" data-i18n="hero_cta">Télécharger pour Windows</span>
+          <span class="cta-shimmer"></span>
+        </a>
+        <a href="https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher-x86_64.AppImage" class="cta cta--alt" data-os="linux" target="_blank" rel="noopener">
+          <span class="cta-text">Linux</span>
+          <span class="cta-tag" data-i18n="cta_preview">préversion</span>
+        </a>
+      </div>
       <div class="dl-thanks" id="dl-thanks" role="status" hidden>
         <p class="dl-thanks-title" data-i18n="dl_thanks_title">Le téléchargement a commencé. Bon jeu !</p>
         <p data-i18n="dl_thanks_star">Si vous l'aimez, une <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">étoile sur GitHub</a> l'aidera à se faire connaître.</p>
+        <p class="dl-thanks-linux" data-i18n="dl_thanks_linux" hidden>Sous Linux, rendez le fichier exécutable (clic droit → Propriétés), puis lancez-le. C'est une préversion : vos retours sur <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> ou <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a> sont précieux.</p>
       </div>
       <p class="hero-dl hero-stagger hero-stagger--4">
-        <span id="dl-build"><a href="https://github.com/ludvdber/AccioLauncher/releases/latest" target="_blank" rel="noopener">Notes de version</a><span class="hero-sep">·</span>Windows 10 et 11<span class="hero-sep">·</span>Open-source</span>
+        <span id="dl-build"><a href="https://github.com/ludvdber/AccioLauncher/releases/latest" target="_blank" rel="noopener">Notes de version</a><span class="hero-sep">·</span>Gratuit et open-source</span>
       </p>
       <details class="hero-note hero-stagger hero-stagger--5">
         <summary data-i18n="hero_warn_q">Windows affichera un avertissement au premier lancement — c'est normal.</summary>
@@ -170,10 +177,16 @@
 
     <!-- 2nd CTA -->
     <div class="games-cta" data-reveal>
-      <a href="https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher.exe" class="cta" target="_blank" rel="noopener">
-        <span class="cta-text" data-i18n="games_cta">Télécharger Accio Launcher</span>
-        <span class="cta-shimmer"></span>
-      </a>
+      <div class="dl-choice">
+        <a href="https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher.exe" class="cta" data-os="windows" target="_blank" rel="noopener">
+          <span class="cta-text" data-i18n="games_cta">Télécharger pour Windows</span>
+          <span class="cta-shimmer"></span>
+        </a>
+        <a href="https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher-x86_64.AppImage" class="cta cta--alt" data-os="linux" target="_blank" rel="noopener">
+          <span class="cta-text">Linux</span>
+          <span class="cta-tag" data-i18n="cta_preview">préversion</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -315,7 +328,11 @@
         </details>
         <details class="faq-item">
           <summary data-i18n="faq8_q">Quelle configuration ?</summary>
-          <p data-i18n="faq8_a">Windows 10 ou 11, 8 Go de mémoire, 2 Go de mémoire vidéo. Comptez la place du jeu le plus lourd : le launcher vérifie l'espace libre et prévient avant de télécharger.</p>
+          <p data-i18n="faq8_a">Windows 10 ou 11 (ou Linux, en préversion), 8 Go de mémoire, 2 Go de mémoire vidéo. Comptez la place du jeu le plus lourd : le launcher vérifie l'espace libre et prévient avant de télécharger.</p>
+        </details>
+        <details class="faq-item">
+          <summary data-i18n="faq9_q">Et sur Linux ou Steam Deck ?</summary>
+          <p data-i18n="faq9_a">Oui, en préversion depuis la version 1.1 : Steam Deck, Bazzite, Fedora, Ubuntu… Téléchargez le fichier Linux, rendez-le exécutable (clic droit → Propriétés), puis lancez-le. Les jeux tournent avec Proton ou Wine ; le <a href="https://github.com/ludvdber/AccioLauncher#linux--bazzite" target="_blank" rel="noopener">guide Linux</a> détaille l'installation. Cette version n'a pas encore été essayée sur une vraie machine : dites-nous si elle marche chez vous, sur <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> ou sur <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.</p>
         </details>
     </div>
 
@@ -342,7 +359,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <p id="version">Accio Launcher</p>
-    <p class="footer-oss" data-i18n="footer_oss">Code source sur <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a> — licence MIT ; l'exécutable distribué est sous GPL v3.</p>
+    <p class="footer-oss" data-i18n="footer_oss">Code source sur <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a> — licence GNU GPL v3.</p>
     <div class="footer-links">
       <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener" data-i18n="fl_launcher">Le launcher</a>
       <a href="https://github.com/ludvdber/accio-launcher-games" target="_blank" rel="noopener" data-i18n="fl_catalog">Le catalogue des jeux</a>
@@ -373,7 +390,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Accio Launcher",
-    "operatingSystem": "Windows 10, Windows 11",
+    "operatingSystem": "Windows 10, Windows 11, Linux",
     "applicationCategory": "GameApplication",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
     "description": "Launcher pour les 8 jeux Harry Potter PC (2001-2011) avec améliorations graphiques modernes. Catalogue complet, téléchargement et installation en un clic.",

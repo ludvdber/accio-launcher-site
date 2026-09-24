@@ -218,9 +218,9 @@
   // son texte de repli ecrit dans le HTML : elle ne doit jamais rester vide.
   var RELEASES_URL = 'https://github.com/ludvdber/AccioLauncher/releases/latest';
   var buildWords = {
-    fr: { os: 'Windows 10 et 11', oss: 'Open-source', notes: 'Notes de version' },
-    en: { os: 'Windows 10 and 11', oss: 'Open-source', notes: 'Release notes' },
-    es: { os: 'Windows 10 u 11', oss: 'Código abierto', notes: 'Notas de la versión' }
+    fr: { oss: 'Gratuit et open-source', notes: 'Notes de version' },
+    en: { oss: 'Free and open source', notes: 'Release notes' },
+    es: { oss: 'Gratis y de código abierto', notes: 'Notas de la versión' }
   };
   // Le numero de version est lui-meme le lien vers le changelog. Tant que l'API
   // n'a pas repondu, le lien garde son libelle : le changelog reste joignable.
@@ -230,7 +230,6 @@
     var label = latestTag ? 'Version ' + latestTag.replace(/^v/, '') : w.notes;
     var parts = ['<a href="' + RELEASES_URL + '" target="_blank" rel="noopener" title="' +
                  w.notes + '">' + label + '</a>'];
-    parts.push(w.os);
     parts.push(w.oss);
     buildEl.innerHTML = parts.join('<span class="hero-sep">·</span>');
   }
@@ -238,7 +237,11 @@
     .then(function (r) { if (!r.ok) throw r; return r.json(); })
     .then(function (rel) {
       var t = 0;
-      rel.forEach(function (r) { r.assets.forEach(function (a) { t += a.download_count; }); });
+      // Seuls les deux fichiers du launcher comptent (Windows et Linux) : les
+      // signatures publiees a cote servent a verifier, pas a jouer.
+      rel.forEach(function (r) {
+        r.assets.forEach(function (a) { if (/\.(exe|AppImage)$/.test(a.name)) t += a.download_count; });
+      });
       if (dlEl) animateCount(dlEl, t);
       var latest = rel.find(function (r) { return !r.prerelease; }) || rel[0];
       if (latest) {
@@ -278,10 +281,12 @@
      Le bouton de la barre de navigation n'y a pas droit : c'est un raccourci,
      et le bloc s'afficherait loin de l'endroit ou le visiteur regarde. */
   var thanks = document.getElementById('dl-thanks');
+  var thanksLinux = thanks && thanks.querySelector('.dl-thanks-linux');
   if (thanks) {
     document.querySelectorAll('a.cta[href*="releases/latest/download/"]').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        btn.insertAdjacentElement('afterend', thanks);
+        (btn.closest('.dl-choice') || btn).insertAdjacentElement('afterend', thanks);
+        if (thanksLinux) thanksLinux.hidden = btn.getAttribute('data-os') !== 'linux';
         thanks.hidden = false;
       });
     });
@@ -556,11 +561,11 @@
   var i18n = {
     en: {
       nav_games: 'Games', nav_compare: 'Before/After', nav_community: 'Community', nav_dl: 'Download',
-      hero_cta: 'Download for free', hero_downloads: 'downloads',
+      hero_cta: 'Download for Windows', cta_preview: 'preview', hero_downloads: 'downloads',
       hero_typed: 'Relive all 8 Harry Potter PC games with modern graphics.',
       hero_warn_q: 'Windows will show a warning the first time you run it — that’s normal.',
       hero_warn_a: 'The launcher is free and isn’t signed with a paid certificate, so Windows shows “Windows protected your PC”. Click <em>More info</em>, then <em>Run anyway</em>.',
-      games_heading: 'The Games', games_sub: '2001 – 2011. Ten years of Harry Potter on PC, all in one launcher. All eight games are available and ready to play.', games_cta: 'Download Accio Launcher',
+      games_heading: 'The Games', games_sub: '2001 – 2011. Ten years of Harry Potter on PC, all in one launcher. All eight games are available and ready to play.', games_cta: 'Download for Windows',
       game1_title: "Philosopher’s Stone",
       game2_title: 'Chamber of Secrets',
       game3_title: 'Prisoner of Azkaban',
@@ -600,11 +605,12 @@
       faq5_q: 'Are all 8 games available?', faq5_a: 'Yes, since version 1.0 — from Philosopher’s Stone (2001) to Deathly Hallows — Part 2 (2011). The whole collection is there.',
       faq6_q: 'Why does Windows show a warning?', faq6_a: 'That’s expected. The launcher is free, and a code-signing certificate costs several hundred euros a year, so Windows shows “Windows protected your PC”. Click <em>More info</em>, then <em>Run anyway</em>. The file comes straight from the project’s GitHub page — the same place as the source code.',
       faq7_q: 'Do I need to reinstall it for every update?', faq7_a: 'No. The launcher updates itself in one click, and your installed games stay put.',
-      faq8_q: 'What do I need?', faq8_a: 'Windows 10 or 11, 8 GB of RAM and a graphics card with 2 GB of video memory. Make sure you have room for the biggest game — the launcher checks your free space and warns you before downloading.',
+      faq8_q: 'What do I need?', faq8_a: 'Windows 10 or 11 (or Linux, as an early preview), 8 GB of RAM and a graphics card with 2 GB of video memory. Make sure you have room for the biggest game — the launcher checks your free space and warns you before downloading.',
+      faq9_q: 'What about Linux or Steam Deck?', faq9_a: 'Yes, as an early preview since version 1.1: Steam Deck, Bazzite, Fedora, Ubuntu… Download the Linux file, make it executable (right-click → Properties), then run it. The games run through Proton or Wine; the <a href="https://github.com/ludvdber/AccioLauncher#linux--bazzite" target="_blank" rel="noopener">Linux guide</a> covers the setup. This version hasn’t been tried on real hardware yet, so let us know how it goes on <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> or <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
       support_heading: 'Support the project',
       support_text: 'Made by one person in their spare time, with no ads and nothing to buy — simply to bring these games back to life.',
       kofi_cta: '☕ Buy me a coffee on Ko-fi',
-      footer_oss: 'Source code on <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a> — MIT licence; the released executable is under GPL v3.',
+      footer_oss: 'Source code on <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a> — GNU GPL v3 licence.',
       fl_launcher: 'The launcher', fl_catalog: 'The game catalogue', fl_issues: 'Report a bug',
       legal1: 'Accio Launcher is an independent community project, not affiliated with Warner Bros. Entertainment Inc. or Electronic Arts Inc. Harry Potter™ is a registered trademark of Warner Bros. Entertainment Inc. © Wizarding World.',
       legal2: 'This software is provided free of charge and as is. Users must legally own the games they install.',
@@ -624,17 +630,18 @@
       aria_music: 'Music', title_music: 'Ambient music', aria_menu: 'Menu',
       aria_close: 'Close', aria_compare: 'Before/after comparison', aria_top: 'Back to top',
       dl_thanks_title: 'Your download has started. Enjoy the games!',
+      dl_thanks_linux: 'On Linux, make the file executable (right-click → Properties), then run it. It’s an early preview, so your feedback on <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> or <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a> really helps.',
       dl_thanks_star: 'If you enjoy it, a <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">star on GitHub</a> helps other players find it.',
       ee_main: 'I solemnly swear that I am up to no good.',
       ee_sub: 'Mischief managed.'
     },
     es: {
       nav_games: 'Juegos', nav_compare: 'Antes/Después', nav_community: 'Comunidad', nav_dl: 'Descargar',
-      hero_cta: 'Descargar gratis', hero_downloads: 'descargas',
+      hero_cta: 'Descargar para Windows', cta_preview: 'en pruebas', hero_downloads: 'descargas',
       hero_typed: 'Revive los 8 juegos de Harry Potter para PC con gráficos modernos.',
       hero_warn_q: 'Windows mostrará una advertencia la primera vez que lo abras. Es normal.',
       hero_warn_a: 'Como el launcher es gratuito, no está firmado con un certificado de pago, así que Windows muestra «Windows protegió su PC». Haz clic en <em>Más información</em> y después en <em>Ejecutar de todas formas</em>.',
-      games_heading: 'Los juegos', games_sub: '2001 – 2011. Diez años de Harry Potter en PC reunidos en un solo launcher. Los ocho juegos ya están disponibles.', games_cta: 'Descargar Accio Launcher',
+      games_heading: 'Los juegos', games_sub: '2001 – 2011. Diez años de Harry Potter en PC reunidos en un solo launcher. Los ocho juegos ya están disponibles.', games_cta: 'Descargar para Windows',
       game1_title: 'La piedra filosofal',
       game2_title: 'La cámara secreta',
       game3_title: 'El prisionero de Azkaban',
@@ -674,11 +681,12 @@
       faq5_q: '¿Están disponibles los 8 juegos?', faq5_a: 'Sí, desde la versión 1.0: desde La piedra filosofal (2001) hasta Las Reliquias de la Muerte — Parte 2 (2011). La colección está completa.',
       faq6_q: '¿Por qué Windows muestra una advertencia?', faq6_a: 'Es normal. El launcher es gratuito y no tiene certificado de firma, que cuesta varios cientos de euros al año, así que Windows muestra «Windows protegió su PC». Haz clic en <em>Más información</em> y después en <em>Ejecutar de todas formas</em>. El archivo se descarga directamente de la página del proyecto en GitHub, el mismo sitio donde está el código.',
       faq7_q: '¿Tengo que reinstalarlo con cada actualización?', faq7_a: 'No. El launcher se actualiza con un solo clic y tus juegos instalados se quedan como están.',
-      faq8_q: '¿Qué necesito para jugar?', faq8_a: 'Windows 10 u 11, 8 GB de RAM y una tarjeta gráfica con 2 GB de memoria. Asegúrate de tener espacio para el juego más grande: el launcher comprueba el espacio libre y te avisa antes de descargar.',
+      faq8_q: '¿Qué necesito para jugar?', faq8_a: 'Windows 10 u 11 (o Linux, en versión de prueba), 8 GB de RAM y una tarjeta gráfica con 2 GB de memoria. Asegúrate de tener espacio para el juego más grande: el launcher comprueba el espacio libre y te avisa antes de descargar.',
+      faq9_q: '¿Y en Linux o Steam Deck?', faq9_a: 'Sí, en versión de prueba desde la 1.1: Steam Deck, Bazzite, Fedora, Ubuntu… Descarga el archivo para Linux, hazlo ejecutable (clic derecho → Propiedades) y ábrelo. Los juegos funcionan con Proton o Wine; la <a href="https://github.com/ludvdber/AccioLauncher#linux--bazzite" target="_blank" rel="noopener">guía para Linux</a> explica la instalación. Todavía no se ha probado en un equipo real, así que cuéntanos cómo te va en <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> o en <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
       support_heading: 'Apoya el proyecto',
       support_text: 'Lo desarrolla una sola persona en su tiempo libre, sin anuncios ni nada que comprar, solo por las ganas de devolverles la vida a estos juegos.',
       kofi_cta: '☕ Invítame a un café en Ko-fi',
-      footer_oss: 'Código fuente en <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a> — licencia MIT; el ejecutable publicado está bajo GPL v3.',
+      footer_oss: 'Código fuente en <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a> — licencia GNU GPL v3.',
       fl_launcher: 'El launcher', fl_catalog: 'El catálogo de juegos', fl_issues: 'Reportar un error',
       legal1: 'Accio Launcher es un proyecto comunitario independiente, no afiliado a Warner Bros. Entertainment Inc. ni a Electronic Arts Inc. Harry Potter™ es una marca registrada de Warner Bros. Entertainment Inc. © Wizarding World.',
       legal2: 'Este software se ofrece gratis y tal cual. Cada usuario debe tener legalmente los juegos que instala.',
@@ -698,6 +706,7 @@
       aria_music: 'Música', title_music: 'Música ambiental', aria_menu: 'Menú',
       aria_close: 'Cerrar', aria_compare: 'Comparación antes/después', aria_top: 'Volver arriba',
       dl_thanks_title: 'Ya se está descargando. ¡Que lo disfrutes!',
+      dl_thanks_linux: 'En Linux, haz el archivo ejecutable (clic derecho → Propiedades) y ábrelo. Es una versión de prueba: cuéntanos cómo te va en <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> o en <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
       dl_thanks_star: 'Si te gusta, <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">dale una estrella en GitHub</a>: así más jugadores lo descubren.',
       ee_main: 'Juro solemnemente que mis intenciones no son buenas.',
       ee_sub: 'Travesura realizada.'

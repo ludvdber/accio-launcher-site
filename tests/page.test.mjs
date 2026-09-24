@@ -89,13 +89,18 @@ test('les données structurées sont du JSON valide', () => {
 
 test('les boutons de téléchargement visent le fichier, pas la page', () => {
   // GitHub résout « latest » tout seul, mais seulement si le nom du fichier ne
-  // bouge pas : renommé, l'exécutable fait tomber les boutons en 404 silencieux.
-  const attendu = 'https://github.com/ludvdber/AccioLauncher/releases/latest/download/AccioLauncher.exe';
-  const boutons = [...html.matchAll(/href="([^"]*releases\/latest\/download\/[^"]*)"/g)].map((m) => m[1]);
-  assert.ok(boutons.length >= 3, `${boutons.length} bouton(s) de téléchargement trouvé(s)`);
-  for (const lien of boutons) {
-    assert.equal(lien, attendu, 'le nom du fichier doit rester exactement AccioLauncher.exe');
+  // bouge pas : renommé, un fichier fait tomber ses boutons en 404 silencieux.
+  const base = 'https://github.com/ludvdber/AccioLauncher/releases/latest/download/';
+  const attendu = base + 'AccioLauncher.exe';
+  const fichiers = { windows: attendu, linux: base + 'AccioLauncher-x86_64.AppImage' };
+  const boutons = [...html.matchAll(/<a\s[^>]*href="([^"]*releases\/latest\/download\/[^"]*)"[^>]*>/g)];
+  // Le hero et la fin de la grille des jeux proposent chacun les deux systèmes.
+  for (const [os, url] of Object.entries(fichiers)) {
+    const n = boutons.filter((b) => b[1] === url && b[0].includes(`data-os="${os}"`)).length;
+    assert.ok(n >= 2, `${n} bouton(s) ${os} vers ${url}`);
   }
+  const inconnus = boutons.map((b) => b[1]).filter((u) => !Object.values(fichiers).includes(u));
+  assert.deepEqual(inconnus, [], 'lien de téléchargement vers un fichier que la release ne publie pas');
 
   const ld = html.match(/"downloadUrl":\s*"([^"]+)"/);
   assert.equal(ld?.[1], attendu, 'les données structurées doivent pointer au même endroit');

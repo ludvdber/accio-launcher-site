@@ -79,7 +79,7 @@ test('la ligne sous le bouton est complète dans les trois langues', () => {
   for (const langue of ['fr', ...LANGUES]) {
     const mots = buildWords[langue];
     assert.ok(mots, `buildWords.${langue} absent`);
-    for (const champ of ['os', 'oss', 'notes']) {
+    for (const champ of ['oss', 'notes']) {
       assert.ok(String(mots[champ] ?? '').trim(), `buildWords.${langue}.${champ} vide`);
     }
   }
