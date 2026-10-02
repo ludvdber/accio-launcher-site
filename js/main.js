@@ -455,39 +455,61 @@
     if (src && img.getAttribute('src') !== src) img.src = src;
   }
 
-  /* --- Compare tabs (switch game pairs) --- */
+  /* --- Avant/apres : le jeu, puis la scene ---
+     Huit boutons courts pour les jeux ; sous eux, le titre du jeu et ses scenes.
+     Un jeu qui n'a qu'une scene l'affiche quand meme : c'est sa legende. */
   var tabs = document.querySelectorAll('.compare-tab');
+  var gameBtns = document.querySelectorAll('.compare-game');
+  var gameTitles = document.querySelectorAll('.compare-title');
   var imgBefore = document.getElementById('img-before');
   var imgAfter = document.getElementById('img-after');
+
+  function showScene(tab) {
+    var srcBefore = localImage(tab, 'data-before');
+    var srcAfter = localImage(tab, 'data-after');
+    if (!srcBefore || !srcAfter) return;
+    tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
+    // Placeholders tant que les images arrivent
+    document.querySelectorAll('.slider-placeholder').forEach(function (p) { p.style.display = ''; });
+    [imgBefore, imgAfter].forEach(function (img) {
+      var ph = img.parentElement.querySelector('.slider-placeholder');
+      img.onload = function () { if (ph) ph.style.display = 'none'; };
+    });
+    imgBefore.src = srcBefore;
+    imgAfter.src = srcAfter;
+    [imgBefore, imgAfter].forEach(function (img) {
+      if (img.complete) { var ph = img.parentElement.querySelector('.slider-placeholder'); if (ph) ph.style.display = 'none'; }
+    });
+    // Curseur remis au milieu
+    if (after && handle) {
+      after.style.clipPath = 'inset(0 0 0 50%)';
+      handle.style.left = '50%';
+      pct = 50;
+    }
+  }
+
+  function showGame(n) {
+    gameBtns.forEach(function (b) {
+      var on = b.getAttribute('data-game') === n;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    gameTitles.forEach(function (t) { t.hidden = t.getAttribute('data-game') !== n; });
+    var first = null;
+    tabs.forEach(function (t) {
+      var mine = t.getAttribute('data-game') === n;
+      t.hidden = !mine;
+      if (mine && !first) first = t;
+    });
+    if (first) showScene(first);
+  }
+
   if (tabs.length && imgBefore && imgAfter) {
+    gameBtns.forEach(function (b) {
+      b.addEventListener('click', function () { showGame(b.getAttribute('data-game')); });
+    });
     tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        var srcBefore = localImage(tab, 'data-before');
-        var srcAfter = localImage(tab, 'data-after');
-        if (!srcBefore || !srcAfter) return;
-        tabs.forEach(function (t) { t.classList.remove('active'); });
-        tab.classList.add('active');
-        // Show placeholders
-        var phs = document.querySelectorAll('.slider-placeholder');
-        phs.forEach(function (p) { p.style.display = ''; });
-        // Load new images
-        function hideOnLoad(img) {
-          var ph = img.parentElement.querySelector('.slider-placeholder');
-          img.onload = function () { if (ph) ph.style.display = 'none'; };
-        }
-        hideOnLoad(imgBefore);
-        hideOnLoad(imgAfter);
-        imgBefore.src = srcBefore;
-        imgAfter.src = srcAfter;
-        if (imgBefore.complete) { var ph = imgBefore.parentElement.querySelector('.slider-placeholder'); if (ph) ph.style.display = 'none'; }
-        if (imgAfter.complete) { var ph2 = imgAfter.parentElement.querySelector('.slider-placeholder'); if (ph2) ph2.style.display = 'none'; }
-        // Reset slider to 50%
-        if (after && handle) {
-          after.style.clipPath = 'inset(0 0 0 50%)';
-          handle.style.left = '50%';
-          pct = 50;
-        }
-      });
+      tab.addEventListener('click', function () { showScene(tab); });
     });
   }
 
@@ -593,23 +615,20 @@
       game7_title: 'Deathly Hallows — 1',
       game8_title: 'Deathly Hallows — 2',
       preview_heading: 'The Launcher', preview_sub: 'Everything is set up from the very first launch. Pick a game and play.',
-      preview_tab1: 'The catalogue', preview_tab2: 'Installed game', preview_tab3: 'Image settings',
-      preview_tab4: 'My years at Hogwarts', preview_tab5: 'House themes',
-      pf1: 'One-click downloads that resume if your connection drops',
-      pf2: 'English, French and Spanish',
-      pf3: 'Five Hogwarts house themes',
-      pf4: 'Playtime and session history',
-      pf5: 'Repairs broken installations',
+      preview_tab1: 'Catalogue', preview_tab2: 'Installed game', preview_tab3: 'Settings',
+      preview_tab4: 'Statistics', preview_tab5: 'Houses',
+      pf1: 'One-click install',
+      pf2: 'Three image quality levels',
+      pf3: 'PlayStation controllers',
+      pf4: 'Playtime and saves',
+      pf5: 'Five house themes',
       pf6: 'Updates itself',
-      pf7: 'Image settings for each game, from Light to Maximum',
-      pf8: 'PlayStation controllers, with the light bar in your house colours',
-      pf9: 'Screenshots filed by game',
       compare_heading: 'Before / After', compare_sub: 'What the graphics upgrade changes, game by game.',
-      ctab1: 'HP1 — Hogwarts corridors', ctab2: 'HP5 — Common room',
-      ctab3: 'HP5 — Library', ctab4: 'HP5 — The castle',
-      ctab5: 'HP6 — The Burrow', ctab6: 'HP6 — The grounds at night',
-      ctab7: 'HP2 — The torch-lit corridor', ctab8: 'HP3 — The castle corridor', ctab9: 'HP4 — The Forbidden Forest',
-      ctab10: 'HP7a — The wedding', ctab11: 'HP7b — Gringotts',
+      ctab1: 'Hogwarts corridors', ctab2: 'Common room',
+      ctab3: 'Library', ctab4: 'The castle',
+      ctab5: 'The Burrow', ctab6: 'The grounds at night',
+      ctab7: 'The torch-lit corridor', ctab8: 'The castle corridor', ctab9: 'The Forbidden Forest',
+      ctab10: 'The wedding', ctab11: 'Gringotts',
       slider_hint: 'Drag to compare',
       compare_caption: 'Before: the game as it was on release. After: the same moment with Accio Launcher.',
       community_heading: 'Community',
@@ -680,23 +699,20 @@
       game7_title: 'Las Reliquias de la Muerte — 1',
       game8_title: 'Las Reliquias de la Muerte — 2',
       preview_heading: 'El launcher', preview_sub: 'Todo funciona desde el primer momento. Elige un juego y a jugar.',
-      preview_tab1: 'El catálogo', preview_tab2: 'Juego instalado', preview_tab3: 'Ajustes de imagen',
-      preview_tab4: 'Mis años en Hogwarts', preview_tab5: 'Las casas',
-      pf1: 'Instalación en un clic; si se corta la conexión, la descarga continúa donde se quedó',
-      pf2: 'Español, francés e inglés',
-      pf3: 'Cinco temas inspirados en las casas de Hogwarts',
-      pf4: 'Tiempo de juego e historial de partidas',
-      pf5: 'Repara instalaciones dañadas',
+      preview_tab1: 'Catálogo', preview_tab2: 'Juego instalado', preview_tab3: 'Ajustes',
+      preview_tab4: 'Estadísticas', preview_tab5: 'Casas',
+      pf1: 'Instalación en un clic',
+      pf2: 'Tres niveles de calidad de imagen',
+      pf3: 'Mandos de PlayStation',
+      pf4: 'Tiempo de juego y partidas guardadas',
+      pf5: 'Cinco temas de las casas',
       pf6: 'Se actualiza solo',
-      pf7: 'Ajustes de imagen para cada juego, de Ligera a Máxima',
-      pf8: 'Mandos de PlayStation, con la barra de luz en los colores de tu casa',
-      pf9: 'Capturas de pantalla ordenadas por juego',
       compare_heading: 'Antes / Después', compare_sub: 'Así cambian los gráficos, juego a juego.',
-      ctab1: 'HP1 — Pasillos de Hogwarts', ctab2: 'HP5 — Sala común',
-      ctab3: 'HP5 — Biblioteca', ctab4: 'HP5 — El castillo',
-      ctab5: 'HP6 — La Madriguera', ctab6: 'HP6 — Los terrenos de noche',
-      ctab7: 'HP2 — El pasillo de las antorchas', ctab8: 'HP3 — Un pasillo del castillo', ctab9: 'HP4 — El Bosque Prohibido',
-      ctab10: 'HP7a — La boda', ctab11: 'HP7b — Gringotts',
+      ctab1: 'Pasillos de Hogwarts', ctab2: 'Sala común',
+      ctab3: 'Biblioteca', ctab4: 'El castillo',
+      ctab5: 'La Madriguera', ctab6: 'Los terrenos de noche',
+      ctab7: 'El pasillo de las antorchas', ctab8: 'Un pasillo del castillo', ctab9: 'El Bosque Prohibido',
+      ctab10: 'La boda', ctab11: 'Gringotts',
       slider_hint: 'Arrastra para comparar',
       compare_caption: 'Antes: el juego tal como salió. Después: el mismo momento con Accio Launcher.',
       community_heading: 'Comunidad',

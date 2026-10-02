@@ -491,7 +491,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .preview-features {
   list-style:none;
   max-width:960px; margin:28px auto 0; padding:0 24px;
-  display:flex; flex-wrap:wrap; justify-content:center; gap:10px 28px;
+  display:grid; grid-template-columns:repeat(3, auto); justify-content:center; gap:12px 44px;
 }
 .preview-features li {
   font-family:var(--serif); font-size:13px; color:var(--muted);
@@ -511,23 +511,32 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   font-size:17px; margin:-32px auto 48px; max-width:550px;
   padding:0 24px;
 }
-/* Compare tabs */
-.compare-tabs {
-  display:flex; justify-content:center; gap:8px;
-  margin-bottom:24px; flex-wrap:wrap;
-  padding:0 24px;
-}
-.compare-tab {
-  font-family:var(--serif); font-size:13px;
+/* Choix de la scene : une rangee de jeux, puis le titre et les scenes du jeu */
+.compare-picker { max-width:900px; margin:0 auto 22px; padding:0 24px; }
+.compare-games { display:flex; justify-content:center; gap:6px; }
+.compare-game {
+  font-family:var(--serif); font-size:13px; letter-spacing:1px;
+  min-width:58px; padding:7px 0;
   color:var(--muted); background:none; border:1px solid var(--border);
-  padding:8px 18px; border-radius:6px; cursor:pointer;
+  border-radius:6px; cursor:pointer;
   transition:color 0.3s, border-color 0.3s, background 0.3s;
 }
-.compare-tab:hover { color:var(--text); border-color:var(--gold-d); }
-.compare-tab.active {
-  color:var(--gold); border-color:var(--gold-d);
-  background:rgba(214,167,44,0.08);
+.compare-game:hover { color:var(--text); border-color:var(--gold-d); }
+.compare-game.active { color:var(--gold); border-color:var(--gold-d); background:rgba(214,167,44,0.08); }
+.compare-scenes {
+  display:flex; flex-wrap:wrap; justify-content:center; align-items:baseline;
+  gap:6px 18px; margin-top:16px; min-height:26px;
+  font-family:var(--serif);
 }
+.compare-title { font-size:15px; color:var(--text); }
+.compare-scene-list { display:flex; flex-wrap:wrap; justify-content:center; gap:4px 16px; }
+.compare-tab {
+  font-family:var(--serif); font-size:13px; color:var(--muted);
+  background:none; border:0; border-bottom:1px solid transparent;
+  padding:2px 0; cursor:pointer; transition:color 0.3s, border-color 0.3s;
+}
+.compare-tab:hover { color:var(--text); }
+.compare-tab.active { color:var(--gold); border-bottom-color:var(--gold-d); }
 
 .slider {
   position:relative; max-width:900px; margin:0 auto;
@@ -553,7 +562,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
   font-family:var(--serif); font-size:13px; color:var(--gold);
   background:rgba(6,6,17,0.7); padding:6px 16px; border-radius:4px;
-  letter-spacing:0.5px; z-index:20; pointer-events:none;
+  letter-spacing:0.5px; z-index:20; pointer-events:none; white-space:nowrap;
   opacity:1; transition:opacity 0.4s;
 }
 .slider-hint.hidden { opacity:0; }
@@ -720,7 +729,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
    PREVIEW TABS
    =========================================== */
 .preview-tabs {
-  display:flex; justify-content:center; gap:8px;
+  display:flex; flex-wrap:wrap; justify-content:center; gap:8px;
   margin-bottom:20px; padding:0 24px;
 }
 .preview-tab {
@@ -765,10 +774,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   .preview-frame { margin:0 16px; }
   .preview-tabs { gap:6px; }
   .preview-tab { font-size:12px; padding:6px 12px; }
-  .compare-tabs { gap:6px; }
-  .compare-tab { font-size:11px; padding:6px 12px; }
+  .compare-picker { padding:0 16px; }
+  .compare-games { display:grid; grid-template-columns:repeat(4, 1fr); max-width:340px; margin:0 auto; }
+  .compare-game { min-width:0; }
+  .compare-scenes { flex-direction:column; align-items:center; gap:8px; }
   .community-grid { grid-template-columns:1fr; }
-  .preview-features { gap:8px 20px; justify-content:flex-start; }
+  .preview-features { grid-template-columns:repeat(2, auto); gap:10px 28px; }
   #nav { padding:0 16px; gap:12px; }
   .nav-brand { font-size:14px; }
   .nav-music { display:none; }
@@ -803,6 +814,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   .nav-brand { font-size:13px; }
   .nav-dl { padding:4px 8px; letter-spacing:1px; }
   .slider { aspect-ratio:4/3; }
+  .preview-features { grid-template-columns:auto; }
   .dl-choice { flex-direction:column; align-items:center; gap:10px; }
   .dl-choice .cta { width:100%; max-width:320px; justify-content:center; text-align:center; }
   .gcard-detail-content { padding:20px 32px 20px 16px; }
