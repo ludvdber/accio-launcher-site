@@ -29,7 +29,7 @@
       osc: Math.random() * 1.2 + 0.4,
       os: Math.random() * 0.007 + 0.002,
       ph: Math.random() * Math.PI * 2,
-      col: g ? 'rgba(212,160,23,' + o + ')' : 'rgba(190,190,210,' + o + ')'
+      col: g ? 'rgba(214,167,44,' + o + ')' : 'rgba(190,190,210,' + o + ')'
     };
   }
 
@@ -440,6 +440,21 @@
     return null;
   }
 
+  // Les captures du launcher existent en francais et en anglais : l'espagnol
+  // montre l'anglais, faute de mieux, et un onglet sans version anglaise garde
+  // le francais.
+  function previewSrc(tab) {
+    var en = currentLang !== 'fr' ? localImage(tab, 'data-src-en') : null;
+    return en || localImage(tab, 'data-src');
+  }
+  function refreshPreview() {
+    var tab = document.querySelector('.preview-tab.active');
+    var img = document.getElementById('preview-img');
+    if (!tab || !img) return;
+    var src = previewSrc(tab);
+    if (src && img.getAttribute('src') !== src) img.src = src;
+  }
+
   /* --- Compare tabs (switch game pairs) --- */
   var tabs = document.querySelectorAll('.compare-tab');
   var imgBefore = document.getElementById('img-before');
@@ -503,7 +518,7 @@
   if (previewTabs.length && previewImg) {
     previewTabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
-        var newSrc = localImage(tab, 'data-src');
+        var newSrc = previewSrc(tab);
         if (!newSrc) return;
         previewTabs.forEach(function (t) { t.classList.remove('active'); });
         tab.classList.add('active');
@@ -511,6 +526,9 @@
         setTimeout(function () {
           previewImg.onload = function () { previewImg.style.opacity = '1'; };
           previewImg.src = newSrc;
+          // La description suit l'onglet, y compris apres un changement de langue
+          previewImg.setAttribute('data-i18n-alt', tab.getAttribute('data-i18n-desc'));
+          previewImg.alt = tab.getAttribute('data-desc') || previewImg.alt;
           // Fallback if cached (onload already fired)
           if (previewImg.complete) previewImg.style.opacity = '1';
         }, 200);
@@ -542,7 +560,7 @@
               osc: Math.random() * 4,
               os: Math.random() * 0.03,
               ph: Math.random() * 6.28,
-              col: 'rgba(240,208,96,' + (Math.random() * 0.7 + 0.3) + ')'
+              col: 'rgba(242,215,117,' + (Math.random() * 0.7 + 0.3) + ')'
             });
           }
         }
@@ -575,18 +593,25 @@
       game7_title: 'Deathly Hallows — 1',
       game8_title: 'Deathly Hallows — 2',
       preview_heading: 'The Launcher', preview_sub: 'Everything is set up from the very first launch. Pick a game and play.',
-      preview_tab1: 'The catalogue', preview_tab2: 'Installed game', preview_tab3: 'Versions',
+      preview_tab1: 'The catalogue', preview_tab2: 'Installed game', preview_tab3: 'Image settings',
+      preview_tab4: 'My years at Hogwarts', preview_tab5: 'House themes',
       pf1: 'One-click downloads that resume if your connection drops',
       pf2: 'English, French and Spanish',
       pf3: 'Five Hogwarts house themes',
       pf4: 'Playtime and session history',
       pf5: 'Repairs broken installations',
       pf6: 'Updates itself',
+      pf7: 'Image settings for each game, from Light to Maximum',
+      pf8: 'PlayStation controllers, with the light bar in your house colours',
+      pf9: 'Screenshots filed by game',
       compare_heading: 'Before / After', compare_sub: 'What the graphics upgrade changes, game by game.',
       ctab1: 'HP1 — Hogwarts corridors', ctab2: 'HP5 — Common room',
       ctab3: 'HP5 — Library', ctab4: 'HP5 — The castle',
       ctab5: 'HP6 — The Burrow', ctab6: 'HP6 — The grounds at night',
+      ctab7: 'HP2 — The torch-lit corridor', ctab8: 'HP3 — The castle corridor', ctab9: 'HP4 — The Forbidden Forest',
+      ctab10: 'HP7a — The wedding', ctab11: 'HP7b — Gringotts',
       slider_hint: 'Drag to compare',
+      compare_caption: 'Before: the game as it was on release. After: the same moment with Accio Launcher.',
       community_heading: 'Community',
       community_sub: 'Accio Launcher is shaped by the people who use it. Your bug reports get things fixed, and your screenshots show others what it can do.',
       ccard1_t: 'Report a bug',
@@ -601,15 +626,15 @@
       faq1_q: 'Is it legal?', faq1_a: 'Accio Launcher is just a tool: it contains no game files. It downloads games that haven’t been on sale for years and installs them for you. You’re expected to own the games you install, and it’s up to you to check what the law allows where you live. The code is public, and the project isn’t affiliated with Warner Bros. or Electronic Arts.',
       faq2_q: 'Is it free?', faq2_a: 'Yes, completely. It’s open-source, with no ads and no tracking.',
       faq3_q: 'Is it safe?', faq3_a: 'The code is public on GitHub. Every download is verified as it comes in: if a file is damaged or tampered with along the way, it’s rejected. No account, no data collection, no ads.',
-      faq4_q: 'What do the graphics look like?', faq4_a: 'Full HD (1920×1080), with sharper visuals and better lighting — how much depends on the game. Everything comes pre-configured: there’s nothing else to install or tweak.',
+      faq4_q: 'What do the graphics look like?', faq4_a: 'The picture follows your screen’s resolution, up to 4K, with cleaner edges and reworked lighting, depending on the game. Three presets, from Light to Maximum, are one click away in the game’s settings. Everything comes pre-configured, so there’s nothing else to install.',
       faq5_q: 'Are all 8 games available?', faq5_a: 'Yes, since version 1.0 — from Philosopher’s Stone (2001) to Deathly Hallows — Part 2 (2011). The whole collection is there.',
       faq6_q: 'Why does Windows show a warning?', faq6_a: 'That’s expected. The launcher is free, and a code-signing certificate costs several hundred euros a year, so Windows shows “Windows protected your PC”. Click <em>More info</em>, then <em>Run anyway</em>. The file comes straight from the project’s GitHub page — the same place as the source code.',
       faq7_q: 'Do I need to reinstall it for every update?', faq7_a: 'No. The launcher updates itself in one click, and your installed games stay put.',
       faq8_q: 'What do I need?', faq8_a: 'Windows 10 or 11 (or Linux, as an early preview), 8 GB of RAM and a graphics card with 2 GB of video memory. Make sure you have room for the biggest game — the launcher checks your free space and warns you before downloading.',
-      faq9_q: 'What about Linux or Steam Deck?', faq9_a: 'Yes, as an early preview since version 1.1: Steam Deck, Bazzite, Fedora, Ubuntu… Download the Linux file, make it executable (right-click → Properties), then run it. The games run through Proton or Wine; the <a href="https://github.com/ludvdber/AccioLauncher#linux--bazzite" target="_blank" rel="noopener">Linux guide</a> covers the setup. This version hasn’t been tried on real hardware yet, so let us know how it goes on <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> or <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
+      faq9_q: 'What about Linux or Steam Deck?', faq9_a: 'Yes, as an early preview since version 1.1: Steam Deck, Bazzite, Fedora, Ubuntu… Download the Linux file, make it executable (right-click → Properties), then run it. The games run through Proton or Wine; the <a href="https://github.com/ludvdber/AccioLauncher#linux--bazzite" target="_blank" rel="noopener">Linux guide</a> covers the setup. It has been tried on Bazzite: HP1, HP3, HP4 and HP6 run, while HP2 starts but its menu stays empty for now. Let us know how it goes on <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> or <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
       support_heading: 'Support the project',
       support_text: 'Made by one person in their spare time, with no ads and nothing to buy — simply to bring these games back to life.',
-      kofi_cta: '☕ Buy me a coffee on Ko-fi',
+      kofi_cta: 'Buy me a coffee on Ko-fi',
       footer_oss: 'Source code on <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a> — GNU GPL v3 licence.',
       fl_launcher: 'The launcher', fl_catalog: 'The game catalogue', fl_issues: 'Report a bug',
       legal1: 'Accio Launcher is an independent community project, not affiliated with Warner Bros. Entertainment Inc. or Electronic Arts Inc. Harry Potter™ is a registered trademark of Warner Bros. Entertainment Inc. © Wizarding World.',
@@ -627,6 +652,10 @@
       alt_launcher: 'Accio Launcher showing a game page and a carousel of all eight covers',
       alt_before: 'Original graphics', alt_after: 'Enhanced graphics',
       ph_before: 'Before — Original', ph_after: 'After — Enhanced',
+      alt_prev2: 'An installed game: the Resume button, playtime and the settings cog',
+      alt_prev3: 'A game’s image settings, with quality levels from Light to Maximum',
+      alt_prev4: 'My years at Hogwarts: the time spent in each game, year by year',
+      alt_prev5: 'The launcher in Ravenclaw colours',
       aria_music: 'Music', title_music: 'Ambient music', aria_menu: 'Menu',
       aria_close: 'Close', aria_compare: 'Before/after comparison', aria_top: 'Back to top',
       dl_thanks_title: 'Your download has started. Enjoy the games!',
@@ -651,18 +680,25 @@
       game7_title: 'Las Reliquias de la Muerte — 1',
       game8_title: 'Las Reliquias de la Muerte — 2',
       preview_heading: 'El launcher', preview_sub: 'Todo funciona desde el primer momento. Elige un juego y a jugar.',
-      preview_tab1: 'El catálogo', preview_tab2: 'Juego instalado', preview_tab3: 'Versiones',
+      preview_tab1: 'El catálogo', preview_tab2: 'Juego instalado', preview_tab3: 'Ajustes de imagen',
+      preview_tab4: 'Mis años en Hogwarts', preview_tab5: 'Las casas',
       pf1: 'Instalación en un clic; si se corta la conexión, la descarga continúa donde se quedó',
       pf2: 'Español, francés e inglés',
       pf3: 'Cinco temas inspirados en las casas de Hogwarts',
       pf4: 'Tiempo de juego e historial de partidas',
       pf5: 'Repara instalaciones dañadas',
       pf6: 'Se actualiza solo',
+      pf7: 'Ajustes de imagen para cada juego, de Ligera a Máxima',
+      pf8: 'Mandos de PlayStation, con la barra de luz en los colores de tu casa',
+      pf9: 'Capturas de pantalla ordenadas por juego',
       compare_heading: 'Antes / Después', compare_sub: 'Así cambian los gráficos, juego a juego.',
       ctab1: 'HP1 — Pasillos de Hogwarts', ctab2: 'HP5 — Sala común',
       ctab3: 'HP5 — Biblioteca', ctab4: 'HP5 — El castillo',
       ctab5: 'HP6 — La Madriguera', ctab6: 'HP6 — Los terrenos de noche',
+      ctab7: 'HP2 — El pasillo de las antorchas', ctab8: 'HP3 — Un pasillo del castillo', ctab9: 'HP4 — El Bosque Prohibido',
+      ctab10: 'HP7a — La boda', ctab11: 'HP7b — Gringotts',
       slider_hint: 'Arrastra para comparar',
+      compare_caption: 'Antes: el juego tal como salió. Después: el mismo momento con Accio Launcher.',
       community_heading: 'Comunidad',
       community_sub: 'Accio Launcher crece gracias a su comunidad. Tus reportes ayudan a corregir errores, y tus capturas, a que más gente lo descubra.',
       ccard1_t: 'Reporta un error',
@@ -677,15 +713,15 @@
       faq1_q: '¿Es legal?', faq1_a: 'Accio Launcher no incluye ningún archivo de los juegos: se limita a descargarlos e instalarlos por ti. Son juegos que ya no se venden desde hace años. Los juegos que instales deben ser tuyos, y te corresponde comprobar qué permite la ley de tu país. El código es público y el proyecto no tiene ninguna relación con Warner Bros. ni con Electronic Arts.',
       faq2_q: '¿Es gratis?', faq2_a: 'Sí, completamente. Es de código abierto, no tiene anuncios y no recopila tus datos.',
       faq3_q: '¿Es seguro?', faq3_a: 'El código es público en GitHub. Cada descarga se verifica: si un archivo llega dañado o modificado, se descarta. No hace falta crear una cuenta, no se recopila ningún dato y no hay anuncios.',
-      faq4_q: '¿Cómo se ven los gráficos?', faq4_a: 'Full HD (1920×1080), con una imagen más nítida y mejor iluminación, según el juego. Todo viene ya configurado: no tienes que instalar ni ajustar nada más.',
+      faq4_q: '¿Cómo se ven los gráficos?', faq4_a: 'La imagen se adapta a la resolución de tu pantalla, hasta 4K, con bordes más limpios y una iluminación retocada, según el juego. En los ajustes del juego puedes elegir entre tres niveles, de Ligera a Máxima. Todo viene ya configurado, así que no tienes que instalar nada más.',
       faq5_q: '¿Están disponibles los 8 juegos?', faq5_a: 'Sí, desde la versión 1.0: desde La piedra filosofal (2001) hasta Las Reliquias de la Muerte — Parte 2 (2011). La colección está completa.',
       faq6_q: '¿Por qué Windows muestra una advertencia?', faq6_a: 'Es normal. El launcher es gratuito y no tiene certificado de firma, que cuesta varios cientos de euros al año, así que Windows muestra «Windows protegió su PC». Haz clic en <em>Más información</em> y después en <em>Ejecutar de todas formas</em>. El archivo se descarga directamente de la página del proyecto en GitHub, el mismo sitio donde está el código.',
       faq7_q: '¿Tengo que reinstalarlo con cada actualización?', faq7_a: 'No. El launcher se actualiza con un solo clic y tus juegos instalados se quedan como están.',
       faq8_q: '¿Qué necesito para jugar?', faq8_a: 'Windows 10 u 11 (o Linux, en versión de prueba), 8 GB de RAM y una tarjeta gráfica con 2 GB de memoria. Asegúrate de tener espacio para el juego más grande: el launcher comprueba el espacio libre y te avisa antes de descargar.',
-      faq9_q: '¿Y en Linux o Steam Deck?', faq9_a: 'Sí, en versión de prueba desde la 1.1: Steam Deck, Bazzite, Fedora, Ubuntu… Descarga el archivo para Linux, hazlo ejecutable (clic derecho → Propiedades) y ábrelo. Los juegos funcionan con Proton o Wine; la <a href="https://github.com/ludvdber/AccioLauncher#linux--bazzite" target="_blank" rel="noopener">guía para Linux</a> explica la instalación. Todavía no se ha probado en un equipo real, así que cuéntanos cómo te va en <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> o en <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
+      faq9_q: '¿Y en Linux o Steam Deck?', faq9_a: 'Sí, en versión de prueba desde la 1.1: Steam Deck, Bazzite, Fedora, Ubuntu… Descarga el archivo para Linux, hazlo ejecutable (clic derecho → Propiedades) y ábrelo. Los juegos funcionan con Proton o Wine; la <a href="https://github.com/ludvdber/AccioLauncher#linux--bazzite" target="_blank" rel="noopener">guía para Linux</a> explica la instalación. Se ha probado en Bazzite: HP1, HP3, HP4 y HP6 funcionan; HP2 arranca, pero su menú sigue vacío por ahora. Cuéntanos cómo te va en <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> o en <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
       support_heading: 'Apoya el proyecto',
       support_text: 'Lo desarrolla una sola persona en su tiempo libre, sin anuncios ni nada que comprar, solo por las ganas de devolverles la vida a estos juegos.',
-      kofi_cta: '☕ Invítame a un café en Ko-fi',
+      kofi_cta: 'Invítame a un café en Ko-fi',
       footer_oss: 'Código fuente en <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a> — licencia GNU GPL v3.',
       fl_launcher: 'El launcher', fl_catalog: 'El catálogo de juegos', fl_issues: 'Reportar un error',
       legal1: 'Accio Launcher es un proyecto comunitario independiente, no afiliado a Warner Bros. Entertainment Inc. ni a Electronic Arts Inc. Harry Potter™ es una marca registrada de Warner Bros. Entertainment Inc. © Wizarding World.',
@@ -703,6 +739,10 @@
       alt_launcher: 'Accio Launcher mostrando la ficha de un juego y el carrusel con las ocho portadas',
       alt_before: 'Gráficos originales', alt_after: 'Gráficos mejorados',
       ph_before: 'Antes — Original', ph_after: 'Después — Mejorado',
+      alt_prev2: 'Un juego instalado: el botón Continuar, el tiempo de juego y el engranaje de ajustes',
+      alt_prev3: 'Los ajustes de imagen de un juego, con niveles de calidad de Ligera a Máxima',
+      alt_prev4: 'Mis años en Hogwarts: el tiempo dedicado a cada juego, año por año',
+      alt_prev5: 'El launcher con los colores de Ravenclaw',
       aria_music: 'Música', title_music: 'Música ambiental', aria_menu: 'Menú',
       aria_close: 'Cerrar', aria_compare: 'Comparación antes/después', aria_top: 'Volver arriba',
       dl_thanks_title: 'Ya se está descargando. ¡Que lo disfrutes!',
@@ -726,7 +766,8 @@
   // Certains textes ne sont pas du contenu mais des attributs : la description
   // d'une image, le libelle d'un bouton sans mot. Ils se traduisent aussi, sinon
   // un lecteur d'ecran anglais ou espagnol entend du francais.
-  var I18N_ATTRS = { 'data-i18n-alt': 'alt', 'data-i18n-label': 'aria-label', 'data-i18n-title': 'title' };
+  var I18N_ATTRS = { 'data-i18n-alt': 'alt', 'data-i18n-label': 'aria-label', 'data-i18n-title': 'title',
+                   'data-i18n-desc': 'data-desc' };
   var attrRoots = [document];
   if (detailTpl) attrRoots.push(detailTpl.content);
   attrRoots.forEach(function (root) {
@@ -766,6 +807,7 @@
       if (dict[key] !== undefined) el.innerHTML = dict[key];
     });
     applyAttrs(document, lang);
+    refreshPreview();
     document.title = lang === 'fr' ? frPage.title : (i18n[lang].page_title || frPage.title);
     if (descEl) {
       descEl.setAttribute('content', lang === 'fr' ? frPage.desc : (i18n[lang].page_desc || frPage.desc));

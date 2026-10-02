@@ -91,7 +91,7 @@
       </div>
     </div>
     <div class="scroll-hint" aria-hidden="true">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#d4a017" stroke-width="1.5"><polyline points="4 7 10 13 16 7"/></svg>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#d6a72c" stroke-width="1.5"><polyline points="4 7 10 13 16 7"/></svg>
     </div>
   </section>
 
@@ -195,9 +195,11 @@
     <h2 class="section-heading" data-reveal data-i18n="preview_heading">Le launcher</h2>
     <p class="preview-sub" data-reveal data-i18n="preview_sub">Tout est prêt dès le premier lancement. Choisissez un jeu, cliquez, jouez.</p>
     <div class="preview-tabs" data-reveal>
-      <button class="preview-tab active" data-src="assets/screenshots/launcher-catalogue.jpg" data-i18n="preview_tab1">Le catalogue</button>
-      <button class="preview-tab" data-src="assets/screenshots/launcher-installed.jpg" data-i18n="preview_tab2">Jeu installé</button>
-      <button class="preview-tab" data-src="assets/screenshots/launcher-versions.jpg" data-i18n="preview_tab3">Versions</button>
+      <button class="preview-tab active" data-src="assets/screenshots/launcher-catalogue.jpg" data-src-en="assets/screenshots/en-launcher-catalogue.jpg" data-desc="Le launcher Accio, fiche d'un jeu et carrousel des huit jaquettes" data-i18n-desc="alt_launcher" data-i18n="preview_tab1">Le catalogue</button>
+      <button class="preview-tab" data-src="assets/screenshots/launcher-installed.jpg" data-src-en="assets/screenshots/en-launcher-installed.jpg" data-desc="Un jeu installé : le bouton Reprendre, le temps de jeu et l'engrenage des réglages" data-i18n-desc="alt_prev2" data-i18n="preview_tab2">Jeu installé</button>
+      <button class="preview-tab" data-src="assets/screenshots/launcher-reglages.jpg" data-src-en="assets/screenshots/en-launcher-reglages.jpg" data-desc="Les réglages d'image d'un jeu, avec des niveaux de qualité de Légère à Maximale" data-i18n-desc="alt_prev3" data-i18n="preview_tab3">Réglages d'image</button>
+      <button class="preview-tab" data-src="assets/screenshots/launcher-annees.jpg" data-src-en="assets/screenshots/en-launcher-annees.jpg" data-desc="Mes années à Poudlard : le temps passé dans chaque jeu, année par année" data-i18n-desc="alt_prev4" data-i18n="preview_tab4">Mes années à Poudlard</button>
+      <button class="preview-tab" data-src="assets/screenshots/launcher-maisons.jpg" data-desc="Le launcher aux couleurs de la maison Serdaigle" data-i18n-desc="alt_prev5" data-i18n="preview_tab5">Les maisons</button>
     </div>
     <div class="preview-frame" data-reveal>
       <img id="preview-img" src="assets/screenshots/launcher-catalogue.jpg" data-i18n-alt="alt_launcher" alt="Le launcher Accio, fiche d'un jeu et carrousel des huit jaquettes" loading="lazy">
@@ -209,6 +211,9 @@
       <li data-i18n="pf4">Temps de jeu et historique des parties</li>
       <li data-i18n="pf5">Réparation d'une installation abîmée</li>
       <li data-i18n="pf6">Se met à jour tout seul</li>
+      <li data-i18n="pf7">Réglages d'image par jeu, de Légère à Maximale</li>
+      <li data-i18n="pf8">Manettes PlayStation, avec la barre lumineuse aux couleurs de votre maison</li>
+      <li data-i18n="pf9">Captures d'écran rangées par jeu</li>
     </ul>
   </section>
 
@@ -220,11 +225,16 @@
     <!-- Scene selector tabs -->
     <div class="compare-tabs" data-reveal>
       <button class="compare-tab active" data-before="assets/compare/hp1-couloir-before.jpg" data-after="assets/compare/hp1-couloir-after.jpg" data-i18n="ctab1">HP1 — Couloirs de Poudlard</button>
+      <button class="compare-tab" data-before="assets/compare/hp2-couloir-aux-torches-before.jpg" data-after="assets/compare/hp2-couloir-aux-torches-after.jpg" data-i18n="ctab7">HP2 — Couloir aux torches</button>
+      <button class="compare-tab" data-before="assets/compare/hp3-couloir-de-poudlard-before.jpg" data-after="assets/compare/hp3-couloir-de-poudlard-after.jpg" data-i18n="ctab8">HP3 — Couloir du château</button>
+      <button class="compare-tab" data-before="assets/compare/hp4-foret-interdite-before.jpg" data-after="assets/compare/hp4-foret-interdite-after.jpg" data-i18n="ctab9">HP4 — La Forêt interdite</button>
       <button class="compare-tab" data-before="assets/compare/hp5-salle-commune-before.jpg" data-after="assets/compare/hp5-salle-commune-after.jpg" data-i18n="ctab2">HP5 — Salle commune</button>
       <button class="compare-tab" data-before="assets/compare/hp5-bibliotheque-before.jpg" data-after="assets/compare/hp5-bibliotheque-after.jpg" data-i18n="ctab3">HP5 — Bibliothèque</button>
       <button class="compare-tab" data-before="assets/compare/hp5-chateau-before.jpg" data-after="assets/compare/hp5-chateau-after.jpg" data-i18n="ctab4">HP5 — Le château</button>
       <button class="compare-tab" data-before="assets/compare/hp6-terrier-before.jpg" data-after="assets/compare/hp6-terrier-after.jpg" data-i18n="ctab5">HP6 — Le Terrier</button>
       <button class="compare-tab" data-before="assets/compare/hp6-parc-before.jpg" data-after="assets/compare/hp6-parc-after.jpg" data-i18n="ctab6">HP6 — Le parc de nuit</button>
+      <button class="compare-tab" data-before="assets/compare/hp7a-mariage-before.jpg" data-after="assets/compare/hp7a-mariage-after.jpg" data-i18n="ctab10">HP7a — Le mariage</button>
+      <button class="compare-tab" data-before="assets/compare/hp7b-gringotts-before.jpg" data-after="assets/compare/hp7b-gringotts-after.jpg" data-i18n="ctab11">HP7b — Gringotts</button>
     </div>
 
     <div class="slider" id="slider" data-reveal role="slider" data-i18n-label="aria_compare" aria-label="Comparaison avant/après" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
@@ -245,6 +255,7 @@
         <div class="slider-line"></div>
       </div>
     </div>
+    <p class="slider-caption" data-reveal data-i18n="compare_caption">Avant : le jeu tel qu'il était à sa sortie. Après : le même instant avec Accio Launcher.</p>
   </section>
 
   <!-- ==================== COMMUNAUTÉ ==================== -->
@@ -312,7 +323,7 @@
         </details>
         <details class="faq-item">
           <summary data-i18n="faq4_q">Quelle qualité graphique ?</summary>
-          <p data-i18n="faq4_a">1920×1080, image nettoyée et lumière retravaillée selon les jeux. Tout est pré-configuré : rien à installer ni à régler à côté.</p>
+          <p data-i18n="faq4_a">L'image suit la résolution de votre écran, jusqu'à la 4K, avec des contours nettoyés et une lumière retravaillée selon les jeux. Trois préréglages, de Légère à Maximale, se choisissent dans les réglages du jeu : tout est déjà configuré, vous n'avez rien à installer.</p>
         </details>
         <details class="faq-item">
           <summary data-i18n="faq5_q">Les 8 jeux sont tous disponibles ?</summary>
@@ -332,7 +343,7 @@
         </details>
         <details class="faq-item">
           <summary data-i18n="faq9_q">Et sur Linux ou Steam Deck ?</summary>
-          <p data-i18n="faq9_a">Oui, en préversion depuis la version 1.1 : Steam Deck, Bazzite, Fedora, Ubuntu… Téléchargez le fichier Linux, rendez-le exécutable (clic droit → Propriétés), puis lancez-le. Les jeux tournent avec Proton ou Wine ; le <a href="https://github.com/ludvdber/AccioLauncher#linux--bazzite" target="_blank" rel="noopener">guide Linux</a> détaille l'installation. Cette version n'a pas encore été essayée sur une vraie machine : dites-nous si elle marche chez vous, sur <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> ou sur <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.</p>
+          <p data-i18n="faq9_a">Oui, en préversion depuis la version 1.1 : Steam Deck, Bazzite, Fedora, Ubuntu… Téléchargez le fichier Linux, rendez-le exécutable (clic droit → Propriétés), puis lancez-le. Les jeux tournent avec Proton ou Wine ; le <a href="https://github.com/ludvdber/AccioLauncher#linux--bazzite" target="_blank" rel="noopener">guide Linux</a> détaille l'installation. Elle a été essayée sous Bazzite : HP1, HP3, HP4 et HP6 tournent, HP2 démarre mais son menu reste vide pour l'instant. Dites-nous si elle marche chez vous, sur <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> ou sur <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.</p>
         </details>
     </div>
 
@@ -340,7 +351,7 @@
       <h2 class="section-heading" data-i18n="support_heading">Soutenir le projet</h2>
         <p class="support-text" data-i18n="support_text">Développé par un seul passionné, sur son temps libre. Pas de pub, pas de monétisation — juste l'envie de redonner vie à ces jeux.</p>
         <a href="https://ko-fi.com/ludovic01" class="cta cta--kofi" target="_blank" rel="noopener">
-          <span class="cta-text" data-i18n="kofi_cta">☕ Offrir un café sur Ko-fi</span>
+          <span class="cta-text" data-i18n="kofi_cta">Offrir un café sur Ko-fi</span>
           <span class="cta-shimmer"></span>
         </a>
         <div class="support-links">

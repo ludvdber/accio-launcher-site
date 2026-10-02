@@ -10,7 +10,7 @@ const gameDescs = objetDe('gameDescs');
 const buildWords = objetDe('buildWords');
 
 const contenus = valeursDe(/data-i18n="([^"]+)"/g);
-const attributs = valeursDe(/data-i18n-(?:alt|label|title)="([^"]+)"/g);
+const attributs = valeursDe(/data-i18n-(?:alt|label|title|desc)="([^"]+)"/g);
 const horsDom = ['page_title', 'page_desc', 'hero_typed'];
 const attendues = [...contenus, ...attributs, ...horsDom];
 

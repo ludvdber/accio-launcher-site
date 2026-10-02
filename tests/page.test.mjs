@@ -15,7 +15,7 @@ const estLocal = (chemin) =>
 test('chaque fichier référencé par le HTML existe', () => {
   const refs = [
     ...valeursDe(/(?:src|href|poster)="([^"]+)"/g),
-    ...valeursDe(/data-(?:src|before|after)="([^"]+)"/g),
+    ...valeursDe(/data-(?:src|src-en|before|after)="([^"]+)"/g),
   ].filter(estLocal);
 
   assert.ok(refs.length > 10, `seulement ${refs.length} références trouvées`);
@@ -29,7 +29,7 @@ test('les chemins d’images des onglets passent le filtre de main.js', () => {
   const source = js.match(/function localImage[\s\S]*?if \((\/\^.+?\$\/)\.test\(/);
   assert.ok(source, 'filtre de localImage introuvable dans main.js');
   const filtre = eval(source[1]);
-  const refuses = valeursDe(/data-(?:src|before|after)="([^"]+)"/g).filter((c) => !filtre.test(c));
+  const refuses = valeursDe(/data-(?:src|src-en|before|after)="([^"]+)"/g).filter((c) => !filtre.test(c));
   assert.deepEqual(refuses, [], 'chemins que main.js refusera de charger');
 });
 
