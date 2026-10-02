@@ -601,7 +601,7 @@
   var i18n = {
     en: {
       nav_games: 'Games', nav_compare: 'Before/After', nav_community: 'Community', nav_dl: 'Download',
-      hero_cta: 'Download for Windows', cta_preview: 'preview', hero_downloads: 'downloads',
+      hero_cta: 'Download for Windows', cta_preview: 'preview', hero_downloads: 'downloads', hero_own: 'The games remain the property of Warner Bros. and Electronic Arts: to play them legally, you must own an original copy (CD, DVD or digital purchase).',
       hero_typed: 'Relive all 8 Harry Potter PC games with modern graphics.',
       hero_warn_q: 'Windows will show a warning the first time you run it — that’s normal.',
       hero_warn_a: 'The launcher is free and isn’t signed with a paid certificate, so Windows shows “Windows protected your PC”. Click <em>More info</em>, then <em>Run anyway</em>.',
@@ -642,7 +642,7 @@
       ccard3_d: 'Missing a feature, or something that bugs you? Suggest it. The launcher is available in English, French and Spanish, and adding a language doesn’t take any code — just a translation file.',
       ccard3_cta: 'Suggest', ccard3_cta2: 'Help translate',
       faq_heading: 'FAQ',
-      faq1_q: 'Is it legal?', faq1_a: 'Accio Launcher is just a tool: it contains no game files. It downloads games that haven’t been on sale for years and installs them for you. You’re expected to own the games you install, and it’s up to you to check what the law allows where you live. The code is public, and the project isn’t affiliated with Warner Bros. or Electronic Arts.',
+      faq1_q: 'Is it legal?', faq1_a: 'Accio Launcher contains no game files. The archives it installs replace original discs that are damaged, lost or unreadable on a modern PC: they are meant for people who own an original copy of each game (CD, DVD or digital purchase). The games remain the property of Warner Bros. and Electronic Arts, and the project is affiliated with neither. A rights holder who asks for a file to be removed gets it removed within 48 hours.',
       faq2_q: 'Is it free?', faq2_a: 'Yes, completely. It’s open-source, with no ads and no tracking.',
       faq3_q: 'Is it safe?', faq3_a: 'The code is public on GitHub. Every download is verified as it comes in: if a file is damaged or tampered with along the way, it’s rejected. No account, no data collection, no ads.',
       faq4_q: 'What do the graphics look like?', faq4_a: 'The picture follows your screen’s resolution, up to 4K, with cleaner edges and reworked lighting, depending on the game. Three presets, from Light to Maximum, are one click away in the game’s settings. Everything comes pre-configured, so there’s nothing else to install.',
@@ -685,7 +685,7 @@
     },
     es: {
       nav_games: 'Juegos', nav_compare: 'Antes/Después', nav_community: 'Comunidad', nav_dl: 'Descargar',
-      hero_cta: 'Descargar para Windows', cta_preview: 'en pruebas', hero_downloads: 'descargas',
+      hero_cta: 'Descargar para Windows', cta_preview: 'en pruebas', hero_downloads: 'descargas', hero_own: 'Los juegos siguen siendo propiedad de Warner Bros. y Electronic Arts: para jugarlos legalmente, hay que poseer una copia original (CD, DVD o compra digital).',
       hero_typed: 'Revive los 8 juegos de Harry Potter para PC con gráficos modernos.',
       hero_warn_q: 'Windows mostrará una advertencia la primera vez que lo abras. Es normal.',
       hero_warn_a: 'Como el launcher es gratuito, no está firmado con un certificado de pago, así que Windows muestra «Windows protegió su PC». Haz clic en <em>Más información</em> y después en <em>Ejecutar de todas formas</em>.',
@@ -726,7 +726,7 @@
       ccard3_d: 'Si crees que al launcher le falta alguna función o hay algo que cambiarías, cuéntalo en GitHub. Ya está en español, francés e inglés, y para añadir otro idioma no hace falta programar: basta con traducir un archivo.',
       ccard3_cta: 'Sugerir', ccard3_cta2: 'Ayudar a traducir',
       faq_heading: 'Preguntas frecuentes',
-      faq1_q: '¿Es legal?', faq1_a: 'Accio Launcher no incluye ningún archivo de los juegos: se limita a descargarlos e instalarlos por ti. Son juegos que ya no se venden desde hace años. Los juegos que instales deben ser tuyos, y te corresponde comprobar qué permite la ley de tu país. El código es público y el proyecto no tiene ninguna relación con Warner Bros. ni con Electronic Arts.',
+      faq1_q: '¿Es legal?', faq1_a: 'Accio Launcher no contiene ningún archivo de los juegos. Los archivos que instala sustituyen discos originales dañados, perdidos o ilegibles en un PC actual: están pensados para quienes poseen una copia original de cada juego (CD, DVD o compra digital). Los juegos siguen siendo propiedad de Warner Bros. y Electronic Arts, y el proyecto no tiene relación con ninguna de las dos. Si un titular de derechos pide retirar un archivo, se retira en 48 horas.',
       faq2_q: '¿Es gratis?', faq2_a: 'Sí, completamente. Es de código abierto, no tiene anuncios y no recopila tus datos.',
       faq3_q: '¿Es seguro?', faq3_a: 'El código es público en GitHub. Cada descarga se verifica: si un archivo llega dañado o modificado, se descarta. No hace falta crear una cuenta, no se recopila ningún dato y no hay anuncios.',
       faq4_q: '¿Cómo se ven los gráficos?', faq4_a: 'La imagen se adapta a la resolución de tu pantalla, hasta 4K, con bordes más limpios y una iluminación retocada, según el juego. En los ajustes del juego puedes elegir entre tres niveles, de Ligera a Máxima. Todo viene ya configurado, así que no tienes que instalar nada más.',
