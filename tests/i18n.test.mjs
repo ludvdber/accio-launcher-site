@@ -8,6 +8,7 @@ import { html, objetDe, contenuDe, valeursDe, LANGUES } from './lib.mjs';
 const i18n = objetDe('i18n');
 const gameDescs = objetDe('gameDescs');
 const buildWords = objetDe('buildWords');
+const gameFixes = objetDe('gameFixes');
 
 const contenus = valeursDe(/data-i18n="([^"]+)"/g);
 const attributs = valeursDe(/data-i18n-(?:alt|label|title|desc)="([^"]+)"/g);
@@ -72,6 +73,24 @@ test('les 8 fiches de jeu existent dans les trois langues', () => {
         assert.ok(String(fiche[champ] ?? '').trim(), `gameDescs.${langue}[${i}].${champ} vide`);
       }
     });
+  }
+});
+
+test('« Ce que corrige Accio » : mêmes lignes pour les 8 jeux dans les trois langues', () => {
+  // Une ligne ajoutée en français seul laisserait l'anglais et l'espagnol en retard.
+  const reference = gameFixes.fr.jeux.map((lignes) => lignes.length);
+  assert.equal(reference.length, 8, `${reference.length} jeux au lieu de 8`);
+  for (const langue of ['fr', ...LANGUES]) {
+    const fx = gameFixes[langue];
+    assert.ok(fx && String(fx.titre ?? '').trim(), `gameFixes.${langue}.titre vide`);
+    assert.deepEqual(fx.jeux.map((lignes) => lignes.length), reference,
+      `gameFixes.${langue} : nombre de lignes différent du français`);
+    fx.jeux.forEach((lignes, i) => lignes.forEach((paire, j) => {
+      assert.equal(paire.length, 2, `gameFixes.${langue}.jeux[${i}][${j}] n'est pas une paire`);
+      for (const texte of paire) {
+        assert.ok(String(texte).trim(), `gameFixes.${langue}.jeux[${i}][${j}] vide`);
+      }
+    }));
   }
 });
 

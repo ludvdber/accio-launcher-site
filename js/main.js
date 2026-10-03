@@ -152,6 +152,236 @@
     'assets/backgrounds/hp7a.jpg','assets/backgrounds/hp7b.jpg'
   ];
 
+  // « Ce que corrige Accio », sous le résumé de chaque fiche : la question qu'on
+  // se pose avant de télécharger (« pourquoi pas la version que j'ai déjà ? »).
+  // Une paire par ligne : ce qui n'allait pas, puis ce que fait Accio. Tiré du
+  // catalogue publié et du README du correctif : rien qui n'ait été vu en jeu.
+  // Pas d'accolade dans les textes : les tests découpent cet objet à la main.
+  var gameFixes = {
+    fr: {
+      titre: 'Ce que corrige Accio',
+      jeux: [
+        [
+          ['Pensé pour les écrans carrés d’il y a vingt ans.', 'En 16:9 et en 1920×1080, menus agrandis pour rester lisibles.'],
+          ['Alt+Tab pouvait le faire planter.', 'Il tourne dans une fenêtre sans bordure : Alt+Tab sans risque.'],
+          ['Contours en escalier, textures floues.', 'Contours lissés, textures nettes, ombres et reflets plus riches.'],
+          ['Le menu vidéo proposait deux affichages absents du jeu, qui l’empêchaient de redémarrer.', 'Retirés, et l’affichage est remis en ordre à chaque lancement.'],
+          ['Des saccades en cours de niveau.', 'Les textures sont chargées d’avance.'],
+          ['Un menu des sauvegardes sans images.', 'Chaque sauvegarde a sa vignette.']
+        ],
+        [
+          ['Livré en 640×480 et en 16 bits.', 'Démarre en 1920×1080, en 16:9 et en couleurs 32 bits, menus agrandis.'],
+          ['Son affichage par défaut désignait des fichiers absents.', 'Corrigé, et remis en ordre à chaque lancement.'],
+          ['Le détail des objets était bloqué deux crans sous le maximum.', 'Il est au maximum.'],
+          ['Alt+Tab pouvait le faire planter.', 'Il tourne dans une fenêtre sans bordure : Alt+Tab sans risque.'],
+          ['Contours en escalier, textures floues.', 'Contours lissés, textures nettes, ombres, reflets et relief.'],
+          ['Des saccades en cours de niveau.', 'Les textures sont chargées d’avance.']
+        ],
+        [
+          ['Son affichage d’origine passe mal sur les cartes graphiques actuelles.', 'Il est traduit pour les PC d’aujourd’hui.'],
+          ['Une image en 4:3.', 'En 16:9 et en 1920×1080, vidéos d’introduction comprises.'],
+          ['Au-delà de 60 images/s, le jeu se dérègle.', 'Il est tenu à 60, image synchronisée avec l’écran.'],
+          ['Contours en escalier, textures floues au loin.', 'Contours lissés, textures nettes jusqu’au fond du décor.']
+        ],
+        [
+          ['Sur un écran large, la brume de la Forêt interdite, du lac, du labyrinthe et du cimetière faisait planter le jeu.', 'La brume s’affiche, sans plantage.'],
+          ['Environ un démarrage sur dix, plantage juste après le « Oui » de la sauvegarde.', 'Corrigé : la partie continue.'],
+          ['En 4:3, bridé à 60 images/s.', 'En 16:9 ou tout autre format, jusqu’à 144 images/s.'],
+          ['Alt+Tab figeait le jeu, et au retour le clavier restait mort jusqu’à 30 secondes.', 'Le jeu continue ; clavier et souris répondent dès le retour.'],
+          ['Les manettes PlayStation 4 et 5 étaient ignorées.', 'Reconnues, stick droit compris.'],
+          ['Des touches pensées pour un clavier anglais.', 'Toutes se changent depuis le launcher, ZQSD prêt.']
+        ],
+        [
+          ['Bloqué à 30 images/s.', 'Jusqu’à 144 images/s, sans à-coups.'],
+          ['Il démarrait en qualité de textures réduite, sans le dire.', 'Qualité maximale dès le premier lancement.'],
+          ['Avec une mise à l’échelle Windows (125 %…), la fenêtre dépassait de l’écran.', 'Elle est à la bonne taille.'],
+          ['Alt+Tab figeait le jeu.', 'Le jeu continue ; clavier et souris répondent dès le retour.'],
+          ['La manette demandait un composant DirectX de 2010, et seulement une manette Xbox.', 'Rien à installer, et les manettes PlayStation 4 et 5 sont reconnues, barre lumineuse aux couleurs de votre maison.'],
+          ['De la pierre et de l’herbe jaunies, des textures qui scintillent au loin.', 'Couleurs revues, lointain net et stable.']
+        ],
+        [
+          ['Bloqué à 30 images/s.', 'Jusqu’à 144 images/s, sans à-coups.'],
+          ['En Belgique, en Suisse ou au Canada, il démarrait en anglais.', 'Il s’ouvre dans votre langue.'],
+          ['Il démarrait en qualité de textures réduite, sans le dire.', 'Qualité maximale dès le premier lancement.'],
+          ['Avec une mise à l’échelle Windows (125 %…), la fenêtre dépassait de l’écran.', 'Elle est à la bonne taille.'],
+          ['Alt+Tab figeait le jeu.', 'Le jeu continue ; clavier et souris répondent dès le retour.'],
+          ['La manette demandait un composant DirectX de 2010, et seulement une manette Xbox.', 'Rien à installer, et les manettes PlayStation 4 et 5 sont reconnues, barre lumineuse aux couleurs de votre maison.']
+        ],
+        [
+          ['Il ne démarre que rangé dans un dossier précis, et se ferme sans un mot sinon.', 'Accio l’installe au bon endroit.'],
+          ['Bloqué à 30 images/s, avec un cœur du processeur à fond même dans les menus.', '60 images/s, processeur au repos, cinématiques à la bonne vitesse.'],
+          ['La souris changeait de vitesse avec la cadence.', 'Elle garde toujours la même.'],
+          ['Avec une mise à l’échelle Windows, la fenêtre dépassait de l’écran.', 'Elle prend l’écran, sans passer sous la barre des tâches.'],
+          ['Alt+Tab figeait le jeu et retenait le pointeur.', 'Le jeu continue, et le pointeur est libre sur les autres fenêtres.'],
+          ['Les manettes PlayStation 4 et 5 étaient ignorées.', 'Reconnues, barre lumineuse aux couleurs de votre maison.']
+        ],
+        [
+          ['Il ne démarre que rangé dans un dossier précis, et se ferme sans un mot sinon.', 'Accio l’installe au bon endroit.'],
+          ['Des plantages pendant les cinématiques.', 'Corrigés.'],
+          ['Aucun moyen simple de changer de langue.', 'Elle se choisit dans le launcher, parmi les sept du jeu.'],
+          ['La souris changeait de vitesse avec la cadence.', 'Elle garde toujours la même.'],
+          ['Avec une mise à l’échelle Windows, la fenêtre dépassait de l’écran.', 'Elle prend l’écran, sans passer sous la barre des tâches.'],
+          ['Alt+Tab figeait le jeu, et les manettes PlayStation étaient ignorées.', 'Le jeu continue, le pointeur est libre, et les manettes PlayStation 4 et 5 sont reconnues.']
+        ]
+      ]
+    },
+    en: {
+      titre: 'What Accio fixes',
+      jeux: [
+        [
+          ['Made for the square screens of twenty years ago.', 'Widescreen at 1920×1080, with menus scaled up so they stay readable.'],
+          ['Alt+Tab could crash it.', 'It runs in a borderless window, so Alt+Tab is safe.'],
+          ['Jagged edges and blurry textures.', 'Smooth edges, sharp textures, richer shadows and reflections.'],
+          ['The video menu offered two display modes the game doesn’t ship with, and picking one stopped it from starting again.', 'Removed, and the display settings are put right at every launch.'],
+          ['Stutters in the middle of a level.', 'Textures are loaded ahead of time.'],
+          ['A save menu with no pictures.', 'Every save has its thumbnail.']
+        ],
+        [
+          ['Shipped at 640×480 in 16-bit colour.', 'Starts at 1920×1080, widescreen, in 32-bit colour, with larger menus.'],
+          ['Its default display setting pointed to files that weren’t there.', 'Fixed, and put right at every launch.'],
+          ['Object detail was stuck two notches below the maximum.', 'It’s at the maximum.'],
+          ['Alt+Tab could crash it.', 'It runs in a borderless window, so Alt+Tab is safe.'],
+          ['Jagged edges and blurry textures.', 'Smooth edges, sharp textures, shadows, reflections and surface detail.'],
+          ['Stutters in the middle of a level.', 'Textures are loaded ahead of time.']
+        ],
+        [
+          ['Its original display code struggles on today’s graphics cards.', 'It’s translated for modern PCs.'],
+          ['A 4:3 picture.', 'Widescreen at 1920×1080, intro videos included.'],
+          ['Above 60 frames per second, the game goes haywire.', 'It’s held at 60, in sync with your screen.'],
+          ['Jagged edges, blurry textures in the distance.', 'Smooth edges and sharp textures all the way to the horizon.']
+        ],
+        [
+          ['On a wide screen, the mist in the Forbidden Forest, the lake, the maze and the graveyard crashed the game.', 'The mist is drawn, with no crash.'],
+          ['About one start in ten, a crash right after saying “Yes” to saving.', 'Fixed: the game carries on.'],
+          ['4:3 only, capped at 60 frames per second.', 'Widescreen or any other format, up to 144 frames per second.'],
+          ['Alt+Tab froze the game, and back in it the keyboard stayed dead for up to 30 seconds.', 'The game keeps running; keyboard and mouse respond the moment you’re back.'],
+          ['PlayStation 4 and 5 controllers were ignored.', 'Recognised, right stick included.'],
+          ['Controls designed for an English keyboard.', 'Every key can be changed from the launcher, with an AZERTY layout ready to go.']
+        ],
+        [
+          ['Locked to 30 frames per second.', 'Up to 144 frames per second, without stutter.'],
+          ['It started on reduced texture quality, without telling you.', 'Top quality from the very first launch.'],
+          ['With Windows display scaling (125 %…), the window ran off the screen.', 'It’s the right size.'],
+          ['Alt+Tab froze the game.', 'The game keeps running; keyboard and mouse respond the moment you’re back.'],
+          ['Controllers needed a DirectX component from 2010, and only Xbox pads worked.', 'Nothing to install, and PlayStation 4 and 5 controllers are recognised, light bar in your house colours.'],
+          ['Yellowed stone and grass, textures flickering in the distance.', 'Reworked colours, a sharp and steady distance.']
+        ],
+        [
+          ['Locked to 30 frames per second.', 'Up to 144 frames per second, without stutter.'],
+          ['In Belgium, Switzerland or Canada, it started in English.', 'It opens in your language.'],
+          ['It started on reduced texture quality, without telling you.', 'Top quality from the very first launch.'],
+          ['With Windows display scaling (125 %…), the window ran off the screen.', 'It’s the right size.'],
+          ['Alt+Tab froze the game.', 'The game keeps running; keyboard and mouse respond the moment you’re back.'],
+          ['Controllers needed a DirectX component from 2010, and only Xbox pads worked.', 'Nothing to install, and PlayStation 4 and 5 controllers are recognised, light bar in your house colours.']
+        ],
+        [
+          ['It only starts from one particular folder, and quits without a word otherwise.', 'Accio installs it in the right place.'],
+          ['Locked to 30 frames per second, with one processor core flat out even in the menus.', '60 frames per second, an idle processor, cutscenes at the right speed.'],
+          ['The mouse changed speed with the frame rate.', 'It always keeps the same speed.'],
+          ['With Windows display scaling, the window ran off the screen.', 'It fills the screen without going under the taskbar.'],
+          ['Alt+Tab froze the game and held on to the pointer.', 'The game keeps running, and the pointer is free on other windows.'],
+          ['PlayStation 4 and 5 controllers were ignored.', 'Recognised, light bar in your house colours.']
+        ],
+        [
+          ['It only starts from one particular folder, and quits without a word otherwise.', 'Accio installs it in the right place.'],
+          ['Crashes during cutscenes.', 'Fixed.'],
+          ['No simple way to change the language.', 'Pick it in the launcher, from the game’s seven.'],
+          ['The mouse changed speed with the frame rate.', 'It always keeps the same speed.'],
+          ['With Windows display scaling, the window ran off the screen.', 'It fills the screen without going under the taskbar.'],
+          ['Alt+Tab froze the game, and PlayStation controllers were ignored.', 'The game keeps running, the pointer is free, and PlayStation 4 and 5 controllers are recognised.']
+        ]
+      ]
+    },
+    es: {
+      titre: 'Lo que arregla Accio',
+      jeux: [
+        [
+          ['Pensado para las pantallas cuadradas de hace veinte años.', 'En panorámico y a 1920×1080, con menús más grandes para que se lean bien.'],
+          ['Alt+Tab podía hacer que se cerrara.', 'Funciona en una ventana sin bordes: Alt+Tab sin riesgo.'],
+          ['Bordes dentados y texturas borrosas.', 'Bordes suavizados, texturas nítidas, sombras y reflejos más ricos.'],
+          ['El menú de vídeo ofrecía dos modos de imagen que el juego no trae, y elegir uno impedía volver a arrancarlo.', 'Eliminados, y la imagen se pone en orden en cada arranque.'],
+          ['Tirones en mitad de un nivel.', 'Las texturas se cargan por adelantado.'],
+          ['Un menú de partidas guardadas sin imágenes.', 'Cada partida tiene su miniatura.']
+        ],
+        [
+          ['Venía a 640×480 y en 16 bits.', 'Arranca a 1920×1080, en panorámico y con color de 32 bits, con menús más grandes.'],
+          ['Su modo de imagen por defecto apuntaba a archivos que no estaban.', 'Corregido, y puesto en orden en cada arranque.'],
+          ['El detalle de los objetos estaba bloqueado dos niveles por debajo del máximo.', 'Está al máximo.'],
+          ['Alt+Tab podía hacer que se cerrara.', 'Funciona en una ventana sin bordes: Alt+Tab sin riesgo.'],
+          ['Bordes dentados y texturas borrosas.', 'Bordes suavizados, texturas nítidas, sombras, reflejos y relieve.'],
+          ['Tirones en mitad de un nivel.', 'Las texturas se cargan por adelantado.']
+        ],
+        [
+          ['Su imagen original funciona mal con las tarjetas gráficas actuales.', 'Está adaptada a los PC de hoy.'],
+          ['Una imagen en 4:3.', 'En panorámico y a 1920×1080, vídeos de introducción incluidos.'],
+          ['Por encima de 60 imágenes por segundo, el juego se descontrola.', 'Se mantiene a 60, sincronizado con la pantalla.'],
+          ['Bordes dentados y texturas borrosas a lo lejos.', 'Bordes suavizados y texturas nítidas hasta el horizonte.']
+        ],
+        [
+          ['En una pantalla ancha, la niebla del Bosque Prohibido, el lago, el laberinto y el cementerio cerraba el juego.', 'La niebla se ve, sin cierres.'],
+          ['Más o menos uno de cada diez arranques, se cerraba justo después del «Sí» al guardar.', 'Corregido: la partida sigue.'],
+          ['En 4:3 y limitado a 60 imágenes por segundo.', 'En panorámico o cualquier otro formato, hasta 144 imágenes por segundo.'],
+          ['Alt+Tab congelaba el juego, y al volver el teclado no respondía hasta 30 segundos.', 'El juego sigue; teclado y ratón responden en cuanto vuelves.'],
+          ['Los mandos de PlayStation 4 y 5 no funcionaban.', 'Reconocidos, con el stick derecho.'],
+          ['Controles pensados para un teclado inglés.', 'Todas las teclas se cambian desde el launcher.']
+        ],
+        [
+          ['Bloqueado a 30 imágenes por segundo.', 'Hasta 144 imágenes por segundo, sin tirones.'],
+          ['Arrancaba con la calidad de texturas reducida, sin avisar.', 'Calidad máxima desde el primer arranque.'],
+          ['Con el escalado de pantalla de Windows (125 %…), la ventana se salía de la pantalla.', 'Tiene el tamaño correcto.'],
+          ['Alt+Tab congelaba el juego.', 'El juego sigue; teclado y ratón responden en cuanto vuelves.'],
+          ['El mando necesitaba un componente de DirectX de 2010, y solo funcionaba uno de Xbox.', 'Nada que instalar, y los mandos de PlayStation 4 y 5 se reconocen, con la barra de luz en los colores de tu casa.'],
+          ['Piedra y hierba amarillentas, texturas que parpadean a lo lejos.', 'Colores revisados, lejanía nítida y estable.']
+        ],
+        [
+          ['Bloqueado a 30 imágenes por segundo.', 'Hasta 144 imágenes por segundo, sin tirones.'],
+          ['Con un Windows en español de España, arrancaba en inglés.', 'Se abre en tu idioma.'],
+          ['Arrancaba con la calidad de texturas reducida, sin avisar.', 'Calidad máxima desde el primer arranque.'],
+          ['Con el escalado de pantalla de Windows (125 %…), la ventana se salía de la pantalla.', 'Tiene el tamaño correcto.'],
+          ['Alt+Tab congelaba el juego.', 'El juego sigue; teclado y ratón responden en cuanto vuelves.'],
+          ['El mando necesitaba un componente de DirectX de 2010, y solo funcionaba uno de Xbox.', 'Nada que instalar, y los mandos de PlayStation 4 y 5 se reconocen, con la barra de luz en los colores de tu casa.']
+        ],
+        [
+          ['Solo arranca desde una carpeta concreta, y si no, se cierra sin decir nada.', 'Accio lo instala en el sitio correcto.'],
+          ['Bloqueado a 30 imágenes por segundo, con un núcleo del procesador al máximo incluso en los menús.', '60 imágenes por segundo, procesador en reposo, cinemáticas a la velocidad correcta.'],
+          ['El ratón cambiaba de velocidad según la fluidez.', 'Siempre mantiene la misma.'],
+          ['Con el escalado de pantalla de Windows, la ventana se salía de la pantalla.', 'Ocupa la pantalla sin meterse bajo la barra de tareas.'],
+          ['Alt+Tab congelaba el juego y retenía el puntero.', 'El juego sigue, y el puntero queda libre en las demás ventanas.'],
+          ['Los mandos de PlayStation 4 y 5 no funcionaban.', 'Reconocidos, con la barra de luz en los colores de tu casa.']
+        ],
+        [
+          ['Solo arranca desde una carpeta concreta, y si no, se cierra sin decir nada.', 'Accio lo instala en el sitio correcto.'],
+          ['Cierres durante las cinemáticas.', 'Corregidos.'],
+          ['Ninguna forma sencilla de cambiar el idioma.', 'Se elige en el launcher, entre los siete del juego.'],
+          ['El ratón cambiaba de velocidad según la fluidez.', 'Siempre mantiene la misma.'],
+          ['Con el escalado de pantalla de Windows, la ventana se salía de la pantalla.', 'Ocupa la pantalla sin meterse bajo la barra de tareas.'],
+          ['Alt+Tab congelaba el juego, y los mandos de PlayStation no funcionaban.', 'El juego sigue, el puntero queda libre, y los mandos de PlayStation 4 y 5 se reconocen.']
+        ]
+      ]
+    }
+  };
+
+  // Remplit la liste d'une fiche ouverte. textContent seulement : jamais de
+  // HTML construit à partir de ces textes.
+  function fillFixes(el, lang, idx) {
+    var fx = gameFixes[lang] || gameFixes.fr;
+    el.querySelector('.gcard-detail-fixes-title').textContent = fx.titre;
+    var list = el.querySelector('.gcard-detail-fixes-list');
+    list.textContent = '';
+    fx.jeux[idx].forEach(function (paire) {
+      var li = document.createElement('li');
+      var avant = document.createElement('span');
+      avant.className = 'fix-avant';
+      avant.textContent = paire[0];
+      var apres = document.createElement('span');
+      apres.className = 'fix-apres';
+      apres.textContent = paire[1];
+      li.appendChild(avant);
+      li.appendChild(apres);
+      list.appendChild(li);
+    });
+  }
+
   var gcardGrid = document.getElementById('gcard-grid');
   var gcards = document.querySelectorAll('.gcard');
   var detailTpl = document.getElementById('gcard-detail-tpl');
@@ -179,6 +409,7 @@
     el.querySelector('.gcard-detail-year').textContent = data.y;
     el.querySelector('.gcard-detail-title').textContent = data.t;
     el.querySelector('.gcard-detail-text').textContent = data.d;
+    fillFixes(el, lang, idx);
     el.querySelector('.gcard-detail-bg').style.backgroundImage = 'url(' + bgMap[idx] + ')';
     el.querySelector('.gcard-detail-close').addEventListener('click', closeGame);
     applyAttrs(el, lang);
@@ -834,6 +1065,7 @@
       activeDetail.querySelector('.gcard-detail-year').textContent = gd.y;
       activeDetail.querySelector('.gcard-detail-title').textContent = gd.t;
       activeDetail.querySelector('.gcard-detail-text').textContent = gd.d;
+      fillFixes(activeDetail, lang, activeGame);
     }
     renderBuild();
     renderDiscord();

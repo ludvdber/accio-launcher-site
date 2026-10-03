@@ -404,7 +404,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 @keyframes detailOpen {
   from { opacity:0; max-height:0; margin-top:0; margin-bottom:0; }
-  to { opacity:1; max-height:500px; margin-top:0; margin-bottom:0; }
+  to { opacity:1; max-height:2400px; margin-top:0; margin-bottom:0; }
 }
 .gcard-detail-bg {
   position:absolute; inset:0;
@@ -442,6 +442,38 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   line-height:1.8; opacity:0.9;
   max-width:750px;
 }
+/* « Ce que corrige Accio » : ce qui n'allait pas (atténué), puis ce que fait
+   Accio. Deux colonnes sur grand écran, une seule sur téléphone. */
+.gcard-detail-fixes {
+  margin-top:24px; padding-top:20px;
+  border-top:1px solid rgba(156,119,17,0.35);
+  max-width:1000px;
+}
+.gcard-detail-fixes-title {
+  font-family:var(--serif);
+  font-size:13px; font-weight:600;
+  color:var(--gold);
+  letter-spacing:2px; text-transform:uppercase;
+  margin:0 0 14px;
+}
+.gcard-detail-fixes-list {
+  list-style:none; margin:0; padding:0;
+  display:grid; grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:14px 32px;
+}
+.gcard-detail-fixes-list li {
+  position:relative; padding-left:18px;
+  display:flex; flex-direction:column; gap:3px;
+}
+.gcard-detail-fixes-list li::before {
+  content:''; position:absolute; left:0; top:7px;
+  width:6px; height:6px;
+  background:var(--gold-d);
+  transform:rotate(45deg);
+}
+.fix-avant { font-size:13px; line-height:1.5; color:var(--muted); }
+.fix-apres { font-size:14.5px; line-height:1.55; color:var(--text); }
+
 /* Arrow pointing up at the active card */
 .gcard-detail-arrow {
   position:absolute; top:-8px;
@@ -807,6 +839,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   .gcard-grid { grid-template-columns:repeat(2, 1fr); gap:10px; }
   .gcard-detail-content { padding:28px 36px 28px 20px; }
   .gcard-detail-text { font-size:14px; }
+  .gcard-detail-fixes-list { grid-template-columns:minmax(0, 1fr); gap:12px; }
+  .fix-apres { font-size:14px; }
 }
 
 @media(max-width:480px) {
@@ -832,7 +866,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   #particles { display:none; }
   #hero-typed::after { display:none; }
   .gcard { transition:none; }
-  .gcard-detail { animation:none; opacity:1; max-height:500px; }
+  .gcard-detail { animation:none; opacity:1; max-height:none; }
 }
 
 /* La mention de possession, sous le compteur : discrète mais lisible. */
