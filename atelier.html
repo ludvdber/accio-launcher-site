@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'atelier · Accio Launcher</title>
+  <meta name="description" content="Ce que des artistes peuvent refaire pour les huit jeux Harry Potter PC : jaquettes, bandes-annonces, cartes, textures, vidéos.">
+  <link rel="canonical" href="https://acciolauncher.be/atelier.html">
+  <meta property="og:title" content="L'atelier · Accio Launcher">
+  <meta property="og:description" content="Vous dessinez, vous montez des vidéos ? Voici ce que les huit jeux Harry Potter PC attendent.">
+  <meta property="og:image" content="https://acciolauncher.be/assets/social-preview-v2.jpg">
+  <meta property="og:url" content="https://acciolauncher.be/atelier.html">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#060611">
+  <script>document.documentElement.classList.replace('no-js','js');</script>
+  <link rel="icon" type="image/svg+xml" href="assets/brand/mark.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/brand/icon-180.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="page-atelier">
+
+  <nav id="nav" class="scrolled atelier-nav">
+    <a href="index.html" class="nav-brand">Accio Launcher</a>
+    <div class="lang-switch" id="lang-switch" role="radiogroup" aria-label="Langue / Language / Idioma">
+      <button type="button" role="radio" data-lang="fr" lang="fr" class="is-active" aria-checked="true" tabindex="0">FR</button>
+      <button type="button" role="radio" data-lang="en" lang="en" aria-checked="false" tabindex="-1">EN</button>
+      <button type="button" role="radio" data-lang="es" lang="es" aria-checked="false" tabindex="-1">ES</button>
+    </div>
+  </nav>
+
+  <main class="atelier">
+    <header class="atelier-tete">
+      <h1 class="section-heading" data-i18n="at_titre">L'atelier</h1>
+      <p class="atelier-lead" data-i18n="at_lead">Les huit jeux ont plus de quinze ans, et leurs images aussi. L'atelier liste ce que des artistes peuvent refaire : jaquettes, bandes-annonces, cartes, textures, vidéos. Une œuvre retenue entre dans le launcher ou dans le jeu, avec votre nom.</p>
+    </header>
+
+    <div class="atelier-cadre">
+      <section class="atelier-bloc">
+        <h2 data-i18n="at_comment">Comment participer</h2>
+        <ol class="atelier-etapes">
+          <li data-i18n="at_etape1">Choisissez un besoin dans la liste ci-dessous, ou proposez le vôtre.</li>
+          <li data-i18n="at_etape2">Annoncez-le dans le salon #accio-medias du Discord avant de commencer, pour que deux personnes ne fassent pas le même travail.</li>
+          <li data-i18n="at_etape3">Postez-y le fichier fini, aux formats indiqués. S'il est retenu, il arrive avec une mise à jour et votre nom figure dans les crédits.</li>
+        </ol>
+        <a class="atelier-discord" href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener" data-i18n="at_discord">Rejoindre le Discord</a>
+      </section>
+
+      <section class="atelier-bloc">
+        <h2 data-i18n="at_droits">Vos droits</h2>
+        <p data-i18n="at_droits1">Vous restez l'auteur de votre œuvre. En l'envoyant, vous acceptez qu'elle soit publiée sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" target="_blank" rel="noopener">Creative Commons Attribution 4.0</a> : le projet peut l'utiliser, l'adapter et la distribuer, toujours avec votre nom.</p>
+        <p data-i18n="at_droits2">N'envoyez que ce que vous avez créé vous-même : pas d'extraits des films, pas d'images prises ailleurs. Le projet est gratuit et bénévole, les contributions ne sont pas rémunérées.</p>
+      </section>
+    </div>
+
+    <section class="atelier-liste">
+      <h2 class="section-heading" data-i18n="at_cherche">Ce qu'on cherche</h2>
+      <p class="atelier-etat" id="atelier-etat" data-i18n="at_charge">Chargement de la liste…</p>
+      <div class="metiers" id="metiers"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="index.html" data-i18n="at_retour">Retour à l'accueil</a>
+      <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a>
+      <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="legal">
+      <p data-i18n="at_legal">Accio Launcher est un projet communautaire indépendant, non affilié à Warner Bros. Entertainment Inc. ou Electronic Arts Inc. Harry Potter™ est une marque déposée de Warner Bros. Entertainment Inc.</p>
+    </div>
+  </footer>
+
+  <script src="js/atelier.js"></script>
+</body>
+</html>
