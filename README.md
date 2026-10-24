@@ -11,6 +11,8 @@ Le dépôt de la page d'accueil d'**Accio Launcher**, le launcher qui réunit le
 
 - **[Le launcher](https://github.com/ludvdber/AccioLauncher)** — l'application, les versions, les tickets
 - **[Le catalogue des jeux](https://github.com/ludvdber/accio-launcher-games)** — ce que le launcher installe
+- **[Le correctif PC](https://github.com/ludvdber/Harry-Potter-PC-Fix)** — ce qui fait tourner les jeux sur un PC récent, et leurs réglages
+- **[Le Ko-fi](https://ko-fi.com/ludovic01)** — aider à payer les noms de domaine, l'hébergement et les sauvegardes
 - **[Le Discord](https://discord.gg/TNwDQd7KGe)** — questions, captures, entraide
 
 Un bug, une idée ? [Ouvre un ticket](https://github.com/ludvdber/AccioLauncher/issues).
