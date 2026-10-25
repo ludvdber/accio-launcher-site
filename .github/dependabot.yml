@@ -1,0 +1,17 @@
+# Tient à jour les actions épinglées par empreinte dans .github/workflows :
+# Dependabot ouvre une demande de fusion qui change l'empreinte ET le commentaire
+# de version ensemble. Le délai de 7 jours laisse le temps de retirer une
+# version piégée avant qu'elle n'arrive ici ; les alertes de sécurité, elles,
+# n'attendent pas.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        patterns:
+          - "*"
