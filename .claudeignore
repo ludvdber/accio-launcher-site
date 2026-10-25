@@ -1,0 +1,16 @@
+# Ce que l'assistant n'a jamais à lire : médias et polices. HTML, CSS, JS et
+# tests restent lisibles.
+
+# Matériel local hors dépôt (maquettes, vidéos de travail : 74 Mo)
+_local/
+
+# Médias du site
+assets/videos/
+assets/audio/
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.mp4
+*.mp3
+*.woff2
