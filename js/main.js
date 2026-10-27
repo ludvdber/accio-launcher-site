@@ -167,7 +167,8 @@
           ['Contours en escalier, textures floues.', 'Contours lissés, textures nettes, ombres et reflets plus riches.'],
           ['Le menu vidéo proposait deux affichages absents du jeu, qui l’empêchaient de redémarrer.', 'Retirés, et l’affichage est remis en ordre à chaque lancement.'],
           ['Des saccades en cours de niveau.', 'Les textures sont chargées d’avance.'],
-          ['Un menu des sauvegardes sans images.', 'Chaque sauvegarde a sa vignette.']
+          ['Un menu des sauvegardes sans images.', 'Chaque sauvegarde a sa vignette.'],
+          ['Un texte minuscule sur les écrans d’aujourd’hui.', 'Redessiné à la taille de l’image, taille au choix.']
         ],
         [
           ['Livré en 640×480 et en 16 bits.', 'Démarre en 1920×1080, en 16:9 et en couleurs 32 bits, menus agrandis.'],
@@ -175,7 +176,8 @@
           ['Le détail des objets était bloqué deux crans sous le maximum.', 'Il est au maximum.'],
           ['Alt+Tab pouvait le faire planter.', 'Il tourne dans une fenêtre sans bordure : Alt+Tab sans risque.'],
           ['Contours en escalier, textures floues.', 'Contours lissés, textures nettes, ombres, reflets et relief.'],
-          ['Des saccades en cours de niveau.', 'Les textures sont chargées d’avance.']
+          ['Des saccades en cours de niveau.', 'Les textures sont chargées d’avance.'],
+          ['Un texte minuscule sur les écrans d’aujourd’hui.', 'Redessiné à la taille de l’image, taille au choix.']
         ],
         [
           ['Son affichage d’origine passe mal sur les cartes graphiques actuelles.', 'Il est traduit pour les PC d’aujourd’hui.'],
@@ -205,7 +207,8 @@
           ['Il démarrait en qualité de textures réduite, sans le dire.', 'Qualité maximale dès le premier lancement.'],
           ['Avec une mise à l’échelle Windows (125 %…), la fenêtre dépassait de l’écran.', 'Elle est à la bonne taille.'],
           ['Alt+Tab figeait le jeu.', 'Le jeu continue ; clavier et souris répondent dès le retour.'],
-          ['La manette demandait un composant DirectX de 2010, et seulement une manette Xbox.', 'Rien à installer, et les manettes PlayStation 4 et 5 sont reconnues, barre lumineuse aux couleurs de votre maison.']
+          ['La manette demandait un composant DirectX de 2010, et seulement une manette Xbox.', 'Rien à installer, et les manettes PlayStation 4 et 5 sont reconnues, barre lumineuse aux couleurs de votre maison.'],
+          ['Une brume vert menthe à la place du ciel.', 'Un ciel bleu, ou qui suit l’heure de votre ordinateur, de l’aube à la nuit.']
         ],
         [
           ['Il ne démarre que rangé dans un dossier précis, et se ferme sans un mot sinon.', 'Accio l’installe au bon endroit.'],
@@ -234,7 +237,8 @@
           ['Jagged edges and blurry textures.', 'Smooth edges, sharp textures, richer shadows and reflections.'],
           ['The video menu offered two display modes the game doesn’t ship with, and picking one stopped it from starting again.', 'Removed, and the display settings are put right at every launch.'],
           ['Stutters in the middle of a level.', 'Textures are loaded ahead of time.'],
-          ['A save menu with no pictures.', 'Every save has its thumbnail.']
+          ['A save menu with no pictures.', 'Every save has its thumbnail.'],
+          ['Tiny text on today’s screens.', 'Redrawn to fit the picture, size of your choice.']
         ],
         [
           ['Shipped at 640×480 in 16-bit colour.', 'Starts at 1920×1080, widescreen, in 32-bit colour, with larger menus.'],
@@ -242,7 +246,8 @@
           ['Object detail was stuck two notches below the maximum.', 'It’s at the maximum.'],
           ['Alt+Tab could crash it.', 'It runs in a borderless window, so Alt+Tab is safe.'],
           ['Jagged edges and blurry textures.', 'Smooth edges, sharp textures, shadows, reflections and surface detail.'],
-          ['Stutters in the middle of a level.', 'Textures are loaded ahead of time.']
+          ['Stutters in the middle of a level.', 'Textures are loaded ahead of time.'],
+          ['Tiny text on today’s screens.', 'Redrawn to fit the picture, size of your choice.']
         ],
         [
           ['Its original display code struggles on today’s graphics cards.', 'It’s translated for modern PCs.'],
@@ -272,7 +277,8 @@
           ['It started on reduced texture quality, without telling you.', 'Top quality from the very first launch.'],
           ['With Windows display scaling (125 %…), the window ran off the screen.', 'It’s the right size.'],
           ['Alt+Tab froze the game.', 'The game keeps running; keyboard and mouse respond the moment you’re back.'],
-          ['Controllers needed a DirectX component from 2010, and only Xbox pads worked.', 'Nothing to install, and PlayStation 4 and 5 controllers are recognised, light bar in your house colours.']
+          ['Controllers needed a DirectX component from 2010, and only Xbox pads worked.', 'Nothing to install, and PlayStation 4 and 5 controllers are recognised, light bar in your house colours.'],
+          ['A mint-green haze instead of a sky.', 'A blue sky, or one that follows your computer’s clock, from dawn to night.']
         ],
         [
           ['It only starts from one particular folder, and quits without a word otherwise.', 'Accio installs it in the right place.'],
@@ -301,7 +307,8 @@
           ['Bordes dentados y texturas borrosas.', 'Bordes suavizados, texturas nítidas, sombras y reflejos más ricos.'],
           ['El menú de vídeo ofrecía dos modos de imagen que el juego no trae, y elegir uno impedía volver a arrancarlo.', 'Eliminados, y la imagen se pone en orden en cada arranque.'],
           ['Tirones en mitad de un nivel.', 'Las texturas se cargan por adelantado.'],
-          ['Un menú de partidas guardadas sin imágenes.', 'Cada partida tiene su miniatura.']
+          ['Un menú de partidas guardadas sin imágenes.', 'Cada partida tiene su miniatura.'],
+          ['Un texto diminuto en las pantallas de hoy.', 'Redibujado al tamaño de la imagen, tamaño a elegir.']
         ],
         [
           ['Venía a 640×480 y en 16 bits.', 'Arranca a 1920×1080, en panorámico y con color de 32 bits, con menús más grandes.'],
@@ -309,7 +316,8 @@
           ['El detalle de los objetos estaba bloqueado dos niveles por debajo del máximo.', 'Está al máximo.'],
           ['Alt+Tab podía hacer que se cerrara.', 'Funciona en una ventana sin bordes: Alt+Tab sin riesgo.'],
           ['Bordes dentados y texturas borrosas.', 'Bordes suavizados, texturas nítidas, sombras, reflejos y relieve.'],
-          ['Tirones en mitad de un nivel.', 'Las texturas se cargan por adelantado.']
+          ['Tirones en mitad de un nivel.', 'Las texturas se cargan por adelantado.'],
+          ['Un texto diminuto en las pantallas de hoy.', 'Redibujado al tamaño de la imagen, tamaño a elegir.']
         ],
         [
           ['Su imagen original funciona mal con las tarjetas gráficas actuales.', 'Está adaptada a los PC de hoy.'],
@@ -339,7 +347,8 @@
           ['Arrancaba con la calidad de texturas reducida, sin avisar.', 'Calidad máxima desde el primer arranque.'],
           ['Con el escalado de pantalla de Windows (125 %…), la ventana se salía de la pantalla.', 'Tiene el tamaño correcto.'],
           ['Alt+Tab congelaba el juego.', 'El juego sigue; teclado y ratón responden en cuanto vuelves.'],
-          ['El mando necesitaba un componente de DirectX de 2010, y solo funcionaba uno de Xbox.', 'Nada que instalar, y los mandos de PlayStation 4 y 5 se reconocen, con la barra de luz en los colores de tu casa.']
+          ['El mando necesitaba un componente de DirectX de 2010, y solo funcionaba uno de Xbox.', 'Nada que instalar, y los mandos de PlayStation 4 y 5 se reconocen, con la barra de luz en los colores de tu casa.'],
+          ['Una bruma verde menta en lugar del cielo.', 'Un cielo azul, o uno que sigue la hora de tu ordenador, del amanecer a la noche.']
         ],
         [
           ['Solo arranca desde una carpeta concreta, y si no, se cierra sin decir nada.', 'Accio lo instala en el sitio correcto.'],
@@ -832,7 +841,7 @@
   var i18n = {
     en: {
       nav_games: 'Games', nav_compare: 'Before/After', nav_community: 'Community', nav_dl: 'Download',
-      hero_cta: 'Download for Windows', cta_preview: 'preview', hero_downloads: 'downloads', hero_own: 'The games remain the property of Warner Bros. and Electronic Arts: to play them legally, you must own an original copy (CD, DVD or digital purchase).',
+      hero_cta: 'Download for Windows', hero_downloads: 'downloads', hero_own: 'The games remain the property of Warner Bros. and Electronic Arts: to play them legally, you must own an original copy (CD, DVD or digital purchase).',
       hero_typed: 'Relive all 8 Harry Potter PC games with modern graphics.',
       hero_warn_q: 'Windows will show a warning the first time you run it — that’s normal.',
       hero_warn_a: 'The launcher is free and isn’t signed with a paid certificate, so Windows shows “Windows protected your PC”. Click <em>More info</em>, then <em>Run anyway</em>.',
@@ -847,13 +856,13 @@
       game8_title: 'Deathly Hallows — 2',
       preview_heading: 'The Launcher', preview_sub: 'Everything is set up from the very first launch. Pick a game and play.',
       preview_tab1: 'Catalogue', preview_tab2: 'Installed game', preview_tab3: 'Settings',
-      preview_tab4: 'Statistics', preview_tab5: 'Houses', preview_tab6: 'Folio',
+      preview_tab4: 'Collections', preview_tab5: 'Characters', preview_tab6: 'Folio',
       pf1: 'One-click install',
       pf2: 'Three image quality levels',
       pf3: 'PlayStation controllers',
-      pf4: 'Playtime and saves',
-      pf5: 'Five house themes',
-      pf6: 'Screenshot gallery and folio',
+      pf4: 'One-click Resume',
+      pf5: 'The games’ music and cutscenes',
+      pf6: 'Folio, medals and 3D characters',
       compare_heading: 'Before / After', compare_sub: 'What the graphics upgrade changes, game by game.',
       ctab1: 'Hogwarts corridors', ctab2: 'Common room',
       ctab3: 'Library', ctab4: 'The castle',
@@ -883,8 +892,8 @@
       faq5_q: 'Are all 8 games available?', faq5_a: 'Yes, since version 1.0 — from Philosopher’s Stone (2001) to Deathly Hallows — Part 2 (2011). The whole collection is there.',
       faq6_q: 'Why does Windows show a warning?', faq6_a: 'That’s expected. The launcher is free, and a code-signing certificate costs several hundred euros a year, so Windows shows “Windows protected your PC”. Click <em>More info</em>, then <em>Run anyway</em>. The file comes straight from the project’s GitHub page — the same place as the source code.',
       faq7_q: 'Do I need to reinstall it for every update?', faq7_a: 'No. The launcher updates itself in one click, and your installed games stay put.',
-      faq8_q: 'What do I need?', faq8_a: 'Windows 10 or 11 (or Linux, as an early preview), 8 GB of RAM and a graphics card with 2 GB of video memory. Make sure you have room for the biggest game — the launcher checks your free space and warns you before downloading.',
-      faq9_q: 'What about Linux or Steam Deck?', faq9_a: 'Yes, as an early preview since version 1.1: Steam Deck, Bazzite, Fedora, Ubuntu… Download the Linux file, make it executable (right-click → Properties), then run it. The games run through Proton or Wine; the <a href="https://github.com/ludvdber/AccioLauncher#linux--bazzite" target="_blank" rel="noopener">Linux guide</a> covers the setup. Since version 1.1.3, games install and start once Wine is set up, and launching only takes a moment. Tried on Bazzite: HP1, HP3, HP4 and HP6 run. HP2 starts, but its menu stays empty for now. Let us know how it goes on <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> or <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
+      faq8_q: 'What do I need?', faq8_a: 'Windows 10 or 11, or Linux, 8 GB of RAM and a graphics card with 2 GB of video memory. Make sure you have room for the biggest game — the launcher checks your free space and warns you before downloading.',
+      faq9_q: 'What about Linux or Steam Deck?', faq9_a: 'Yes: Steam Deck, Bazzite, Fedora, Ubuntu… Download the Linux file, make it executable (right-click → Properties), then run it. The games run through Proton or Wine, and the launcher installs what they need by itself; the <a href="https://github.com/ludvdber/AccioLauncher#linux--bazzite" target="_blank" rel="noopener">Linux guide</a> covers the setup. Tried on Bazzite: all eight games install and run. Something wrong? Tell us on <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> or <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
       support_heading: 'Support the project',
       support_text: 'Made by one person in their spare time, with no ads and nothing to buy — simply to bring these games back to life.',
       support_goal: 'Ko-fi goal: €100, for the domain names, hosting and backups of Accio and the other free projects. Donations pay for no game.',
@@ -908,20 +917,20 @@
       ph_before: 'Before — Original', ph_after: 'After — Enhanced',
       alt_prev2: 'An installed game: the Resume button, playtime and the settings cog',
       alt_prev3: 'A game’s image settings, with quality levels from Light to Maximum',
-      alt_prev4: 'The Notebook school record: the time spent in each game, year by year',
-      alt_prev5: 'The launcher in Ravenclaw colours',
+      alt_prev4: 'The Collections: Half-Blood Prince cutscenes, with their sound and a seek bar',
+      alt_prev5: 'The characters of Philosopher’s Stone, with Harry in 3D as he looks in the game',
       alt_prev6: 'A save’s folio, read from the save file: Chocolate Frog cards found, the House Cup and spells learned',
       aria_music: 'Music', title_music: 'Ambient music', aria_menu: 'Menu',
       aria_close: 'Close', aria_compare: 'Before/after comparison', aria_top: 'Back to top',
       dl_thanks_title: 'Your download has started. Enjoy the games!',
-      dl_thanks_linux: 'On Linux, make the file executable (right-click → Properties), then run it. It’s an early preview, so your feedback on <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> or <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a> really helps.',
+      dl_thanks_linux: 'On Linux, make the file executable (right-click → Properties), then run it. Something wrong? Tell us on <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> or <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
       dl_thanks_star: 'If you enjoy it, a <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">star on GitHub</a> helps other players find it.',
       ee_main: 'I solemnly swear that I am up to no good.',
       ee_sub: 'Mischief managed.'
     },
     es: {
       nav_games: 'Juegos', nav_compare: 'Antes/Después', nav_community: 'Comunidad', nav_dl: 'Descargar',
-      hero_cta: 'Descargar para Windows', cta_preview: 'en pruebas', hero_downloads: 'descargas', hero_own: 'Los juegos siguen siendo propiedad de Warner Bros. y Electronic Arts: para jugarlos legalmente, hay que poseer una copia original (CD, DVD o compra digital).',
+      hero_cta: 'Descargar para Windows', hero_downloads: 'descargas', hero_own: 'Los juegos siguen siendo propiedad de Warner Bros. y Electronic Arts: para jugarlos legalmente, hay que poseer una copia original (CD, DVD o compra digital).',
       hero_typed: 'Revive los 8 juegos de Harry Potter para PC con gráficos modernos.',
       hero_warn_q: 'Windows mostrará una advertencia la primera vez que lo abras. Es normal.',
       hero_warn_a: 'Como el launcher es gratuito, no está firmado con un certificado de pago, así que Windows muestra «Windows protegió su PC». Haz clic en <em>Más información</em> y después en <em>Ejecutar de todas formas</em>.',
@@ -936,13 +945,13 @@
       game8_title: 'Las Reliquias de la Muerte — 2',
       preview_heading: 'El launcher', preview_sub: 'Todo está listo desde el primer arranque. Elige un juego y a jugar.',
       preview_tab1: 'Catálogo', preview_tab2: 'Juego instalado', preview_tab3: 'Ajustes',
-      preview_tab4: 'Estadísticas', preview_tab5: 'Casas', preview_tab6: 'Folio',
+      preview_tab4: 'Colecciones', preview_tab5: 'Personajes', preview_tab6: 'Folio',
       pf1: 'Instalación en un clic',
       pf2: 'Tres niveles de calidad de imagen',
       pf3: 'Mandos de PlayStation',
-      pf4: 'Tiempo de juego y partidas guardadas',
-      pf5: 'Cinco temas de las casas',
-      pf6: 'Galería de capturas y folio',
+      pf4: 'Continuar en un clic',
+      pf5: 'La música y las cinemáticas',
+      pf6: 'Folio, medallas y personajes en 3D',
       compare_heading: 'Antes / Después', compare_sub: 'Así cambian los gráficos, juego a juego.',
       ctab1: 'Pasillos de Hogwarts', ctab2: 'Sala común',
       ctab3: 'Biblioteca', ctab4: 'El castillo',
@@ -972,8 +981,8 @@
       faq5_q: '¿Están disponibles los 8 juegos?', faq5_a: 'Sí, desde la versión 1.0: desde La piedra filosofal (2001) hasta Las Reliquias de la Muerte — Parte 2 (2011). La colección está completa.',
       faq6_q: '¿Por qué Windows muestra una advertencia?', faq6_a: 'Es normal. El launcher es gratuito y no tiene certificado de firma, que cuesta varios cientos de euros al año, así que Windows muestra «Windows protegió su PC». Haz clic en <em>Más información</em> y después en <em>Ejecutar de todas formas</em>. El archivo se descarga directamente de la página del proyecto en GitHub, el mismo sitio donde está el código.',
       faq7_q: '¿Tengo que reinstalarlo con cada actualización?', faq7_a: 'No. El launcher se actualiza con un solo clic y tus juegos instalados se quedan como están.',
-      faq8_q: '¿Qué necesito para jugar?', faq8_a: 'Windows 10 u 11 (o Linux, en versión de prueba), 8 GB de RAM y una tarjeta gráfica con 2 GB de memoria. Asegúrate de tener espacio para el juego más grande: el launcher comprueba el espacio libre y te avisa antes de descargar.',
-      faq9_q: '¿Y en Linux o Steam Deck?', faq9_a: 'Sí, en versión de prueba desde la 1.1: Steam Deck, Bazzite, Fedora, Ubuntu… Descarga el archivo para Linux, hazlo ejecutable (clic derecho → Propiedades) y ábrelo. Los juegos funcionan con Proton o Wine; la <a href="https://github.com/ludvdber/AccioLauncher#linux--bazzite" target="_blank" rel="noopener">guía para Linux</a> explica la instalación. Desde la versión 1.1.3, los juegos se instalan y arrancan una vez preparado Wine, y abrirlos ya solo lleva un momento. Probado en Bazzite: HP1, HP3, HP4 y HP6 funcionan. HP2 arranca, pero su menú sigue vacío por ahora. Cuéntanos cómo te va en <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> o en <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
+      faq8_q: '¿Qué necesito para jugar?', faq8_a: 'Windows 10 u 11, o Linux, 8 GB de RAM y una tarjeta gráfica con 2 GB de memoria. Asegúrate de tener espacio para el juego más grande: el launcher comprueba el espacio libre y te avisa antes de descargar.',
+      faq9_q: '¿Y en Linux o Steam Deck?', faq9_a: 'Sí: Steam Deck, Bazzite, Fedora, Ubuntu… Descarga el archivo para Linux, hazlo ejecutable (clic derecho → Propiedades) y ábrelo. Los juegos funcionan con Proton o Wine, y el launcher instala él mismo lo que les falta; la <a href="https://github.com/ludvdber/AccioLauncher#linux--bazzite" target="_blank" rel="noopener">guía para Linux</a> explica la instalación. Probado en Bazzite: los ocho juegos se instalan y funcionan. ¿Algún problema? Cuéntanoslo en <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> o en <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
       support_heading: 'Apoya el proyecto',
       support_text: 'Lo desarrolla una sola persona en su tiempo libre, sin anuncios ni nada que comprar, solo por las ganas de devolverles la vida a estos juegos.',
       support_goal: 'Objetivo en Ko-fi: 100 €, para los dominios, el alojamiento y las copias de seguridad de Accio y de los demás proyectos gratuitos. Las donaciones no pagan ningún juego.',
@@ -997,13 +1006,13 @@
       ph_before: 'Antes — Original', ph_after: 'Después — Mejorado',
       alt_prev2: 'Un juego instalado: el botón Continuar, el tiempo de juego y el engranaje de ajustes',
       alt_prev3: 'Los ajustes de imagen de un juego, con niveles de calidad de Ligera a Máxima',
-      alt_prev4: 'El expediente del Cuaderno: el tiempo dedicado a cada juego, año por año',
-      alt_prev5: 'El launcher con los colores de Ravenclaw',
+      alt_prev4: 'Las Colecciones: las cinemáticas de El misterio del príncipe, con su sonido y una barra de reproducción',
+      alt_prev5: 'Los personajes de La piedra filosofal, con Harry en 3D tal como aparece en el juego',
       alt_prev6: 'El folio de una partida, leído en la partida guardada: cromos de ranas de chocolate encontrados, la Copa de las Casas y hechizos aprendidos',
       aria_music: 'Música', title_music: 'Música ambiental', aria_menu: 'Menú',
       aria_close: 'Cerrar', aria_compare: 'Comparación antes/después', aria_top: 'Volver arriba',
       dl_thanks_title: 'Ya se está descargando. ¡Que lo disfrutes!',
-      dl_thanks_linux: 'En Linux, haz el archivo ejecutable (clic derecho → Propiedades) y ábrelo. Es una versión de prueba: cuéntanos cómo te va en <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> o en <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
+      dl_thanks_linux: 'En Linux, haz el archivo ejecutable (clic derecho → Propiedades) y ábrelo. ¿Algún problema? Cuéntanoslo en <a href="https://discord.gg/TNwDQd7KGe" target="_blank" rel="noopener">Discord</a> o en <a href="https://github.com/ludvdber/AccioLauncher/issues/new/choose" target="_blank" rel="noopener">GitHub</a>.',
       dl_thanks_star: 'Si te gusta, <a href="https://github.com/ludvdber/AccioLauncher" target="_blank" rel="noopener">dale una estrella en GitHub</a>: así más jugadores lo descubren.',
       ee_main: 'Juro solemnemente que mis intenciones no son buenas.',
       ee_sub: 'Travesura realizada.'
