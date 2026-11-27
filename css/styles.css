@@ -3,7 +3,7 @@
    =========================================== */
 
 @font-face { font-family:'Cinzel'; src:url('../assets/fonts/Cinzel-Variable.woff2') format('woff2'); font-weight:400 900; font-display:swap; }
-/* Accio Titres = Cinzel Decorative Bold, sauf h dessiné comme H : son h minuscule mordait sur le C de « Launcher » (OFL : renommée). */
+/* Accio Titres = Cinzel Decorative Bold dont le h (crochet qui mordait sur le C de « Launcher ») est le H de Cinzel Bold, à la hauteur des autres lettres (OFL : renommée). */
 @font-face { font-family:'Accio Titres'; src:url('../assets/fonts/AccioTitres-Bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
 
 :root {
